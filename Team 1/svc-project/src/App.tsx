@@ -1,12 +1,16 @@
 import React from 'react';
-import './api/css/App.css';
-import Register from './components/register';
-
+import Header from './components/header';
+import Login from './components/login';
+import {Register} from './components/register';
+import Footer from './components/footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
-      <Register/>
+    <div>
+      <Header/>
+      <Login/>
+      <Footer/>
     </div>
   );
 }
