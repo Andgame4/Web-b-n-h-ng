@@ -1,8 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import '../assets/css/login.scss';
 
 const Login = () => {
 
+
+    // const [showPassword, setShowPassword] = useState(false);
+
+    // const togglePassword = (e) => {
+    //     if(showPassword){
+    //         setShowPassword(false);
+    //     }else{
+    //         setShowPassword(true);
+    //     }
+    // }
     return (
         <form className="vh-100" >
             <div className="container py-5 h-100">
