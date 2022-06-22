@@ -1,9 +1,9 @@
 import React, {Component}  from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from './components/header';
-import Login from './components/login';
-import {Register} from './components/register';
-import ForgotPassword from './components/forgotpassword';
+import Login from './pages/user/login';
+import {Register} from './pages/user/register';
+import ForgotPassword from './pages/user/forgotpassword';
 import Footer from './components/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

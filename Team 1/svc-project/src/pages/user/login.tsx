@@ -1,8 +1,7 @@
-import React, {useState} from "react";
-import '../assets/css/login.scss';
+import React from "react";
+import '../../assets/css/login.scss';
 
 const Login = () => {
-
 
     // const [showPassword, setShowPassword] = useState(false);
 

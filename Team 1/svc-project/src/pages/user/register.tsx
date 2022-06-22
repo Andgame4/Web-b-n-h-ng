@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/css/register.scss';
+import '../../assets/css/register.scss';
 
 export class Register extends React.Component {
     handleSubmit = (e: any) => { }
