@@ -24,11 +24,11 @@ const Login = () => {
                                     <button className="btn-login" type="submit">LOGIN</button>
                                 </div>
                                 <div className="forget-link">
-                                    <a href="/">Forgot Password?</a>
+                                    <a href="/forgotpassword">Forgot Password?</a>
                                 </div>
                                 <hr className="my-4" />
                                 <div className="register-link">
-                                    You don't have account? <a href="/">Register</a>
+                                    You don't have account? <a href="/register">Register</a>
                                 </div>
                             </div>
                         </div>
