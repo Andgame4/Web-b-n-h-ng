@@ -296,7 +296,7 @@ const Profile = () => {
                 <div className="col-md-12 col-sm-12 col-xs-12">
                   <div className="form-group">
                     <label className="labels">
-                      Địa chỉ:<span>*</span>
+                     Địa chỉ:<span>*</span>
                     </label>
                     <textarea
                       className="form-control"
