@@ -5,7 +5,7 @@ const Login = () => {
 
     // const [showPassword, setShowPassword] = useState(false);
 
-    // const togglePassword = (e) => {
+    // const togglePassword = () => {
     //     if(showPassword){
     //         setShowPassword(false);
     //     }else{
