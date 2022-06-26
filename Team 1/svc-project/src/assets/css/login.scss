@@ -1,4 +1,3 @@
-
 form{
     width: 100%;
     height: 300px;
@@ -15,11 +14,31 @@ form{
             font-size: 15px;
             margin-bottom: 20px;
         }
+        #input-email:focus{
+            color: black;
+        }
         #input-password{
             font-size: 15px;
             margin-bottom: 20px;
         }
+        #input-password:focus{
+            color: black;
+        }
+        .border-red{
+            border: #c92432 solid 1px;
+            color: #c92432;
+            background-color: #fffafa;
+        }
     }
+
+    p{
+        font-size: 13px;
+        color: red;
+        float: left !important;
+        margin-bottom: 10px;
+    }
+
+    
 
     .login-button{
         .btn-login{
@@ -55,7 +74,6 @@ form{
         margin-top: 8px;
     }
 
-    
     .action-more{
         display: flex;
         justify-content: space-between;
