@@ -1,8 +1,8 @@
 import React from 'react';
-import '../assets/css/header.scss'
+import '../../assets/css/header.scss'
 import Navbar from "react-bootstrap/esm/Navbar";
 import Container from "react-bootstrap/esm/Container";
-import logo from "../assets/images/ivy-moda.png";
+import logo from "../../assets/images/ivy-moda.png";
 
 const Header = () => {
 

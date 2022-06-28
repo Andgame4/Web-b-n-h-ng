@@ -2,7 +2,7 @@ import React  from 'react';
 import { MDBFooter } from 'mdb-react-ui-kit';
 import { BsFacebook } from 'react-icons/bs'
 import { FaInstagramSquare, FaLinkedin } from 'react-icons/fa'
-import '../assets/css/footer.scss'
+import '../../assets/css/footer.scss'
 
 const Footer = () => {
     return (
