@@ -1,69 +1,68 @@
-import React, { useState } from 'react';
+import React, {useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import '../assets/css/register.scss';
 import Input from '../components/input/input';
 import registerAPI from '../api/registerAPI';
 import { validateName } from '../utils/validateName';
-import { validateEmail2 } from '../utils/validateEmail';
+import { validateEmail } from '../utils/validateEmail';
 import { validatePhoneNumber } from '../utils/validatePhone';
-import { validatePassword2 } from '../utils/validatePassword';
+import { validatePassword } from '../utils/validatePassword';
 import { validateConfirmPassword } from '../utils/validateConfirmPassword';
 
 const Register = () => {
-  const [errMsg, setErrMsg] = useState('');
-  const [name, setName] = useState('');
-  const [errorName, setErrorName] = useState('');
-  const [email, setEmail] = useState('');
-  const [errorEmail, setErrorEmail] = useState('');
-  const [phonenumber, setPhonenumber] = useState('');
-  const [errorPhonenumber, setErrorPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorPassword, setErrorPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorConfirmPassword, setErrorConfirmPassword] = useState('');
-  const [borderNameInput, setborderNameInput] = useState('');
-  const [borderEmailInput, setBorderEmailInput] = useState('');
-  const [borderPhonenumberInput, setborderPhoneNumberInput] = useState('');
-  const [borderPasswordInput, setBorderPasswordInput] = useState('');
-  const [borderConfirmPasswordInput, setBorderConfirmPasswordInput] = useState('');
+  const [errMsg, setErrMsg] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [errorName, setErrorName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [errorEmail, setErrorEmail] = useState<string>('');
+  const [phonenumber, setPhonenumber] = useState<string>('');
+  const [errorPhonenumber, setErrorPhoneNumber] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorPassword, setErrorPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState<string>('');
+  const [borderNameInput, setborderNameInput] = useState<string>('');
+  const [borderEmailInput, setBorderEmailInput] = useState<string>('');
+  const [borderPhonenumberInput, setborderPhoneNumberInput] = useState<string>('');
+  const [borderPasswordInput, setBorderPasswordInput] = useState<string>('');
+  const [borderConfirmPasswordInput, setBorderConfirmPasswordInput] = useState<string>('');
 
-  const handleName = (event: any) => {
-    const value = event.target.value;
+  const handleName = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setName(value);
-  };
+  }, [])
 
-  const handleEmail = (event: any) => {
-    const value = event.target.value;
+  const handleEmail = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setEmail(value);
-  };
+}, [])
 
-  const handlePhone = (event: any) => {
-    const value = event.target.value;
+  const handlePhone = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setPhonenumber(value);
-  };
+  }, [])
 
-  const handlePassword = (event: any) => {
-    const value = event.target.value;
+  const handlePassword = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setPassword(value);
-  };
+  }, [])
 
-  const handleConfirmPassword = (event: any) => {
-    const value = event.target.value;
+  const handleConfirmPassword = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setConfirmPassword(value);
-  };
+  }, [])
 
   const checkName = validateName(name);
-  const checkEmail = validateEmail2(email);
+  const checkEmail = validateEmail(email);
   const checkPhoneNumber = validatePhoneNumber(phonenumber);
-  const checkPassword = validatePassword2(password);
+  const checkPassword = validatePassword(password);
   const checkConfirmPassword = validateConfirmPassword(confirmPassword, password);
   const status =
-    checkName &&
+    !!(checkName.status &&
     checkEmail.status &&
     checkPhoneNumber.status &&
     checkPassword.status &&
-    checkConfirmPassword.status;
+    checkConfirmPassword.status);
 
   const validateForm = () => {
     setErrorName(checkName.message);
@@ -75,7 +74,7 @@ const Register = () => {
   };
 
   //  Test Fake API
-  const onSubmit = async (event: any) => {
+  const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (validateForm() && status == true) {
       const response = await registerAPI(

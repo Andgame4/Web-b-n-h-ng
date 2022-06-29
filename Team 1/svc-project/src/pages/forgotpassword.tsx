@@ -1,44 +1,43 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import '../assets/css/forgotpassword.scss';
 import Input from '../components/input/input';
 import forgotPasswordAPI from '../api/forgotpasswordAPI';
-import { validateEmail2 } from '../utils/validateEmail';
-import { validatePassword2 } from '../utils/validatePassword';
+import { validateEmail } from '../utils/validateEmail';
+import { validatePassword } from '../utils/validatePassword';
 import { validateConfirmPassword } from '../utils/validateConfirmPassword';
 
 const ForgotPassword = () => {
-  const [errMsg, setErrMsg] = useState('');
-  const [email, setEmail] = useState('');
-  const [errorEmail, setErrorEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorPassword, setErrorPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorConfirmPassword, setErrorConfirmPassword] = useState('');
-  const [borderEmailInput, setBorderEmailInput] = useState('');
-  const [borderPasswordInput, setBorderPasswordInput] = useState('');
-  const [borderConfirmPasswordInput, setBorderConfirmPasswordInput] = useState('');
+  const [errMsg, setErrMsg] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [errorEmail, setErrorEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorPassword, setErrorPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState<string>('');
+  const [borderEmailInput, setBorderEmailInput] = useState<string>('');
+  const [borderPasswordInput, setBorderPasswordInput] = useState<string>('');
+  const [borderConfirmPasswordInput, setBorderConfirmPasswordInput] = useState<string>('');
 
-  const handleEmail = (event: any) => {
-    const value = event.target.value;
+  const handleEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setEmail(value);
-  };
+  }, []);
 
-  const handlePassword = (event: any) => {
-    const value = event.target.value;
+  const handlePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setPassword(value);
-  };
+  }, []);
 
-  const handleConfirmPassword = (event: any) => {
-    const value = event.target.value;
+  const handleConfirmPassword = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setConfirmPassword(value);
-  };
+  }, [])
 
-  const checkEmail = validateEmail2(email);
-  const checkPassword = validatePassword2(password);
+  const checkEmail = validateEmail(email);
+  const checkPassword = validatePassword(password);
   const checkConfirmPassword = validateConfirmPassword(confirmPassword, password);
-  const status = checkEmail.status && checkPassword.status && checkConfirmPassword.status;
+  const status = !!(checkEmail.status && checkPassword.status && checkConfirmPassword.status);
 
   const validateForm = () => {
     setErrorEmail(checkEmail.message);
@@ -47,7 +46,7 @@ const ForgotPassword = () => {
     return true;
   };
 
-  const onSubmit = async (event: any) => {
+  const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (validateForm() && status == true) {
       const response = await forgotPasswordAPI(email, password, confirmPassword, errMsg);
