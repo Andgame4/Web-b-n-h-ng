@@ -1,7 +1,9 @@
 import axios from 'axios';
+import {URL} from '../constants/baseURL'
 
 const axiosClient = axios.create({
-    baseURL: 'https://reqres.in/api',
+    
+    baseURL: URL,
     headers: {
         'content-type': 'application/json',
     }

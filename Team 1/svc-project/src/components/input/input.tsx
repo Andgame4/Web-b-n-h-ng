@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, memo } from 'react'
 import { useState } from 'react';
 
 type inputProps = {
@@ -7,7 +7,7 @@ type inputProps = {
     id: string
     className: string
     placeholder: string
-    onChange: (e: any) => void
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     errorText?: string
     customClass?: string
 }
@@ -16,6 +16,8 @@ const Input = ({errorText, customClass, ...props}: inputProps) => {
     const inputClass = useMemo(() => {
         return `${errorText && 'border-red'} form-control form-control-lg`
     }, [errorText])
+
+    console.log('re-render');
 
     return (
         <div>
@@ -29,6 +31,6 @@ const Input = ({errorText, customClass, ...props}: inputProps) => {
     )
 }
 
-export default Input;
+export default memo(Input);
 
 

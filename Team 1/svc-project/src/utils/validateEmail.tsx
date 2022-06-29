@@ -1,5 +1,5 @@
 
-export function validateEmail2(email: string) {
+export function validateEmail(email: string) {
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!email) {
         return {

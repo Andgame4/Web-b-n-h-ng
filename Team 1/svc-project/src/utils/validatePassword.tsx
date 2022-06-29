@@ -1,4 +1,4 @@
-export function validatePassword2(password: string){
+export function validatePassword(password: string){
     if(!password){
         return{
             message: 'Please enter your password',

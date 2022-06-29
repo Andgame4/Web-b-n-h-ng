@@ -1,34 +1,33 @@
-import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+
+import { useCallback, useState } from 'react';
 import '../assets/css/login.scss';
 import loginAPI from '../api/loginAPI';
 import Input from '../components/input/input';
-import { validateEmail2 } from '../utils/validateEmail';
-import { validatePassword2 } from '../utils/validatePassword';
+import { validateEmail } from '../utils/validateEmail';
+import { validatePassword } from '../utils/validatePassword';
 const Login = () => {
 
     const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState('');
-    const [errMsg, setErrMsg] = useState('');
-    const [errorEmail, setErrorEmail] = useState('');
-    const [errorPassword, setErrorPassword] = useState('');
-    const [borderEmailInput, setBorderEmailInput] = useState('')
-    const [borderPasswordInput, setBorderPasswordInput] = useState('');
+    const [password, setPassword] = useState<string>('');
+    const [errMsg, setErrMsg] = useState<string>('');
+    const [errorEmail, setErrorEmail] = useState<string>('');
+    const [errorPassword, setErrorPassword] = useState<string>('');
+    const [borderEmailInput, setBorderEmailInput] = useState<string>('')
+    const [borderPasswordInput, setBorderPasswordInput] = useState<string>('');
 
-
-    const handleEmail = (e: any) => {
+    const handleEmail = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setEmail(value);
-    }
+    }, [])
 
-    const handlePassword = (event: any) => {
-        const value = event.target.value;
+    const handlePassword = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
         setPassword(value);
-    }
+    }, [])
 
-    const checkEmail = validateEmail2(email);
-    const checkPassword = validatePassword2(password);
-    const status = checkEmail.status && checkPassword.status;
+    const checkEmail = validateEmail(email);
+    const checkPassword = validatePassword(password);
+    const status = !!(checkEmail.status && checkPassword.status);
 
     const validateForm = () => {
         setErrorEmail(checkEmail.message)
@@ -37,7 +36,7 @@ const Login = () => {
     }
 
     //Test Fake API
-    const onSubmit = async (event: any) => {
+    const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if (validateForm() && status == true) {
             const response = await loginAPI(email, password, errMsg);
@@ -45,7 +44,8 @@ const Login = () => {
     }
 
     return (
-        <form className="vh-100" >
+        <form className="login-form" >
+            <hr/>
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12 col-md-8 col-lg-6 col-xl-5">
