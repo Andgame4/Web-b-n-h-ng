@@ -1,158 +1,122 @@
-import React, {useState} from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../assets/css/forgotpassword.scss';
-
-
+import Input from '../components/input/input';
+import forgotPasswordAPI from '../api/forgotpasswordAPI';
+import { validateEmail2 } from '../utils/validateEmail';
+import { validatePassword2 } from '../utils/validatePassword';
+import { validateConfirmPassword } from '../utils/validateConfirmPassword';
 
 const ForgotPassword = () => {
+  const [errMsg, setErrMsg] = useState('');
+  const [email, setEmail] = useState('');
+  const [errorEmail, setErrorEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorPassword, setErrorPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState('');
+  const [borderEmailInput, setBorderEmailInput] = useState('');
+  const [borderPasswordInput, setBorderPasswordInput] = useState('');
+  const [borderConfirmPasswordInput, setBorderConfirmPasswordInput] = useState('');
 
-    const [errMsg, setErrMsg] = useState('');
-    const [email, setEmail] = useState('');
-    const [errorEmail, setErrorEmail] = useState('');
-    const [newpassword, setNewPassword] = useState('');
-    const [errorNewPassword, setErrorNewPassword] = useState('');
-    const [confirmNewPassword, setConfirmNewPassword] = useState('');
-    const [errorConfirmNewPassword, setErrorConfirmNewPassword] = useState('');
-    const [borderEmailInput, setBorderEmailInput] = useState('');
-    const [borderNewPasswordInput, setBorderNewPasswordInput] = useState('');
-    const [borderConfirmNewPasswordInput, setBorderConfirmNewPasswordInput] = useState('');
+  const handleEmail = (event: any) => {
+    const value = event.target.value;
+    setEmail(value);
+  };
 
-    const handleEmail = (event: any) => {
-        const value = event.target.value;
-        setEmail(value);
+  const handlePassword = (event: any) => {
+    const value = event.target.value;
+    setPassword(value);
+  };
+
+  const handleConfirmPassword = (event: any) => {
+    const value = event.target.value;
+    setConfirmPassword(value);
+  };
+
+  const checkEmail = validateEmail2(email);
+  const checkPassword = validatePassword2(password);
+  const checkConfirmPassword = validateConfirmPassword(confirmPassword, password);
+  const status = checkEmail.status && checkPassword.status && checkConfirmPassword.status;
+
+  const validateForm = () => {
+    setErrorEmail(checkEmail.message);
+    setErrorPassword(checkPassword.message);
+    setErrorConfirmPassword(checkPassword.message);
+    return true;
+  };
+
+  const onSubmit = async (event: any) => {
+    event.preventDefault();
+    if (validateForm() && status == true) {
+      const response = await forgotPasswordAPI(email, password, confirmPassword, errMsg);
     }
+  };
 
-    const handleNewPassword = (event: any) => {
-        const value = event.target.value;
-        setNewPassword(value);
-    }
+  return (
+    <form className="vh-100">
+      <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div className="card shadow-2-strong">
+              <div className="card-body p-5 text-center">
+                <h3 className="mb-5">Forgot Password</h3>
+                <div className="input-form">
+                  {/* Input Email */}
+                  <div className="email">
+                    <Input
+                      type="email"
+                      id="email"
+                      className={`form-control form-control-lg ${borderEmailInput}`}
+                      placeholder="Email"
+                      value={email}
+                      onChange={handleEmail}
+                      errorText={errorEmail}
+                    />
+                  </div>
 
-    const handleConfirmNewPassword = (event: any) => {
-        const value = event.target.value;
-        setConfirmNewPassword(value);
-    }
+                  {/* Input Password */}
+                  <div className="password">
+                    <Input
+                      type="password"
+                      id="password"
+                      className={`form-control form-control-lg ${borderPasswordInput}`}
+                      placeholder="New Password"
+                      value={password}
+                      onChange={handlePassword}
+                      errorText={errorPassword}
+                    />
+                  </div>
 
-    const checkEmail = () => {
-        const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (!email) {
-            setErrorEmail('Please enter your email');
-            setBorderEmailInput('border-red')
-            return false;
-        } else if (regexEmail.test(email) === false) {
-            setErrorEmail('Your email incorrect');
-            setBorderEmailInput('border-red')
-            return false;
-        } else {
-            setErrorEmail('');
-            setBorderEmailInput('')
-            return true;
-        }
-    }
-    const checkNewPassword = () => {
-        if (!newpassword) {
-            setErrorNewPassword('Please enter your password');
-            setBorderNewPasswordInput('border-red')
-            return false
-        } else if (newpassword.length < 6) {
-            setErrorNewPassword('Your password must have at least 6 characters');
-            setBorderNewPasswordInput('border-red');
-            return false;
-        } else {
-            setErrorNewPassword('');
-            setBorderNewPasswordInput('');
-            return true;
-        }
-    }
-    const checkConfirmNewPassword = () => {
-        if(!confirmNewPassword){
-            setErrorConfirmNewPassword('Please enter your confirmNewPassword');
-            setBorderConfirmNewPasswordInput('border-red')
-            return false;
-        }else if (newpassword !== confirmNewPassword) {
-            setErrorConfirmNewPassword('New Password and Confirm New Password does not match');
-            setBorderConfirmNewPasswordInput('border-red');
-            return false;
-        }else{
-            setErrorConfirmNewPassword('');
-            setBorderConfirmNewPasswordInput('');
-            return true;
-        }
-    }
-
-    const onSubmit = async (event: any) => {
-        event.preventDefault();
-        checkEmail();
-        checkNewPassword();
-        checkConfirmNewPassword();
-
-        if(checkEmail() && checkNewPassword() && checkConfirmNewPassword()){
-            axios.post(`https://reqres.in/api/forgotpassword`, {
-                email: email,
-                newpassword: newpassword,
-                confirmNewPassword: confirmNewPassword
-            })
-            .then((Response) =>{
-                console.log(Response.data);
-                console.log(Response);
-                console.log('New')
-            })
-        }
-    }
-
-    return (
-        <form className="vh-100" >
-            <div className="container py-5 h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div className="card shadow-2-strong">
-                            <div className="card-body p-5 text-center">
-
-                                <h3 className="mb-5">Forgot Password</h3>
-                                <div className="input-form">
-                                    <p>{errorEmail}</p>
-                                    <div className="email">
-                                        <label className="email"></label>
-                                        <input type="email" 
-                                            id="email" 
-                                            className={`form-control form-control-lg ${borderEmailInput}`} 
-                                            placeholder="Email" 
-                                            value={email} 
-                                            onChange={handleEmail}/>
-                                    </div>
-                                    <p>{errorNewPassword}</p>
-                                    <div className="newpassword">
-                                        <label className="newpassword"></label>
-                                        <input type="password" 
-                                            id="newpassword" 
-                                            className={`form-control form-control-lg ${borderNewPasswordInput}`} 
-                                            placeholder="New Password" 
-                                            value={newpassword}
-                                            onChange={handleNewPassword}/>
-                                    </div>
-                                    <p>{errorConfirmNewPassword}</p>
-                                    <div className="confirmnewpassword">
-                                        <label className="confirmnewpassword"></label>
-                                        <input type="password" 
-                                            id="confirmnewpassword" 
-                                            className={`form-control form-control-lg ${borderConfirmNewPasswordInput}`} 
-                                            placeholder="Confirm New Password" 
-                                            value ={confirmNewPassword}
-                                            onChange={handleConfirmNewPassword}/>
-                                    </div>
-                                </div>
-                                <div className="submit-button">
-                                    <button className="btn-submit" type="submit" onClick={onSubmit}>Change Password</button>
-                                </div>
-                                <hr className="my-4"/>
-                                <div className="login-link">
-                                    <a href="/login">Back to Login</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  {/* Input confirmPassword */}
+                  <div className="confirmpassword">
+                    <Input
+                      type="password"
+                      id="confirmpassword"
+                      className={`form-control form-control-lg ${borderConfirmPasswordInput}`}
+                      placeholder="Confirm New Password"
+                      value={confirmPassword}
+                      onChange={handleConfirmPassword}
+                      errorText={errorConfirmPassword}
+                    />
+                  </div>
                 </div>
+                <div className="submit-button">
+                  <button className="btn-submit" type="submit" onClick={onSubmit}>
+                    Change Password
+                  </button>
+                </div>
+                <hr className="my-4" />
+                <div className="login-link">
+                  <Link to="/login">Back to Login</Link>
+                </div>
+              </div>
             </div>
-        </form>
-    )
-}
-export default ForgotPassword; 
+          </div>
+        </div>
+      </div>
+    </form>
+  );
+};
+export default ForgotPassword;
