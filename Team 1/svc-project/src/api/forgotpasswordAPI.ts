@@ -1,6 +1,6 @@
 import axiosForgotPasswordAPI from './axiosClient';
 
-function forgotPasswordAPI(email: any, password: any, confirmPassword: any, errMsg: any) {
+function forgotPasswordAPI(email: string, password: string, confirmPassword: string, errMsg: string) {
   var errors: string;
   axiosForgotPasswordAPI
     .post('/forgotpassword', {

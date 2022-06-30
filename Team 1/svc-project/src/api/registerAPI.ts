@@ -2,12 +2,12 @@
 import axiosRegisterAPI from './axiosClient';
 
 function registerAPI(
-  name: any,
-  email: any,
-  phonenumber: any,
-  password: any,
-  confirmPassword: any,
-  errMsg: any
+  name: string,
+  email: string,
+  phonenumber: string,
+  password: string,
+  confirmPassword: string,
+  errMsg: string
 ) {
   var errors: string;
   axiosRegisterAPI
