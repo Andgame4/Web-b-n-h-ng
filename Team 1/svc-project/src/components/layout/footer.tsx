@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <MDBFooter className='text-center text-lg-start text-muted'>
             <section className='information'>
-                <div className='container text-center text-md-start mt-5'>
+                <div className='container text-center text-md-start'>
                     <hr/>
                     <div className='row mt-3 column'>
                         <div className='col-md-1 col-lg-2 col-xl-2 mx-auto mb-4 info'>
