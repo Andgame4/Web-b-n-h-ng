@@ -17,7 +17,7 @@ const Input = ({errorText, customClass, ...props}: inputProps) => {
         return `${errorText && 'border-red'} form-control form-control-lg`
     }, [errorText])
 
-    console.log('re-render');
+    // console.log('re-render');
 
     return (
         <div>

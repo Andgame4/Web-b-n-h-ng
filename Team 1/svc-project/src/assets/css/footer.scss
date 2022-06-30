@@ -16,8 +16,6 @@ section {
         }
 
         .info {
-            width: 25%;
-
             .top-left {
                 margin-bottom: 5px;
             }
@@ -30,16 +28,9 @@ section {
 
             .list-social {
                 li {
-                    vertical-align: middle;
                     list-style: none;
-                    display: inline-block;
+                    display:inline-flex;
                     margin-right: 25px;
-
-                    a {
-                        img {
-                            height: 25px;
-                        }
-                    }
                 }
             }
 
@@ -53,7 +44,6 @@ section {
                     color: #fff;
                     font-weight: 600;
                     padding: 10px;
-                    margin-left: 12px;
                     text-transform: uppercase;
                 }
             }
@@ -183,5 +173,10 @@ hr{
     line-height: 20px;
 }
 
+@media (min-width: 768px){
+    .info{
+        text-align: center;
+    }
+}
 
 

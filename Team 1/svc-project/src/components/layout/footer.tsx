@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className='container text-center text-md-start'>
                     <hr/>
                     <div className='row mt-3 column'>
-                        <div className='col-md-1 col-lg-2 col-xl-2 mx-auto mb-4 info'>
+                        <div className=' col-lg-2 col-xl-2 mx-auto mb-4 info'>
                             <div className='top-left'>
                                 <div className='logo-footer'>
                                     <a href='index.tsx'>
@@ -50,12 +50,12 @@ const Footer = () => {
                                 </li>
                                 <li>
                                     <a href='https://www.instagram.com/ivy_moda/' target='_blank'>
-                                        <img src='https://pubcdn2.ivymoda.com/images/ic_instagram.svg' alt='ic_ig' />
+                                        <img src='https://pubcdn2.ivymoda.com/images/ic_instagram.svg' alt='ic_ig' style={{height: '24px'}}/>
                                     </a>
                                 </li>
                                 <li>
                                     <a href='https://www.pinterest.com/ivymoda/_saved/' target='_blank'>
-                                        <img src='https://pubcdn2.ivymoda.com/images/ic_pinterest.svg' alt='ic_pinterest' />
+                                        <img src='https://pubcdn2.ivymoda.com/images/ic_pinterest.svg' alt='ic_pinterest' style={{height: '24px'}}/>
                                     </a>
                                 </li>
                             </ul>
