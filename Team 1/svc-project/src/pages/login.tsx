@@ -3,8 +3,8 @@ import { useCallback, useState } from 'react';
 import '../assets/css/login.scss';
 import loginAPI from '../api/loginAPI';
 import Input from '../components/input/input';
-import { validateEmail } from '../utils/validateEmail';
-import { validatePassword } from '../utils/validatePassword';
+import { validateEmail } from '../utils/validate';
+import { validatePassword } from '../utils/validate';
 import { Link } from 'react-router-dom';
 
 const Login = () => {

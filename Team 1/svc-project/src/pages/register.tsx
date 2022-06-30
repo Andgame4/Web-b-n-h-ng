@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import '../assets/css/register.scss';
 import Input from '../components/input/input';
 import registerAPI from '../api/registerAPI';
-import { validateName } from '../utils/validateName';
-import { validateEmail } from '../utils/validateEmail';
-import { validatePhoneNumber } from '../utils/validatePhone';
-import { validatePassword } from '../utils/validatePassword';
-import { validateConfirmPassword } from '../utils/validateConfirmPassword';
+import { validateName } from '../utils/validate';
+import { validateEmail } from '../utils/validate';
+import { validatePhoneNumber } from '../utils/validate';
+import { validatePassword } from '../utils/validate';
+import { validateConfirmPassword } from '../utils/validate';
 
 const Register = () => {
   const [errMsg, setErrMsg] = useState<string>('');

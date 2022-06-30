@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import '../assets/css/forgotpassword.scss';
 import Input from '../components/input/input';
 import forgotPasswordAPI from '../api/forgotpasswordAPI';
-import { validateEmail } from '../utils/validateEmail';
-import { validatePassword } from '../utils/validatePassword';
-import { validateConfirmPassword } from '../utils/validateConfirmPassword';
+import { validateEmail } from '../utils/validate';
+import { validatePassword } from '../utils/validate';
+import { validateConfirmPassword } from '../utils/validate';
 
 const ForgotPassword = () => {
   const [errMsg, setErrMsg] = useState<string>('');
