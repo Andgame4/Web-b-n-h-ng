@@ -5,6 +5,8 @@ import loginAPI from '../api/loginAPI';
 import Input from '../components/input/input';
 import { validateEmail } from '../utils/validateEmail';
 import { validatePassword } from '../utils/validatePassword';
+import { Link } from 'react-router-dom';
+
 const Login = () => {
 
     const [email, setEmail] = useState<string>('');
@@ -86,11 +88,11 @@ const Login = () => {
                                     >SIGN IN</button>
                                 </div>
                                 <div className="forget-link">
-                                    <a href="/forgotpassword">Forgot Password?</a>
+                                    <Link to="/forgotpassword">Forgot Password?</Link>
                                 </div>
                                 <hr className="my-4" />
                                 <div className="register-link">
-                                    You don't have account? <a href="/register">Register</a>
+                                    You don't have account? <Link to="/register">Register</Link>
                                 </div>
                             </div>
                         </div>
