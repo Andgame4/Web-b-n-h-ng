@@ -1,5 +1,5 @@
 {
-    "user": 
+    "user":
         {
             "id":1,
             "username": "admin",
@@ -8,6 +8,9 @@
             "gender": "male",
             "address": "123 Main StyleSheets",
             "avatar": "https://ttol.vietnamnetjsc.vn/images/2019/05/28/11/13/6106011515735339061107517025533698355232768n-1559011159003638303070.jpg"
-        }    
+        }
+        
+        
+    
 
 }

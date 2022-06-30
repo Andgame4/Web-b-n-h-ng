@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SyntheticEvent, useCallback } from 'react';
 import '../assets/css/profile.scss';
 import Avatar from './avatar';
 
 const FormProfile = () => {
   const [userName, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [gender, setGender] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [avatar, setAvatar] = useState<string>(
@@ -17,6 +17,16 @@ const FormProfile = () => {
   const [borderValidatePhone, setBorderValidatePhone] = useState<string>('');
   const [borderValidateAddress, setBorderValidatePhoneAddress] = useState<string>('');
   const [loading, setLoading] = useState(true);
+
+  const handlePhone = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPhoneNumber(value);
+  }, []);
+
+  const handleAddres = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setAddress(value);
+  }, []);
 
   // call token
   const baseURL = 'http://localhost:8000/user';
@@ -30,7 +40,7 @@ const FormProfile = () => {
         setAvatar(response.avatar);
         setGender(response.gender);
         setEmail(response.email);
-        setPhone(response.phone);
+        setPhoneNumber(response.phone);
       } catch (error: any) {
         console.error(error.message);
       }
@@ -41,32 +51,32 @@ const FormProfile = () => {
   }, []);
 
   // validate
-  const handleSubmitBtn = (event: any) => {
+  const handleSubmitBtn = (event: SyntheticEvent) => {
     event.preventDefault();
-    if (!phone) {
-      setIsValidPhone('Please enter phone number');
-      setBorderValidatePhone('border-red');
-      return;
-    } else if (phone.length < 10) {
-      setIsValidPhone(`PhoneNumber Minimum 10 characters`);
-      setBorderValidatePhone('border-red');
-    } else if (phone.length > 11) {
-      setIsValidPhone(`PhoneNumber maximum 11 characters`);
-      setBorderValidatePhone('border-red');
-      return;
-    } else {
-      setIsValidPhone('');
-      setBorderValidatePhone('');
-    }
-    // address
-    if (!address) {
-      setIsValidAddress('Please enter address');
-      setBorderValidatePhoneAddress('border-red');
-      return;
-    } else {
-      setIsValidAddress('');
-      setBorderValidatePhoneAddress('');
-    }
+    // if (!phone) {
+    //   setIsValidPhone('Please enter phone number');
+    //   setBorderValidatePhone('border-red');
+    //   return;
+    // } else if (phone.length < 10) {
+    //   setIsValidPhone(`PhoneNumber Minimum 10 characters`);
+    //   setBorderValidatePhone('border-red');
+    // } else if (phone.length > 11) {
+    //   setIsValidPhone(`PhoneNumber maximum 11 characters`);
+    //   setBorderValidatePhone('border-red');
+    //   return;
+    // } else {
+    //   setIsValidPhone('');
+    //   setBorderValidatePhone('');
+    // }
+    // // address
+    // if (!address) {
+    //   setIsValidAddress('Please enter address');
+    //   setBorderValidatePhoneAddress('border-red');
+    //   return;
+    // } else {
+    //   setIsValidAddress('');
+    //   setBorderValidatePhoneAddress('');
+    // }
   };
   return (
     <div>
@@ -116,8 +126,8 @@ const FormProfile = () => {
                         type="text"
                         className={`form-control ${borderValidatePhone}`}
                         placeholder="enter phone number"
-                        value={phone}
-                        onChange={(event) => setPhone(event.target.value)}
+                        value={phoneNumber}
+                        onChange={handlePhone}
                       />
                       <p className="alert-file-validation">{isValidPhone}</p>
                     </div>
@@ -165,7 +175,7 @@ const FormProfile = () => {
                           className={`form-control ${borderValidateAddress}`}
                           name="address"
                           value={address}
-                          onChange={(event) => setAddress(event.target.value)}
+                          onChange={handleAddres}
                         ></textarea>
                         <p className="alert-file-validation">{isValidAddress}</p>
                       </div>
