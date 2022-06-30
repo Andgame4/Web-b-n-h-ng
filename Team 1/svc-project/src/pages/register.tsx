@@ -89,7 +89,7 @@ const Register = () => {
   };
 
   return (
-    <form className="vh-100">
+    <form className="register-form">
       <hr/>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">

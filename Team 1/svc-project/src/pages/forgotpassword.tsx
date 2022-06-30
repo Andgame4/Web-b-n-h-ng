@@ -54,7 +54,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <form className="vh-100">
+    <form className="forgotpassword-form">
       <hr/>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">

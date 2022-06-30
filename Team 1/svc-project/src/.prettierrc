@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "arrowParens": "always",
     "bracketSameLine": false,
     "bracketSpacing": true,
@@ -17,3 +18,23 @@
     "vueIndentScriptAndStyle": false,
     "printWidth": 100
   }
+=======
+  "arrowParens": "always",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "embeddedLanguageFormatting": "auto",
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxSingleQuote": false,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "useTabs": false,
+  "vueIndentScriptAndStyle": false,
+  "printWidth": 100
+}
+>>>>>>> 2fb16216a20a8a0537747e0bacfaf990ac084aa0
