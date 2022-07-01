@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useState, useEffect, SyntheticEvent, useCallback } from 'react';
 import '../assets/css/profile.scss';
 import Avatar from './avatar';
+import Input from '../components/input/input';
+import { validateAddress, validatePhoneNumber } from 'utils/validate';
 
 const FormProfile = () => {
   const [userName, setUserName] = useState<string>('');
@@ -12,7 +14,7 @@ const FormProfile = () => {
   const [avatar, setAvatar] = useState<string>(
     'https://static2.yan.vn/YanNews/2167221/202003/dan-mang-du-trend-thiet-ke-avatar-du-kieu-day-mau-sac-tu-anh-mac-dinh-b0de2bad.jpg'
   );
-  const [isValidPhone, setIsValidPhone] = useState<string>('');
+  const [isValidPhoneNumber, setIsValidPhoneNumber] = useState<string>('');
   const [isValidAddress, setIsValidAddress] = useState<string>('');
   const [borderValidatePhone, setBorderValidatePhone] = useState<string>('');
   const [borderValidateAddress, setBorderValidatePhoneAddress] = useState<string>('');
@@ -23,7 +25,7 @@ const FormProfile = () => {
     setPhoneNumber(value);
   }, []);
 
-  const handleAddres = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleAddress = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setAddress(value);
   }, []);
@@ -51,32 +53,18 @@ const FormProfile = () => {
   }, []);
 
   // validate
+  const checkPhoneNumber = validatePhoneNumber(phoneNumber);
+  const checkAddress = validateAddress(address);
+  const status = !!(checkAddress.status && checkPhoneNumber.status);
+  const validateForm = () => {
+    setIsValidAddress(checkAddress.message);
+    setIsValidPhoneNumber(checkPhoneNumber.message);
+    return true;
+  };
+  //
   const handleSubmitBtn = (event: SyntheticEvent) => {
     event.preventDefault();
-    // if (!phone) {
-    //   setIsValidPhone('Please enter phone number');
-    //   setBorderValidatePhone('border-red');
-    //   return;
-    // } else if (phone.length < 10) {
-    //   setIsValidPhone(`PhoneNumber Minimum 10 characters`);
-    //   setBorderValidatePhone('border-red');
-    // } else if (phone.length > 11) {
-    //   setIsValidPhone(`PhoneNumber maximum 11 characters`);
-    //   setBorderValidatePhone('border-red');
-    //   return;
-    // } else {
-    //   setIsValidPhone('');
-    //   setBorderValidatePhone('');
-    // }
-    // // address
-    // if (!address) {
-    //   setIsValidAddress('Please enter address');
-    //   setBorderValidatePhoneAddress('border-red');
-    //   return;
-    // } else {
-    //   setIsValidAddress('');
-    //   setBorderValidatePhoneAddress('');
-    // }
+    validateForm();
   };
   return (
     <div>
@@ -97,7 +85,7 @@ const FormProfile = () => {
             {/* profile */}
             <div className="col-md-3 col-xs-12 border-right">
               <div className="d-flex flex-column align-items-center text-center">
-                <Avatar value={avatar} onClick={(value: any) => setAvatar(value)} />
+                <Avatar value={avatar} onClick={(value: string) => setAvatar(value)} />
                 <p className="validate-avatar">
                   Maximum file size 1 MB <br />
                   Format: .JPEG, .PNG
@@ -110,7 +98,7 @@ const FormProfile = () => {
                   <div className="row input-profile-username">
                     <div className="col-md-12 col-xs-12 profile-name">
                       <label className="labels">UserName:</label>
-                      <p>{userName}</p>
+                      <p className="username_info">{userName}</p>
                     </div>
                   </div>
                   <div className="row input-profile-email">
@@ -122,14 +110,15 @@ const FormProfile = () => {
                   <div className="row input-profile-phone">
                     <div className="col-md-12 col-xs-12">
                       <label className="labels">Phone:</label>
-                      <input
+                      <Input
                         type="text"
-                        className={`form-control ${borderValidatePhone}`}
-                        placeholder="enter phone number"
+                        id="input-phone"
+                        className={`form-control form-control-lg ${borderValidatePhone}`}
+                        placeholder="Phone"
                         value={phoneNumber}
                         onChange={handlePhone}
+                        errorText={isValidPhoneNumber}
                       />
-                      <p className="alert-file-validation">{isValidPhone}</p>
                     </div>
                   </div>
                   <div className="row input-profile-gender">
@@ -175,7 +164,7 @@ const FormProfile = () => {
                           className={`form-control ${borderValidateAddress}`}
                           name="address"
                           value={address}
-                          onChange={handleAddres}
+                          onChange={handleAddress}
                         ></textarea>
                         <p className="alert-file-validation">{isValidAddress}</p>
                       </div>

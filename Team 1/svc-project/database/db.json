@@ -1,16 +1,60 @@
 {
-    "user":
-        {
-            "id":1,
-            "username": "admin",
-            "email": "admin@example.com",
-            "phone": "123-456-1234",
-            "gender": "male",
-            "address": "123 Main StyleSheets",
-            "avatar": "https://ttol.vietnamnetjsc.vn/images/2019/05/28/11/13/6106011515735339061107517025533698355232768n-1559011159003638303070.jpg"
-        }
-        
-        
-    
-
+  "user": [
+    {
+      "username": "1111",
+      "email": "John Smith@gmail.com",
+      "phone": "01234567890",
+      "address": "Ha Noi",
+      "id": 1
+    },
+    {
+      "username": "",
+      "email": "John Smith@gmail.com",
+      "phone": "01234567890",
+      "address": "Ha Noi",
+      "id": 2
+    },
+    {
+      "username": "",
+      "email": "John Smith@gmail.com",
+      "phone": "01234567890",
+      "address": "Ha Noi",
+      "id": 3
+    },
+    {
+      "username": "",
+      "email": "John Smith@gmail.com",
+      "phone": "01234567890",
+      "address": "Ha Noi",
+      "id": 4
+    },
+    {
+      "username": "",
+      "email": "John Smith@gmail.com",
+      "phone": "01234567890",
+      "address": "Ha Noi",
+      "id": 6
+    },
+    {
+      "username": "",
+      "email": "John Smith@gmail.com",
+      "phone": "01234567890",
+      "address": "Ha Noi",
+      "id": 8
+    },
+    {
+      "username": "",
+      "email": "John Smith@gmail.com",
+      "phone": "01234567890",
+      "address": "Ha Noi",
+      "id": 9
+    },
+    {
+      "username": "",
+      "email": "John Smith@gmail.com",
+      "phone": "01234567890",
+      "address": "Ha Noi",
+      "id": 10
+    }
+  ]
 }
