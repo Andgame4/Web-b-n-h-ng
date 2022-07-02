@@ -23,7 +23,7 @@ class App extends Component {
       //   <Footer />
       // </Router>
 
-      <Admin />
+      <Profile />
     );
   }
 }

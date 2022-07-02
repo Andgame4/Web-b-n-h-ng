@@ -28,7 +28,7 @@ h1 {
 
 .container {
   background: #fff;
-  max-width: 100%;
+  max-width:  800px;
   max-height: 100%;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 13%);
   border-radius: 0.125rem;
@@ -109,7 +109,7 @@ h1 {
   }
   .border-right {
     max-height: 300px;
-    border-right: 0.0625rem solid #efefef;
+    border-left: 0.0625rem solid #efefef;
   }
   .input-profile-button {
     margin-top: 1.75rem;

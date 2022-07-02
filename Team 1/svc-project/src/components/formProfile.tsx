@@ -9,7 +9,7 @@ const FormProfile = () => {
   const [userName, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [gender, setGender] = useState<string>('');
+  const [gender, setGender] = useState<string>('male');
   const [address, setAddress] = useState<string>('');
   const [avatar, setAvatar] = useState<string>(
     'https://static2.yan.vn/YanNews/2167221/202003/dan-mang-du-trend-thiet-ke-avatar-du-kieu-day-mau-sac-tu-anh-mac-dinh-b0de2bad.jpg'
@@ -83,15 +83,7 @@ const FormProfile = () => {
           </div>
           <div className="row container-form">
             {/* profile */}
-            <div className="col-md-3 col-xs-12 border-right">
-              <div className="d-flex flex-column align-items-center text-center">
-                <Avatar value={avatar} onClick={(value: string) => setAvatar(value)} />
-                <p className="validate-avatar">
-                  Maximum file size 1 MB <br />
-                  Format: .JPEG, .PNG
-                </p>
-              </div>
-            </div>
+            
             <div className="col-md-9 col-xs-12">
               <div>
                 <form action="" method="" className="form-horizontal" onSubmit={handleSubmitBtn}>
@@ -178,6 +170,15 @@ const FormProfile = () => {
                     </div>
                   </div>
                 </form>
+              </div>
+            </div>
+            <div className="col-md-3 col-xs-12 border-right">
+              <div className="d-flex flex-column align-items-center text-center">
+                <Avatar value={avatar} onClick={(value: string) => setAvatar(value)} />
+                <p className="validate-avatar">
+                  Maximum file size 1 MB <br />
+                  Format: .JPEG, .PNG
+                </p>
               </div>
             </div>
           </div>
