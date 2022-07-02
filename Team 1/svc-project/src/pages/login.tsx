@@ -2,14 +2,7 @@ import { useCallback, useState } from 'react';
 import '../assets/css/login.scss';
 import loginAPI from '../api/loginAPI';
 import Input from '../components/input/input';
-<<<<<<< HEAD
 import { validateEmail, validatePassword } from 'utils/validate';
-=======
-import { validateEmail } from '../utils/validate';
-import { validatePassword } from '../utils/validate';
-import { Link } from 'react-router-dom';
-
->>>>>>> 793652dd5a3b866a5b45e7916af1d80f1c9cc82f
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -71,7 +64,6 @@ const Login = () => {
                     />
                   </div>
 
-<<<<<<< HEAD
                   {/* Input Password */}
                   <div className="input-password">
                     <Input
@@ -84,60 +76,6 @@ const Login = () => {
                       errorText={errorPassword}
                     />
                   </div>
-=======
-    return (
-        <form className="login-form" >
-            <hr/>
-            <div className="container py-5 h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div className="card shadow-2-strong">
-                            <div className="card-body p-5 text-center">
-                                <h3 className="mb-5">SIGN IN</h3>
-                                <p>{errMsg}</p>
-                                <div className="input-form">
-
-                                    {/* Input Email */}
-                                    <div className="input-username">
-                                        <Input type='email'
-                                            id='input-email'
-                                            className={`form-control form-control-lg ${borderEmailInput}`}
-                                            placeholder='Email'
-                                            value={email}
-                                            onChange={handleEmail}
-                                            errorText={errorEmail} />
-                                    </div>
-
-                                    {/* Input Password */}
-                                    <div className="input-password">
-                                        <Input type='password'
-                                            id='input-password'
-                                            className={`form-control form-control-lg ${borderPasswordInput}`}
-                                            placeholder='Password'
-                                            value={password}
-                                            onChange={handlePassword}
-                                            errorText={errorPassword}
-                                        />
-                                    </div>
-
-                                </div>
-                                <div className="login-button">
-                                    <button className="btn-login"
-                                        type="button"
-                                        onClick={onSubmit}
-                                    >SIGN IN</button>
-                                </div>
-                                <div className="forget-link">
-                                    <Link to="/forgotpassword">Forgot Password?</Link>
-                                </div>
-                                <hr className="my-4" />
-                                <div className="register-link">
-                                    You don't have account? <Link to="/register">Register</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
->>>>>>> 793652dd5a3b866a5b45e7916af1d80f1c9cc82f
                 </div>
                 <div className="login-button">
                   <button className="btn-login" type="button" onClick={onSubmit}>

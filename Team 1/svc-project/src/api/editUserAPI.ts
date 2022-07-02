@@ -6,7 +6,6 @@ function EditUserAPI(
   email: string,
   phoneNumber: string,
   address: string,
-  errMsg?: string
 ) {
   var errors: string;
   axiosEditUserAPI
@@ -22,9 +21,6 @@ function EditUserAPI(
 
     .catch(function (error) {
       console.log(error);
-      if ((errors = 'unauthorized')) {
-        errMsg = 'Edit False';
-      }
     });
 }
 

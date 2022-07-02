@@ -11,7 +11,6 @@ export function validateName(name: string) {
   };
 }
 
-<<<<<<< HEAD
 export function validateAddress(address: string) {
   if (!address) {
     return {
@@ -25,8 +24,6 @@ export function validateAddress(address: string) {
   };
 }
 
-=======
->>>>>>> 793652dd5a3b866a5b45e7916af1d80f1c9cc82f
 export function validateEmail(email: string) {
   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if (!email) {

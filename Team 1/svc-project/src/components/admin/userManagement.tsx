@@ -130,9 +130,9 @@ const UserManagement = () => {
 
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    if (validateForm() && status === false) {
-      const response = await EditUserAPI(id, username, email, phone, address, errMsg);
-      alert('Thành Công !!');
+    if (validateForm() && status === true) {
+      const response = await EditUserAPI(id,username,email,phone,address);
+      alert("Successfully")
       handleClose();
       setRefreshKey((oldKey) => oldKey + 1);
     }
@@ -174,7 +174,7 @@ const UserManagement = () => {
               ))}
             </tbody>
           </table>
-          {/* <nav aria-label="Page navigation" className="navigation">
+          <nav aria-label="Page navigation" className="navigation">
             <ul className="pagination">
               <li className="page-item">
                 <button className="page-link">Previous</button>
@@ -200,7 +200,7 @@ const UserManagement = () => {
                 </a>
               </li>
             </ul>
-          </nav> */}
+          </nav>
         </div>
       )}
       <>

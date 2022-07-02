@@ -1,5 +1,5 @@
 import React from "react";
-import FormProfile from "../../components/formProfile";
+import FormProfile from "components/formProfile";
 
 const Profile = () => {
   return (
