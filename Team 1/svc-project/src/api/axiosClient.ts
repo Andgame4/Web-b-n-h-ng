@@ -10,6 +10,7 @@ const axiosClient = axios.create({
     },
     headers: {
         'content-type': 'multipart/form-data',
+        // 'content-type': 'application/json',
     }
 })
 

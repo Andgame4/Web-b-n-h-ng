@@ -1,12 +1,13 @@
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import '../assets/css/login.scss';
 import loginAPI from '../api/loginAPI';
 import Input from '../components/input/input';
 import { validateEmail } from '../utils/validateEmail';
 import { validatePassword } from '../utils/validatePassword';
 import { Link } from 'react-router-dom';
-
+import { useAppSelector, useAppDispatch } from '../stores/index'
+import { getAccount } from '../stores/slices/userSlice';
 const Login = () => {
 
     const [email, setEmail] = useState<string>('');
@@ -17,16 +18,19 @@ const Login = () => {
     const [borderEmailInput, setBorderEmailInput] = useState<string>('')
     const [borderPasswordInput, setBorderPasswordInput] = useState<string>('');
 
-    const handleEmail = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+    const dispatch = useAppDispatch();
+    const userData = useAppSelector((state: any) => state.user);
+
+    const handleEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setEmail(value);
     }, [])
 
-    const handlePassword = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+    const handlePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setPassword(value);
     }, [])
-
+    console.log("user data: ", userData)
     const checkEmail = validateEmail(email);
     const checkPassword = validatePassword(password);
     const status = !!(checkEmail.status && checkPassword.status);
@@ -41,13 +45,14 @@ const Login = () => {
     const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if (validateForm() && status == true) {
-            const response = await loginAPI(email, password, errMsg);
+            await dispatch(getAccount({email:email, password:password}));
+          
         }
     }
 
     return (
         <form className="login-form" >
-            <hr/>
+            <hr />
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12 col-md-8 col-lg-6 col-xl-5">
