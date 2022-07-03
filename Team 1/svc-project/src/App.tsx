@@ -7,7 +7,6 @@ import ForgotPassword from './pages/forgotpassword';
 import Footer from './components/layout/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout'
-import { DashboardAdmin, Categories, Products, Orders } from './components/admin';
 const App =()=> {
  
     // return (
@@ -27,15 +26,15 @@ const App =()=> {
      let element = useRoutes([
        {
          path: '/',
-         element: <DashboardAdmin />,
+         element: <Layout />,
          children: [
            {
-             path: '/login',
+             path: '/',
              element: <Login />,
            },
            {
              path: '/register',
-             element: <DashboardAdmin />,
+             element: <Register />,
            },
          ],
        },
