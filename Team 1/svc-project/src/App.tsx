@@ -9,20 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout'
 const App =()=> {
  
-    // return (
-    //   <Router>
-    //     <Header />
-    //     <Routes>
-    //       <Route path="/" element={<Login />} />
-    //       <Route path="login" element={<Login />} />
-    //       <Route path="register" element={<Register />} />
-    //       <Route path="forgotpassword" element={<ForgotPassword />} />
-    //     </Routes>
-    //     <Footer />
-    //   </Router>
-
-      
-    // );
      let element = useRoutes([
        {
          path: '/',
