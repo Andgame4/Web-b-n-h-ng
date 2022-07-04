@@ -82,7 +82,7 @@
       }
     }
   
-    &__logo {
+    &_logo {
       @include flex(center, center);
       position: absolute;
       inset: 0;
@@ -93,11 +93,11 @@
       }
     }
   
-    &__menu {
+    &_menu {
       @include flex(center, space-between);
       height: 100%;
       font-size: 1.5rem;
-      &__item ~ &__item {
+      &_item ~ &_item {
         margin-left: 39px;
   
         @include tablet {
@@ -109,25 +109,25 @@
         }
       }
   
-      &__item.active {
+      &_item.active {
         font-weight: 600;
         color: #4267b2;
       }
   
-      &__item:hover {
+      &_item:hover {
         color: #4267b2;
       }
   
-      &__left,
-      &__right {
+      &_left,
+      &_right {
         @include flex(center, center);
         height: 100%;
       }
   
-      &__right {
+      &_right {
         font-size: 2.25rem;
   
-        &__item {
+        &_item {
           @include flex(center, center);
   
           @include tablet {
@@ -140,8 +140,8 @@
         }
       }
   
-      &__left {
-        &__close {
+      &_left {
+        &_close {
           display: none;
         }
   
@@ -162,12 +162,12 @@
             transform: translateX(0);
           }
   
-          &__item ~ &__item {
+          &_item ~ &_item {
             margin-left: unset;
             margin-top: 20px;
           }
   
-          &__close {
+          &_close {
             display: block;
             position: absolute;
             left: 20px;
@@ -176,7 +176,7 @@
         }
       }
   
-      &__mobile-toggle {
+      &_mobile-toggle {
         display: none;
   
         @include tablet {

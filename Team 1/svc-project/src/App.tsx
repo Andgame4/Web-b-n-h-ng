@@ -6,7 +6,6 @@ import ForgotPassword from './pages/forgotpassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout';
 
-
 const App = () => {
   let element = useRoutes([
     {
@@ -14,16 +13,16 @@ const App = () => {
       element: <Layout />,
       children: [
         {
-          path: '/',
-          element: <Login />,
+          path: '/login',
+          element: <Login/>,
         },
         {
           path: '/register',
-          element: <Register />,
+          element: <Register/>,
         },
         {
           path: '/forgotpassword',
-          element: <ForgotPassword />,
+          element: <ForgotPassword/>,
         },
       ],
     },
