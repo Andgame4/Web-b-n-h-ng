@@ -7,22 +7,9 @@ import ForgotPassword from './pages/forgotpassword';
 import Footer from './components/layout/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout'
+import { DashboardAdmin, Categories, Products, Orders } from './components/admin/';
+import "./App.css"
 const App =()=> {
- 
-    // return (
-    //   <Router>
-    //     <Header />
-    //     <Routes>
-    //       <Route path="/" element={<Login />} />
-    //       <Route path="login" element={<Login />} />
-    //       <Route path="register" element={<Register />} />
-    //       <Route path="forgotpassword" element={<ForgotPassword />} />
-    //     </Routes>
-    //     <Footer />
-    //   </Router>
-
-      
-    // );
      let element = useRoutes([
        {
          path: '/',
@@ -30,7 +17,19 @@ const App =()=> {
          children: [
            {
              path: '/',
-             element: <Login />,
+             element: <DashboardAdmin />,
+           },
+           {
+             path: '/categories',
+             element: <Categories />,
+           },
+           {
+             path: '/products',
+             element: <Products />,
+           },
+           {
+             path: '/orders',
+             element: <Orders />,
            },
            {
              path: '/register',
@@ -40,8 +39,6 @@ const App =()=> {
        },
        { path: 'auth', element: '' },
      ]);
-
      return element;
 }
-
 export default App;
