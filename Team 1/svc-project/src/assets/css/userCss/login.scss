@@ -1,5 +1,15 @@
 form {
-   
+    min-height: 500px;
+    h3{
+        margin-bottom: 20px;
+    }
+    .server-error{
+        margin-bottom: 20px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: red;
+    }
     .login-form {
         width: 100%;
         height: 500px;
