@@ -7,27 +7,27 @@ import ForgotPassword from './pages/forgotpassword';
 import Footer from './components/layout/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout'
-const App =()=> {
- 
-     let element = useRoutes([
-       {
-         path: '/',
-         element: <Layout />,
-         children: [
-           {
-             path: '/',
-             element: <Login />,
-           },
-           {
-             path: '/register',
-             element: <Register />,
-           },
-         ],
-       },
-       { path: 'auth', element: '' },
-     ]);
+const App = () => {
 
-     return element;
+  let element = useRoutes([
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Login />,
+        },
+        {
+          path: '/register',
+          element: <Register />,
+        },
+      ],
+    },
+    { path: 'auth', element: '' },
+  ]);
+
+  return element;
 }
 
 export default App;
