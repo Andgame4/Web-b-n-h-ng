@@ -9,15 +9,14 @@ function loginAPI(email: string, password: string, setErr: React.Dispatch<React.
     body.append('username', email)
     body.append('password', password)
 
-    const results = axiosLoginAPI.post('/token', body)
+    const results = axiosLoginAPI.post('/oauth/token', body)
         .then(function (response) {
             localStorage.setItem('accessToken', JSON.stringify(response.data))
             localStorage.setItem('id', JSON.stringify(response.data.user_id));
-            console.log(response)
-            if(response.status === 200) {
+            if (response.status === 200) {
                 setErr("");
             }
-            return response;    
+            return response;
         })
         .catch(function (response) {
             if (response.response.status === 400) {

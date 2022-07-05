@@ -1,11 +1,10 @@
 form {
- 
-  .register-form{
+  .register-form {
     width: 100%;
     height: 500px;
     background-color: #fff;
   }
-  
+
   .card-body {
     border-radius: 5px;
     background-color: #fff;
@@ -17,18 +16,22 @@ form {
       font-size: 14px;
       margin-bottom: 20px;
     }
+
     #email {
       font-size: 14px;
       margin-bottom: 20px;
     }
+
     #phonenumber {
       font-size: 14px;
       margin-bottom: 20px;
     }
+
     #password {
       font-size: 14px;
       margin-bottom: 20px;
     }
+
     #confirmPassword {
       font-size: 14px;
       margin-bottom: 20px;
@@ -45,6 +48,7 @@ form {
       font-size: 16px;
       margin-bottom: 19px;
     }
+
     .btn-register:hover {
       opacity: 0.9;
     }
@@ -53,13 +57,16 @@ form {
   .login-link {
     color: #bdbdbd;
     font-size: 14px;
+
     a {
       color: #221F20;
       text-decoration: none;
       font-weight: 700;
     }
+
     margin-top: 8px;
   }
+
   .action-more {
     display: flex;
     justify-content: space-between;

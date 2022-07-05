@@ -71,7 +71,7 @@ const ForgotPassword = () => {
             <div className="card shadow-2-strong">
               <div className="card-body p-5 text-center">
                 <h3 className="mb-5">Forgot Password</h3>
-                <div className='server-error'>{err}</div>
+                {err &&<div className='server-error'>{err}</div>}
                 <div className="input-form">
                   {/* Input Email */}
                   <div className="email">

@@ -1,13 +1,12 @@
-
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import '../../assets/css/userCss/login.scss';
 import loginAPI from '../../api/useAPI/loginAPI';
 import Input from '../../components/input/input';
 import { validateEmail } from '../../utils/validate';
 import { validatePassword } from '../../utils/validate';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginSuccess } from '../../stores/slices/userSlice';
-import { useAppSelector, useAppDispatch } from '../../stores/hook'
+import { useAppDispatch } from '../../stores/hook'
 
 const Login = () => {
     const [email, setEmail] = useState<string>('');
@@ -40,6 +39,8 @@ const Login = () => {
         return true;
     }
 
+    const navigate = useNavigate();
+
     const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         //Call loginAPI, dispatch state to userSlice 
@@ -49,7 +50,9 @@ const Login = () => {
                 userId: response.data.user_id,
                 jwtToken: response.data.access_token
             }
+            console.log(response.data)
             dispatch(loginSuccess(data));
+            navigate("/home")
         }
     }
 
@@ -62,7 +65,7 @@ const Login = () => {
                         <div className="card shadow-2-strong">
                             <div className="card-body p-5 text-center">
                                 <h3>SIGN IN</h3>
-                                <div className='server-error'>{err}</div>
+                                {err && <div className="server-error">{err}</div>}
                                 <div className="input-form">
 
                                     {/* Input Email */}
