@@ -5,16 +5,23 @@ import Avatar from './avatar';
 import Input from '../input/input';
 import OrderSideMenu from './orderSideMenu';
 import { validateAddress, validatePhoneNumber } from 'utils/validate';
+import profileAPI from 'api/profileAPI';
+import { useAppSelector, useAppDispatch } from 'stores/hook';
+import {
+  addProfile,
+  changeAddress,
+  changeAvatar,
+  changeGender,
+  changePhone,
+} from 'stores/slices/profileSlice';
+import { useDispatch } from 'react-redux';
 
 const FormProfile = () => {
-  const [userName, setUserName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [gender, setGender] = useState<string>('male');
-  const [address, setAddress] = useState<string>('');
-  const [avatar, setAvatar] = useState<string>(
-    'https://static2.yan.vn/YanNews/2167221/202003/dan-mang-du-trend-thiet-ke-avatar-du-kieu-day-mau-sac-tu-anh-mac-dinh-b0de2bad.jpg'
-  );
+  console.log('render profile form');
+  const jwtToken = useAppSelector((state) => state.user.jwtToken);
+  const profile = useAppSelector((state) => state.profile.profileInfor);
+  const dispatch = useDispatch();
+  const id = useAppSelector((state) => state.user.userId);
   const [isValidPhoneNumber, setIsValidPhoneNumber] = useState<string>('');
   const [isValidAddress, setIsValidAddress] = useState<string>('');
   const [borderValidatePhone, setBorderValidatePhone] = useState<string>('');
@@ -22,46 +29,70 @@ const FormProfile = () => {
 
   const handlePhone = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setPhoneNumber(value);
+    dispatch(changePhone({ phoneNumber: value }));
   }, []);
 
   const handleAddress = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
-    setAddress(value);
+    dispatch(changeAddress({ address: value }));
   }, []);
+
+  console.log(id);
 
   // call token
-  const baseURL = 'http://localhost:8000/user';
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data: response } = await axios.get(baseURL);
-        setUserName(response.username);
-        setAddress(response.address);
-        setAvatar(response.avatar);
-        setGender(response.gender);
-        setEmail(response.email);
-        setPhoneNumber(response.phone);
-      } catch (error: any) {
-        console.error(error.message);
-      }
+  const baseURL = 'http://10.22.4.62:8762/user/' + id;
+  const fetchData = async () => {
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + jwtToken,
+      },
     };
-
+    try {
+      const { data: response } = await axios.get(baseURL, config);
+      console.log(response);
+      dispatch(
+        addProfile({
+          userName: response.data.name,
+          email: response.data.username,
+          phoneNumber: response.data.phone,
+          gender: response.data.gender,
+          address: response.data.address,
+          avatar: response.data.avatar,
+          role: response.data.role,
+        })
+      );
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+  useEffect(() => {
+    console.log('Fetch');
     fetchData();
   }, []);
-  // validate
-  const checkPhoneNumber = validatePhoneNumber(phoneNumber);
-  const checkAddress = validateAddress(address);
-  const status = !!(checkAddress.status && checkPhoneNumber.status);
-  const validateForm = () => {
-    setIsValidAddress(checkAddress.message);
-    setIsValidPhoneNumber(checkPhoneNumber.message);
-    return true;
-  };
-  //
-  const handleSubmitBtn = (event: SyntheticEvent) => {
+
+  const handleSubmitBtn = async (event: SyntheticEvent) => {
     event.preventDefault();
-    validateForm();
+    const checkPhoneNumber = validatePhoneNumber(profile.phoneNumber);
+    const checkAddress = validateAddress(profile.address);
+    const status = !!(checkAddress.status && checkPhoneNumber.status);
+    const validateForm = () => {
+      setIsValidAddress(checkAddress.message);
+      setIsValidPhoneNumber(checkPhoneNumber.message);
+      return true;
+    };
+    if (validateForm() && status === true) {
+      const response = await profileAPI(
+        profile.userName,
+        profile.gender,
+        profile.address,
+        profile.phoneNumber,
+        profile.avatar
+      );
+    }
+  };
+
+  const handleChangeAvatar = (value: string) => {
+    dispatch(changeAvatar({ avatar: value }));
   };
   return (
     <div>
@@ -80,13 +111,13 @@ const FormProfile = () => {
                 <div className="row input-profile-username">
                   <div className="col-md-12 col-xs-12 profile-name">
                     <label className="labels">UserName:</label>
-                    <div className="username_info">{userName}</div>
+                    <div className="username_info">{profile.userName}</div>
                   </div>
                 </div>
                 <div className="row input-profile-email">
                   <div className="col-md-6 col-xs-12 profile-email">
                     <label className="labels">Email:</label>
-                    <div className="email_info">{email}</div>
+                    <div className="email_info">{profile.email}</div>
                   </div>
                 </div>
                 <div className="row input-profile-phone">
@@ -97,7 +128,7 @@ const FormProfile = () => {
                       id="input-phone"
                       className={`form-control form-control-lg ${borderValidatePhone}`}
                       placeholder=""
-                      value={phoneNumber}
+                      value={profile.phoneNumber}
                       onChange={handlePhone}
                     />
                     <p className="alert-file-validation">{isValidPhoneNumber}</p>
@@ -114,8 +145,8 @@ const FormProfile = () => {
                           name="gender"
                           id="male"
                           value="male"
-                          onChange={() => setGender('male')}
-                          checked={gender === 'male'}
+                          onChange={() => dispatch(changeGender({ gender: 'male' }))}
+                          checked={profile.gender === 'male'}
                         />
                         <label className="form-check-label" htmlFor="inlineCheckbox1">
                           Male
@@ -128,8 +159,8 @@ const FormProfile = () => {
                           name="gender"
                           id="female"
                           value="female"
-                          onChange={() => setGender('female')}
-                          checked={gender === 'female'}
+                          onChange={() => dispatch(changeGender({ gender: 'female' }))}
+                          checked={profile.gender === 'female'}
                         />
                         <label className="form-check-label" htmlFor="inlineCheckbox2">
                           Female
@@ -145,7 +176,7 @@ const FormProfile = () => {
                       <textarea
                         className={`form-control form-control-lg ${borderValidateAddress}`}
                         name="address"
-                        value={address}
+                        value={profile.address}
                         onChange={handleAddress}
                       ></textarea>
                       <p className="alert-file-validation">{isValidAddress}</p>
@@ -164,7 +195,10 @@ const FormProfile = () => {
           </div>
           <div className="col-md-3 col-xs-12 border-right">
             <div className="d-flex flex-column align-items-center text-center">
-              <Avatar value={avatar} onClick={(value: string) => setAvatar(value)} />
+              <Avatar
+                value={profile.avatar}
+                onClick={(value: string) => handleChangeAvatar(value)}
+              />
               <p className="validate-avatar">
                 Maximum file size 1 MB <br />
                 Format: .JPEG, .PNG

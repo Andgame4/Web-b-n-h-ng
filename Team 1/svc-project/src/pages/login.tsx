@@ -1,16 +1,22 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import '../assets/css/login.scss';
 import loginAPI from '../api/loginAPI';
 import Input from '../components/input/input';
-import { validateEmail, validatePassword } from 'utils/validate';
+import { validateEmail } from '../utils/validate';
+import { validatePassword } from '../utils/validate';
+import { Link } from 'react-router-dom';
+import { loginSuccess } from '../stores/slices/userSlice';
+import { useAppSelector, useAppDispatch } from '../stores/hook';
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [errMsg, setErrMsg] = useState<string>('');
+  const [err, setErr] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
   const [borderEmailInput, setBorderEmailInput] = useState<string>('');
   const [borderPasswordInput, setBorderPasswordInput] = useState<string>('');
+
+  const dispatch = useAppDispatch();
 
   const handleEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -32,11 +38,16 @@ const Login = () => {
     return true;
   };
 
-  //Test Fake API
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    if (validateForm() && status === true) {
-      const response = await loginAPI(email, password, errMsg);
+    //Call loginAPI, dispatch state to userSlice
+    if (validateForm() && status == true) {
+      const response = await loginAPI(email, password, setErr);
+      const data = {
+        userId: response.data.user_id,
+        jwtToken: response.data.access_token,
+      };
+      dispatch(loginSuccess(data));
     }
   };
 
@@ -48,8 +59,8 @@ const Login = () => {
           <div className="col-12 col-md-8 col-lg-6 col-xl-5">
             <div className="card shadow-2-strong">
               <div className="card-body p-5 text-center">
-                <h3 className="mb-5">SIGN IN</h3>
-                <p>{errMsg}</p>
+                <h3>SIGN IN</h3>
+                <div className="server-error">{err}</div>
                 <div className="input-form">
                   {/* Input Email */}
                   <div className="input-username">
@@ -83,11 +94,11 @@ const Login = () => {
                   </button>
                 </div>
                 <div className="forget-link">
-                  <a href="/forgotpassword">Forgot Password?</a>
+                  <Link to="/forgotpassword">Forgot Password?</Link>
                 </div>
                 <hr className="my-4" />
                 <div className="register-link">
-                  You don't have account? <a href="/register">Register</a>
+                  You don't have account? <Link to="/register">Register</Link>
                 </div>
               </div>
             </div>

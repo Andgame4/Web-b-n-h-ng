@@ -6,16 +6,13 @@ import { log } from 'console';
 const Avatar = (props: { value: React.SetStateAction<string>; onClick: (arg0: any) => void }) => {
   const [image, setImage] = useState<string>('');
   const [isValid, setIsValid] = useState<string>('');
-
   const onFileUpload = () => {
     let fileUpload: HTMLElement = document.getElementsByClassName('file-upload')[0] as HTMLElement;
     fileUpload.click();
   };
-
   useEffect(() => {
     setImage(props.value);
-  }, [image]);
-
+  });
   const readURL = (e: React.ChangeEvent<HTMLInputElement>) => {
     let input = e.target;
     if (input.files && input.files[0]) {
@@ -25,22 +22,17 @@ const Avatar = (props: { value: React.SetStateAction<string>; onClick: (arg0: an
       });
     }
   };
-
   // convert base 64
+  const fileTypeImage = ['image/png', 'image/jpg', 'image/jpeg'];
   const toBase64 = (file: Blob) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       // validate
-      switch (file.type) {
-        case 'image/png':
-          break;
-        case 'image/jpg':
-          break;
-        case 'image/jpeg':
-          break;
-        default:
-          setIsValid('File extension:JPEG,PNG,JPG');
-          return;
+      if (fileTypeImage.includes(file.type)) {
+        setIsValid('');
+      } else {
+        setIsValid('format:png,jpg,jpeg');
+        return;
       }
       let fileSize = file.size / (1024 * 1024);
       if (fileSize > 1) {
@@ -49,7 +41,6 @@ const Avatar = (props: { value: React.SetStateAction<string>; onClick: (arg0: an
       } else {
         setIsValid('');
       }
-
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);

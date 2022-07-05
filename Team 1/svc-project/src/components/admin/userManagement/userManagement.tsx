@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import '../../assets/css/userManagement.scss';
+import '../../../assets/css/userManagement.scss';
 import { FiEdit3 } from 'react-icons/fi';
 import { AiFillDelete } from 'react-icons/ai';
 import { AiOutlineSearch } from 'react-icons/ai';

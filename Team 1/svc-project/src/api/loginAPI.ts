@@ -1,25 +1,36 @@
 /* eslint-disable no-cond-assign */
-import axiosLoginAPI from "./axiosClient";
+import axiosLoginAPI from './axiosClient';
 
-function loginAPI(email: string, password: string, errMsg: string) {
-    var errors: string;
-    const body = new FormData();
+function loginAPI(
+  email: string,
+  password: string,
+  setErr: React.Dispatch<React.SetStateAction<string>>
+) {
+  var errors: string;
+  const body = new FormData();
 
-    body.append('grant_type', 'password')
-    body.append('username', email)
-    body.append('password', password)
+  body.append('grant_type', 'password');
+  body.append('username', email);
+  body.append('password', password);
 
-    axiosLoginAPI.post('/token', body)
-        .then(function (response) {
-            console.log(response);
-        })
-        
-        .catch(function (error) {
-            console.log(error)
-            if(errors = 'unauthorized'){
-                errMsg = 'Sign In Fail'
-            }
-        })
+  const results = axiosLoginAPI
+    .post('/token', body)
+    .then(function (response) {
+      localStorage.setItem('accessToken', JSON.stringify(response.data.access_token));
+      localStorage.setItem('id', JSON.stringify(response.data.user_id));
+      console.log(response);
+      if (response.status === 200) {
+        setErr('');
+      }
+      return response;
+    })
+    .catch(function (response) {
+      if (response.response.status === 400) {
+        setErr('Email or password incorrect');
+      }
+      throw errors;
+    });
+  return results;
 }
 
 export default loginAPI;

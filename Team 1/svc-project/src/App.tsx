@@ -9,8 +9,6 @@ import Profile from 'pages/profile';
 import UserManagement from 'components/admin/userManagement/userManagement';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FormOderList from 'components/profile/formOderList';
-import { UserList } from 'components/admin/userManagement/userList';
-import { AddUser } from 'components/admin/userManagement/addUser';
 import Layout from 'components/layout/layout';
 const App = () => {
   let element = useRoutes([
@@ -20,7 +18,7 @@ const App = () => {
       children: [
         {
           path: '/',
-          element: <UserList />,
+          element: <Login />,
         },
         {
           path: '/register',
@@ -35,12 +33,12 @@ const App = () => {
           element: <Login />,
         },
         {
-          path: '/add-user',
-          element: <AddUser />,
-        },
-        {
           path: '/formOderList',
           element: <FormOderList />,
+        },
+        {
+          path: '/userManagement',
+          element: <UserManagement />,
         },
       ],
     },

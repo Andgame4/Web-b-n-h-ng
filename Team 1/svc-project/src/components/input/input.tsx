@@ -17,11 +17,11 @@ const Input = ({errorText, customClass, ...props}: inputProps) => {
         return `${errorText && 'border-red'} form-control form-control-lg`
     }, [errorText])
 
-    console.log('re-render');
+    // console.log('re-render');
 
     return (
         <div>
-            <p>{errorText}</p>
+            <p> {errorText}</p>
             <input
                 {...props}
                 className={customClass || inputClass}
