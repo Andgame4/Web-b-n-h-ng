@@ -8,9 +8,9 @@ const Header = () => {
         <Navbar className="nav-header">
             <Container>
                 <Navbar.Brand href="#home">
-                    <img src={logo}/>
+                    <img src={logo} />
                 </Navbar.Brand>
-                <Navbar.Toggle/>
+                <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text className="link-help">
                         <a href="/">You need support?</a>

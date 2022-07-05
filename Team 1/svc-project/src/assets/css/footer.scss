@@ -1,182 +1,180 @@
 section {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    hr{
-        margin: 0;
-    }
-    .column {
-        margin: 0;
-        width: 100%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial,
+    sans-serif;
+  hr {
+    margin: 0;
+  }
+  .column {
+    margin: 0;
+    width: 100%;
 
-        .title {
-            text-align: center;
-            font-weight: 600;
-            font-size: 24px;
-            color: #221F20;
-            margin-bottom: 20px;
-        }
-
-        .info {
-            .top-left {
-                margin-bottom: 5px;
-            }
-
-            .content-left {
-                info-left {
-                    color: #57585A;
-                }
-            }
-
-            .list-social {
-                li {
-                    list-style: none;
-                    display:inline-flex;
-                    margin-right: 25px;
-                }
-            }
-
-            .hotline {
-                background: #221F20;
-                border-radius: 15px 0px 15px 0px;
-
-                a {
-                    display: inline-block;
-                    text-decoration: none;
-                    color: #fff;
-                    font-weight: 600;
-                    padding: 10px;
-                    text-transform: uppercase;
-                }
-            }
-        }
-
-        .introduce {
-            width: 25%;
-
-            .Ivymoda a {
-                text-decoration: none;
-                color: #57585A;
-                font-size: 14px;
-                line-height: 24px;
-                margin-bottom: 16px;
-                display: block;
-            }
-
-            a:hover {
-                color: #221F20
-            }
-
-            ul {
-                list-style-type: none;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .download {
-
-                p {
-                    text-align: center;
-                    font-weight: 600;
-                    font-size: 24px;
-                    color: #221F20;
-                    margin-bottom: 20px;
-                }
-
-                ul {
-                    list-style-type: none;
-                    padding: 0;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-
-                    li {
-                        width: 150px;
-                        margin-bottom: 5px;
-
-                        a img {
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-        }
-
-        .services {
-            width: 25%;
-
-            ul {
-                list-style-type: none;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                a {
-                    text-decoration: none;
-                    color: #57585A;
-                    font-size: 14px;
-                    line-height: 24px;
-                    margin-bottom: 16px;
-                    display: block;
-                }
-
-                a:hover {
-                    color: #221F20;
-                }
-            }
-        }
-
-        .contact {
-            width: 25%;
-
-            .contact-me {
-                ul {
-                    list-style-type: none;
-                    padding: 0;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                a{
-                    text-decoration: none;
-                    color: #57585A;
-                    font-size: 14px;
-                    line-height: 24px;
-                    margin-bottom: 16px;
-                    display: block;
-                }
-
-                a:hover {
-                    color: #221F20;
-                }
-            }
-        }
+    .title {
+      text-align: center;
+      font-weight: 600;
+      font-size: 24px;
+      color: #221f20;
+      margin-bottom: 20px;
     }
 
-    .link-more {
+    .info {
+      .top-left {
+        margin-bottom: 5px;
+      }
+
+      .content-left {
+        info-left {
+          color: #57585a;
+        }
+      }
+
+      .list-social {
+        li {
+          list-style: none;
+          display: inline-flex;
+          margin-right: 25px;
+        }
+      }
+
+      .hotline {
+        background: #221f20;
+        border-radius: 15px 0px 15px 0px;
+
+        a {
+          display: inline-block;
+          text-decoration: none;
+          color: #fff;
+          font-weight: 600;
+          padding: 10px;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    .introduce {
+      width: 25%;
+
+      .Ivymoda a {
+        text-decoration: none;
+        color: #57585a;
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 16px;
+        display: block;
+      }
+
+      a:hover {
+        color: #221f20;
+      }
+
+      ul {
+        list-style-type: none;
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .download {
+        p {
+          text-align: center;
+          font-weight: 600;
+          font-size: 24px;
+          color: #221f20;
+          margin-bottom: 20px;
+        }
+
+        ul {
+          list-style-type: none;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          li {
+            width: 150px;
+            margin-bottom: 5px;
+
+            a img {
+              width: 100%;
+            }
+          }
+        }
+      }
     }
+
+    .services {
+      width: 25%;
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        a {
+          text-decoration: none;
+          color: #57585a;
+          font-size: 14px;
+          line-height: 24px;
+          margin-bottom: 16px;
+          display: block;
+        }
+
+        a:hover {
+          color: #221f20;
+        }
+      }
+    }
+
+    .contact {
+      width: 25%;
+
+      .contact-me {
+        ul {
+          list-style-type: none;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        a {
+          text-decoration: none;
+          color: #57585a;
+          font-size: 14px;
+          line-height: 24px;
+          margin-bottom: 16px;
+          display: block;
+        }
+
+        a:hover {
+          color: #221f20;
+        }
+      }
+    }
+  }
+
+  .link-more {
+    padding: 0;
+  }
 }
-hr{
-    margin-bottom: 0;
+hr {
+  margin-bottom: 0;
 }
-.copyright{
-    color: #57585A;
-    font-size: 16px;
+.copyright {
+  color: #57585a;
+  font-size: 16px;
+  text-align: center;
+  line-height: 20px;
+}
+
+@media (min-width: 768px) {
+  .info {
     text-align: center;
-    line-height: 20px;
+  }
 }
-
-@media (min-width: 768px){
-    .info{
-        text-align: center;
-    }
-}
-
-

@@ -1,5 +1,5 @@
 import { MDBFooter } from 'mdb-react-ui-kit';
-import '../../assets/css/footer.scss'
+import '../../assets/css/footer.scss';
 
 const Footer = () => {
     return (
@@ -138,6 +138,6 @@ const Footer = () => {
             </div>
         </MDBFooter>
     );
-}
+};
 
 export default Footer;

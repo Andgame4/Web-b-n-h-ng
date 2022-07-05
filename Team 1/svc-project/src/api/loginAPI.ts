@@ -13,10 +13,10 @@ function loginAPI(email: string, password: string, setErr: React.Dispatch<React.
         .then(function (response) {
             localStorage.setItem('accessToken', JSON.stringify(response.data))
             localStorage.setItem('id', JSON.stringify(response.data.user_id));
-            if(response.status === 200) {
+            if (response.status === 200) {
                 setErr("");
             }
-            return response;    
+            return response;
         })
         .catch(function (response) {
             if (response.response.status === 400) {
