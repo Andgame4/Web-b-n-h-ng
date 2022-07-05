@@ -26,14 +26,17 @@ h1 {
   color: #333;
 }
 
-.container {
-  background: #fff;
-  max-width:  800px;
+.container_profile {
+  background: white;
+  max-width: 100%;
   max-height: 100%;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 13%);
   border-radius: 0.125rem;
   .container-avatar {
     border-bottom: 0.5px solid black;
+  }
+  .order-block__title {
+    border-bottom: 2px solid #f7f8f9;
   }
   .container-form {
     padding-top: 1rem;
@@ -97,19 +100,18 @@ h1 {
   }
   .profile-name {
     .username_info {
-      text-align: left;
-      font-size: 16px;
+      font-size: 20px;
     }
   }
   .profile-email {
-    p {
-      text-align: left;
-      font-size: 16px;
+    .email_info {
+      font-size: 20px;
     }
   }
   .border-right {
     max-height: 300px;
     border-left: 0.0625rem solid #efefef;
+    border-right: 0.0625rem solid #efefef;
   }
   .input-profile-button {
     margin-top: 1.75rem;

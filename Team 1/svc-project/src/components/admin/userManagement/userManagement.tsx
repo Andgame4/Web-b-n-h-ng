@@ -131,8 +131,8 @@ const UserManagement = () => {
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (validateForm() && status === true) {
-      const response = await EditUserAPI(id,username,email,phone,address);
-      alert("Successfully")
+      const response = await EditUserAPI(id, username, email, phone, address);
+      alert('Successfully');
       handleClose();
       setRefreshKey((oldKey) => oldKey + 1);
     }
@@ -157,7 +157,7 @@ const UserManagement = () => {
               <AiOutlineSearch />
             </button>
           </div>
-          <table className="table">
+          {/* <table className="table">
             <thead>
               <tr>
                 <th scope="col">STT</th>
@@ -167,13 +167,30 @@ const UserManagement = () => {
                 <th scope="col">Address</th>
                 <th scope="col">Action</th>
               </tr>
-            </thead>
-            <tbody>
-              {data.map((item, index) => (
-                <Row data={item} key={index} handleShow={handleShow} handleDelete={handleDelete} />
-              ))}
-            </tbody>
-          </table>
+            </thead> */}
+          <div className="order-block">
+            <table className="order-block__table">
+              <thead>
+                <tr>
+                  <th>MÃ ĐƠN HÀNG</th>
+                  <th>NGÀY</th>
+                  <th>TRẠNG THÁI</th>
+                  <th>SẢN PHẨM</th>
+                  <th>TỔNG TIỀN</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((item, index) => (
+                  <Row
+                    data={item}
+                    key={index}
+                    handleShow={handleShow}
+                    handleDelete={handleDelete}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
           <nav aria-label="Page navigation" className="navigation">
             <ul className="pagination">
               <li className="page-item">

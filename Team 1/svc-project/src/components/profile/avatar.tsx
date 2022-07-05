@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import '../assets/css/avatar.scss';
+import '../../assets/css/avatar.scss';
 import { FaUserEdit } from 'react-icons/fa';
+import { log } from 'console';
 
-const Avatar = (props: any) => {
+const Avatar = (props: { value: React.SetStateAction<string>; onClick: (arg0: any) => void }) => {
   const [image, setImage] = useState<string>('');
   const [isValid, setIsValid] = useState<string>('');
 
@@ -11,15 +12,11 @@ const Avatar = (props: any) => {
     fileUpload.click();
   };
 
-  //   useEffect(() => {
-  //       setImage(props.value)
-  //   }, []);
-
   useEffect(() => {
     setImage(props.value);
   }, [image]);
 
-  const readURL = (e: any) => {
+  const readURL = (e: React.ChangeEvent<HTMLInputElement>) => {
     let input = e.target;
     if (input.files && input.files[0]) {
       toBase64(input.files[0]).then((value: any) => {
@@ -30,7 +27,7 @@ const Avatar = (props: any) => {
   };
 
   // convert base 64
-  const toBase64 = (file: any) =>
+  const toBase64 = (file: Blob) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       // validate
@@ -52,6 +49,7 @@ const Avatar = (props: any) => {
       } else {
         setIsValid('');
       }
+
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
