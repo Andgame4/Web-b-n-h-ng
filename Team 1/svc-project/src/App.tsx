@@ -5,6 +5,7 @@ import Register from './pages/register';
 import ForgotPassword from './pages/forgotpassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout';
+import Cart from './pages/cart/cart';
 
 const App = () => {
   let element = useRoutes([
@@ -13,17 +14,21 @@ const App = () => {
       element: <Layout />,
       children: [
         {
-          path: '/login',
-          element: <Login/>,
+          path: '/cart',
+          element: <Cart/>,
         },
-        {
-          path: '/register',
-          element: <Register/>,
-        },
-        {
-          path: '/forgotpassword',
-          element: <ForgotPassword/>,
-        },
+        // {
+        //   path: '/login',
+        //   element: <Login/>,
+        // },
+        // {
+        //   path: '/register',
+        //   element: <Register/>,
+        // },
+        // {
+        //   path: '/forgotpassword',
+        //   element: <ForgotPassword/>,
+        // },
       ],
     },
     {
