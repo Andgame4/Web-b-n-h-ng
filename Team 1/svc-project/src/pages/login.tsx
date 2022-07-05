@@ -1,5 +1,6 @@
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import '../assets/css/login.scss';
 import loginAPI from '../api/loginAPI';
 import Input from '../components/input/input';
@@ -40,6 +41,8 @@ const Login = () => {
         return true;
     }
 
+    const navigate = useNavigate();
+
     const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         //Call loginAPI, dispatch state to userSlice 
@@ -49,7 +52,9 @@ const Login = () => {
                 userId: response.data.user_id,
                 jwtToken: response.data.access_token
             }
+            console.log(response.data)
             dispatch(loginSuccess(data));
+            navigate("/home")
         }
     }
 

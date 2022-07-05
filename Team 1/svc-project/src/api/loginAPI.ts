@@ -13,7 +13,6 @@ function loginAPI(email: string, password: string, setErr: React.Dispatch<React.
         .then(function (response) {
             localStorage.setItem('accessToken', JSON.stringify(response.data))
             localStorage.setItem('id', JSON.stringify(response.data.user_id));
-            console.log(response)
             if(response.status === 200) {
                 setErr("");
             }

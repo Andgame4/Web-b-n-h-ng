@@ -20,8 +20,6 @@ const userSlice = createSlice({
     loginSuccess(state, action) {
       state.jwtToken = action.payload.jwtToken;
       state.userId = action.payload.userId;
-      console.log(state.userId)  
-      console.log(state.jwtToken)
     },
   },
 });
