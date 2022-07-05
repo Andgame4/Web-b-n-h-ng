@@ -8,12 +8,13 @@ const apiURL = process.env.REACT_APP_API_URL;
 
 const accessToken ="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNiwidXNlcl9uYW1lIjoiZnJvbnRlbmRAZ21haWwuY29tIiwic2NvcGUiOlsidWkiXSwiZXhwIjoxNjYxOTIwMjA5LCJhdXRob3JpdGllcyI6WyJhZG1pbiJdLCJqdGkiOiJmMTEwMDc0ZC1mMWJmLTQzZDUtODdlYS1mNGEwODJjOWRjNTMiLCJjbGllbnRfaWQiOiJjbGllbnQifQ.E7xje9UtVKf-p-zwKwjVv_FoVWGMGZO1wTlLWdVCkJUGmpB159-fPOQdJE9ZeZws4IYVhnHovJOMWFt9DCaJ3DCfWq05TcDNyS9Dj_wOt2T6aSFPbIgoJgr53u6kq9_EVswzNhcQNG5snhSQCKoDICPUWgiPecUajNpj-8hgBSt373Q9GjKG81L1JY5hItupFgkhSDPbxr2GLo_JJSdlbe1G7DxxAVJpe3W5gQviA3UkBRGZm_-AX8GLl06neLA1oGV5Mh8OydjIfdxiGT-fyhU7M-cR4dkWdMXqQCHtBVL0lBrqDNxdI385E74qFd4aBTsCuy9j2xHSiKmIbwWCBA"
 const fetchProduct= async()=>{
-  const res = await axios.get("http://10.22.4.62:8762/product",{
+  //  http://10.22.4.62:8762/category
+  const res = await axios.get("http://192.168.196.207:8762/user",{
     headers: {
       "Authorization": `Bearer ${ accessToken }`
     }
   });
-  console.log("product: ", res.data.data.content)
+  console.log("product: ", res.data)
   return (res.data.data.content)
 
 }
@@ -30,16 +31,16 @@ const AllProduct = (props) => {
  
 
   useEffect(() => {
+    fetchProduct()
     // fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const fetchData = async () => {
-    
-     const data =await  fetchProduct();
-  
+    const data1 =await  fetchProduct();
+    setProductData(data1);
     };
 
    fetchData();
-  setProductData(fakeProductData);
+ 
   }, []);
   
   const fetchData = async () => {

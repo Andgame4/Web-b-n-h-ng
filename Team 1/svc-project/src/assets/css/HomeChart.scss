@@ -1,0 +1,70 @@
+.chart-dashboard {
+  padding: 0 24px 24px 24px;
+  .header-content{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  background-color: white;
+  .chart-time {
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    width: 282px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+  
+    .time-gap {
+      width: 25%;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .time-gap.bg-yellow {
+      color: black;
+      height: 100%;
+      background: #fed7d7;
+      border-radius: 20px;
+      border: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      animation: fadeIn 0.5s ease-out;
+    }
+    .report {
+      width: 100px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .report.bg-purple {
+      color: rgb(10, 10, 10);
+      height: 100%;
+      background: #fed7d7;
+      border-radius: 20px;
+      border: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}
