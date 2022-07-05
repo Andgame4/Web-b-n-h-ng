@@ -6,20 +6,19 @@ import Input from '../components/input/input';
 import { validateEmail } from '../utils/validateEmail';
 import { validatePassword } from '../utils/validatePassword';
 import { Link } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../stores/index'
-import { getAccount } from '../stores/slices/userSlice';
+import { loginSuccess } from '../stores/slices/userSlice';
+import { useAppSelector, useAppDispatch } from '../stores/hook'
 const Login = () => {
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [errMsg, setErrMsg] = useState<string>('');
+    const [err, setErr] = useState<string>('');
     const [errorEmail, setErrorEmail] = useState<string>('');
     const [errorPassword, setErrorPassword] = useState<string>('');
     const [borderEmailInput, setBorderEmailInput] = useState<string>('')
     const [borderPasswordInput, setBorderPasswordInput] = useState<string>('');
 
     const dispatch = useAppDispatch();
-    const userData = useAppSelector((state: any) => state.user);
 
     const handleEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -30,7 +29,7 @@ const Login = () => {
         const value = e.target.value;
         setPassword(value);
     }, [])
-    console.log("user data: ", userData)
+
     const checkEmail = validateEmail(email);
     const checkPassword = validatePassword(password);
     const status = !!(checkEmail.status && checkPassword.status);
@@ -41,12 +40,16 @@ const Login = () => {
         return true;
     }
 
-    //Test Fake API
     const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+        //Call loginAPI, dispatch state to userSlice 
         if (validateForm() && status == true) {
-            await dispatch(getAccount({email:email, password:password}));
-          
+            const response = await loginAPI(email, password, setErr);
+            const data = {
+                userId: response.data.user_id,
+                jwtToken: response.data.access_token
+            }
+            dispatch(loginSuccess(data));
         }
     }
 
@@ -58,8 +61,8 @@ const Login = () => {
                     <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div className="card shadow-2-strong">
                             <div className="card-body p-5 text-center">
-                                <h3 className="mb-5">SIGN IN</h3>
-                                <p>{errMsg}</p>
+                                <h3>SIGN IN</h3>
+                                <div className='server-error'>{err}</div>
                                 <div className="input-form">
 
                                     {/* Input Email */}

@@ -21,7 +21,7 @@ const Input = ({errorText, customClass, ...props}: inputProps) => {
 
     return (
         <div>
-            <p>{errorText}</p>
+            <p> {errorText}</p>
             <input
                 {...props}
                 className={customClass || inputClass}

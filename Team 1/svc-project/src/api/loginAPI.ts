@@ -1,8 +1,7 @@
 /* eslint-disable no-cond-assign */
 import axiosLoginAPI from "./axiosClient";
-import axios from 'axios'
 
-function loginAPI(email: string, password: string, errMsg: string) {
+function loginAPI(email: string, password: string, setErr: React.Dispatch<React.SetStateAction<string>>) {
     var errors: string;
     const body = new FormData();
 
@@ -10,31 +9,23 @@ function loginAPI(email: string, password: string, errMsg: string) {
     body.append('username', email)
     body.append('password', password)
 
-    axiosLoginAPI.post('/token', body)
+    const results = axiosLoginAPI.post('/token', body)
         .then(function (response) {
             localStorage.setItem('accessToken', JSON.stringify(response.data))
-            console.log(response);
-        })
-
-        .catch(function (response) {
-            // if (errors = 'unauthorized') {
-            //     errMsg = 'Sign In Fail'
-            // }
-        })
-
-    axios.interceptors.response.use(
-        (response) => {
-            if(response.status = 401){
-                console.log('Errors');
-            }else if(response.status = 400){
-                console.log('Sign In Fail')
+            localStorage.setItem('id', JSON.stringify(response.data.user_id));
+            console.log(response)
+            if(response.status === 200) {
+                setErr("");
             }
-            return response;
-        },
-        (err) => {
-            return Promise.reject(err);
-        }
-    )     
+            return response;    
+        })
+        .catch(function (response) {
+            if (response.response.status === 400) {
+                setErr("Email or password incorrect");
+            }
+            throw errors;
+        })
+    return results;
 }
 
 export default loginAPI;
