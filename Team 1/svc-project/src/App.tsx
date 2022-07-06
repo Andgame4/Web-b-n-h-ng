@@ -6,7 +6,6 @@ import Register from './pages/register';
 import ForgotPassword from './pages/forgotpassword';
 import Footer from './components/layout/footer';
 import Profile from 'pages/profile';
-import UserManagement from 'components/admin/userManagement/userManagement';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FormOderList from 'components/profile/formOderList';
 import Layout from 'components/layout/layout';
@@ -35,10 +34,6 @@ const App = () => {
         {
           path: '/formOderList',
           element: <FormOderList />,
-        },
-        {
-          path: '/userManagement',
-          element: <UserManagement />,
         },
       ],
     },

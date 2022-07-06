@@ -37,8 +37,6 @@ const FormProfile = () => {
     dispatch(changeAddress({ address: value }));
   }, []);
 
-  console.log(id);
-
   // call token
   const baseURL = 'http://10.22.4.62:8762/user/' + id;
   const fetchData = async () => {
@@ -66,7 +64,6 @@ const FormProfile = () => {
     }
   };
   useEffect(() => {
-    console.log('Fetch');
     fetchData();
   }, []);
 
@@ -90,6 +87,8 @@ const FormProfile = () => {
       );
     }
   };
+
+  console.log(profile.avatar?.length);
 
   const handleChangeAvatar = (value: string) => {
     dispatch(changeAvatar({ avatar: value }));
