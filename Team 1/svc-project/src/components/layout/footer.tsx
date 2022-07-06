@@ -1,5 +1,5 @@
 import { MDBFooter } from 'mdb-react-ui-kit';
-import '../../assets/css/footer.scss';
+import '../../assets/css/layoutCss/footer.scss';
 
 const Footer = () => {
     return (

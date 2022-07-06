@@ -1,14 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/css/forgotpassword.scss';
-import Input from '../components/input/input';
-import forgotPasswordAPI from '../api/forgotpasswordAPI';
-import { validateEmail } from '../utils/validate';
-import { validatePassword } from '../utils/validate';
-import { validateConfirmPassword } from '../utils/validate';
+import forgotPasswordAPI from '../../api/useAPI/forgotpasswordAPI';
+import '../../assets/css/userCss/forgotpassword.scss';
+import Input from '../../components/input/input';
+import { useAppDispatch } from '../../stores/hook';
+import { changePasswordSuccess } from '../../stores/slices/userSlice';
+import { validateEmail } from '../../utils/validate';
+import { validatePassword } from '../../utils/validate';
+import { validateConfirmPassword } from '../../utils/validate';
 
 const ForgotPassword = () => {
-  const [errMsg, setErrMsg] = useState<string>('');
+  const [err, setErr] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -18,6 +20,8 @@ const ForgotPassword = () => {
   const [borderEmailInput, setBorderEmailInput] = useState<string>('');
   const [borderPasswordInput, setBorderPasswordInput] = useState<string>('');
   const [borderConfirmPasswordInput, setBorderConfirmPasswordInput] = useState<string>('');
+
+  const dispatch = useAppDispatch();
 
   const handleEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -49,7 +53,12 @@ const ForgotPassword = () => {
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (validateForm() && status == true) {
-      const response = await forgotPasswordAPI(email, password, confirmPassword, errMsg);
+      const response = await forgotPasswordAPI(email, password, confirmPassword, setErr);
+      const data = {
+        userId: response.data.user_id,
+        jwtToken: response.data.access_token
+      }
+      dispatch(changePasswordSuccess(data));
     }
   };
 
@@ -62,6 +71,7 @@ const ForgotPassword = () => {
             <div className="card shadow-2-strong">
               <div className="card-body p-5 text-center">
                 <h3 className="mb-5">Forgot Password</h3>
+                {err &&<div className='server-error'>{err}</div>}
                 <div className="input-form">
                   {/* Input Email */}
                   <div className="email">

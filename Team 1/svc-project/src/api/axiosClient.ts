@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Router } from 'react-router-dom';
 import { URL } from '../constants/baseURL'
 
 const axiosClient = axios.create({
@@ -11,6 +10,7 @@ const axiosClient = axios.create({
     },
     headers: {
         'content-type': 'multipart/form-data',
+        // 'content-type': 'application/json',
     }
 })
 

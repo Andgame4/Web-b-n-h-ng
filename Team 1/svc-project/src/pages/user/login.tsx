@@ -1,16 +1,14 @@
-
 import { useCallback, useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import '../assets/css/login.scss';
-import loginAPI from '../api/loginAPI';
-import Input from '../components/input/input';
-import { validateEmail } from '../utils/validate';
-import { validatePassword } from '../utils/validate';
-import { Link } from 'react-router-dom';
-import { loginSuccess } from '../stores/slices/userSlice';
-import { useAppSelector, useAppDispatch } from '../stores/hook'
-const Login = () => {
+import '../../assets/css/userCss/login.scss';
+import loginAPI from '../../api/useAPI/loginAPI';
+import Input from '../../components/input/input';
+import { validateEmail } from '../../utils/validate';
+import { validatePassword } from '../../utils/validate';
+import { Link, useNavigate } from 'react-router-dom';
+import { loginSuccess } from '../../stores/slices/userSlice';
+import { useAppDispatch } from '../../stores/hook'
 
+const Login = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [err, setErr] = useState<string>('');

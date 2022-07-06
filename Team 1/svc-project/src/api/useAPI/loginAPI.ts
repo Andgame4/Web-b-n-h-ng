@@ -1,5 +1,5 @@
 /* eslint-disable no-cond-assign */
-import axiosLoginAPI from "./axiosClient";
+import axiosLoginAPI from "../axiosClient";
 
 function loginAPI(email: string, password: string, setErr: React.Dispatch<React.SetStateAction<string>>) {
     var errors: string;
@@ -9,7 +9,7 @@ function loginAPI(email: string, password: string, setErr: React.Dispatch<React.
     body.append('username', email)
     body.append('password', password)
 
-    const results = axiosLoginAPI.post('/token', body)
+    const results = axiosLoginAPI.post('/oauth/token', body)
         .then(function (response) {
             localStorage.setItem('accessToken', JSON.stringify(response.data))
             localStorage.setItem('id', JSON.stringify(response.data.user_id));
