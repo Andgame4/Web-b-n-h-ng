@@ -1,9 +1,6 @@
 import React, { Component, Profiler } from 'react';
 import { BrowserRouter, BrowserRouter as Router, Route, Routes, useRoutes } from 'react-router-dom';
 import Header from './components/layout/header';
-import Login from './pages/login';
-import Register from './pages/register';
-import ForgotPassword from './pages/forgotpassword';
 import Profile from 'pages/profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FormOderList from 'components/profile/formOderList';
@@ -15,20 +12,8 @@ const App = () => {
       element: <Layout />,
       children: [
         {
-          path: '/',
-          element: <Login />,
-        },
-        {
-          path: '/register',
-          element: <Register />,
-        },
-        {
           path: '/profile',
           element: <Profile />,
-        },
-        {
-          path: '/login',
-          element: <Login />,
         },
         {
           path: '/formOderList',
