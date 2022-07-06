@@ -11,6 +11,19 @@ export function validateName(name: string) {
   };
 }
 
+export function validateAddress(address: string) {
+  if (!address) {
+    return {
+      message: 'Please enter your address',
+      status: false,
+    };
+  }
+  return {
+    message: '',
+    status: true,
+  };
+}
+
 export function validateEmail(email: string) {
   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if (!email) {

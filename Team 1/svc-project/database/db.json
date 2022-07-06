@@ -1,0 +1,13 @@
+{
+  "user":
+    {
+      "id":1,
+      "username":"long",
+      "email":"long@example.com",
+      "phone":"123-456-1234",
+      "address":"Ha noi",
+      "gender":"male",
+      "avatar":"https://ttol.vietnamnetjsc.vn/images/2019/05/28/11/13/6106011515735339061107517025533698355232768n-1559011159003638303070.jpg"
+    }
+    
+}

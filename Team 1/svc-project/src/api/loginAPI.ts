@@ -1,13 +1,17 @@
 /* eslint-disable no-cond-assign */
-import axiosLoginAPI from "./axiosClient";
+import axiosLoginAPI from './axiosClient';
 
-function loginAPI(email: string, password: string, setErr: React.Dispatch<React.SetStateAction<string>>) {
-    var errors: string;
-    const body = new FormData();
+function loginAPI(
+  email: string,
+  password: string,
+  setErr: React.Dispatch<React.SetStateAction<string>>
+) {
+  var errors: string;
+  const body = new FormData();
 
-    body.append('grant_type', 'password')
-    body.append('username', email)
-    body.append('password', password)
+  body.append('grant_type', 'password');
+  body.append('username', email);
+  body.append('password', password);
 
     const results = axiosLoginAPI.post('/token', body)
         .then(function (response) {

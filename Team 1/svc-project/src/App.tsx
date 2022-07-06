@@ -5,6 +5,8 @@ import Login from './pages/login';
 import Register from './pages/register';
 import ForgotPassword from './pages/forgotpassword';
 import Footer from './components/layout/footer';
+import Profile from 'pages/profile';
+import UserManagement from 'components/admin/userManagement/userManagement';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout'
 import { DashboardAdmin, Categories, Products, Orders } from './components/admin/';
@@ -19,6 +21,24 @@ const App =()=> {
              path: '/',
              element: <DashboardAdmin />,
            },
+           // ADMIN
+           {
+             path: '/DashboardAdmin',
+             element: <DashboardAdmin />,
+           },
+           {
+             path: '/Categories',
+             element: <Categories />,
+           },
+           {
+             path: '/Products',
+             element: <Products />,
+           },
+           {
+             path: '/register',
+             element: <Orders />,
+           },
+           // END ADMIN
            {
              path: '/categories',
              element: <Categories />,

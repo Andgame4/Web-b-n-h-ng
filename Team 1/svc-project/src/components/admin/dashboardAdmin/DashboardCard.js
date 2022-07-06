@@ -41,22 +41,9 @@ const DashboardCard = (props) => {
           </div>
           <div className="text-lg font-medium">Customers</div>
           <div className="flex items-center space-x-1 text-green-500">
-            <span>7%</span>
+            <span>1023</span>
             <span>
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                />
-              </svg>
+              USER
             </span>
           </div>
         </div>

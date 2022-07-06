@@ -1,0 +1,28 @@
+* {
+  margin-top: 0;
+  box-sizing: border-box;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+td {
+  a {
+    margin-left: 10px;
+    margin-right: 30px;
+  }
+}
+
+.container-table {
+  margin-top: 50px;
+  width: 100%;
+  .input-group {
+    
+  }
+  .navigation {
+    margin-top: -10px;
+  }
+}
