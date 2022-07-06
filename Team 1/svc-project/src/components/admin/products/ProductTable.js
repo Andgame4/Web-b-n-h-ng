@@ -4,47 +4,33 @@ import moment from "moment";
 import { ProductContext } from "./index";
 import axios from 'axios';
 import { fakeProductData } from "./productdatafake";
+import getProductAdminAPI from "../../../api/productAdminAPI";
+import { useAppSelector, useAppDispatch } from '../../../stores/hook';
+import { useDispatch } from 'react-redux';
+import {getProductAdmin } from "../../../stores/slices/productSlice";
 const apiURL = process.env.REACT_APP_API_URL;
 
-const accessToken ="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNiwidXNlcl9uYW1lIjoiZnJvbnRlbmRAZ21haWwuY29tIiwic2NvcGUiOlsidWkiXSwiZXhwIjoxNjYxOTIwMjA5LCJhdXRob3JpdGllcyI6WyJhZG1pbiJdLCJqdGkiOiJmMTEwMDc0ZC1mMWJmLTQzZDUtODdlYS1mNGEwODJjOWRjNTMiLCJjbGllbnRfaWQiOiJjbGllbnQifQ.E7xje9UtVKf-p-zwKwjVv_FoVWGMGZO1wTlLWdVCkJUGmpB159-fPOQdJE9ZeZws4IYVhnHovJOMWFt9DCaJ3DCfWq05TcDNyS9Dj_wOt2T6aSFPbIgoJgr53u6kq9_EVswzNhcQNG5snhSQCKoDICPUWgiPecUajNpj-8hgBSt373Q9GjKG81L1JY5hItupFgkhSDPbxr2GLo_JJSdlbe1G7DxxAVJpe3W5gQviA3UkBRGZm_-AX8GLl06neLA1oGV5Mh8OydjIfdxiGT-fyhU7M-cR4dkWdMXqQCHtBVL0lBrqDNxdI385E74qFd4aBTsCuy9j2xHSiKmIbwWCBA"
-
-
-const fetchProduct= async()=>{
-  //  http://10.22.4.62:8762/category
-  const res = await axios.get("http://10.22.4.62:8762/product",{
-    headers: {
-      "Authorization": `Bearer ${ accessToken }`
-    }
-  });
-  console.log("product: ", res.data)
-  return (res.data.data.content)
-
-}
-function formatCash(n,currency) {
+function formatCash(n, currency) {
   return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + currency;
 }
 
 const AllProduct = (props) => {
-  const [productData,setProductData] = useState([])
-  const { data, dispatch } = useContext(ProductContext);
-  const products  = productData;
+  const products = useAppSelector((state) => state.productAdmin.productInfor);
+  const dispatch = useDispatch()
 
   const [loading, setLoading] = useState(false);
- 
-
   useEffect(() => {
-    fetchProduct()
-    // fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const fetchData = async () => {
-    const data1 =await  fetchProduct();
-    setProductData(data1);
-    };
-
-   fetchData();
- 
+    const getProduct = async() =>{
+      const dataProduct = await getProductAdminAPI()
+    
+       dispatch(
+        getProductAdmin({
+          productInfor: dataProduct
+      }))
+    }
+   getProduct();
   }, []);
-  
+
   const fetchData = async () => {
     setLoading(false);
     let responseData = await getAllProduct();
@@ -94,7 +80,7 @@ const AllProduct = (props) => {
             strokeLinejoin="round"
             strokeWidth="2"
             d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-          ></path>
+          />
         </svg>
       </div>
     );
@@ -103,7 +89,7 @@ const AllProduct = (props) => {
   return (
     <Fragment>
       <div className="col-span-1 overflow-auto bg-white shadow-lg p-4">
-        <table className="table-auto border w-full my-2">
+        <table className="table-auto border w-full my-2 text-center">
           <thead>
             <tr>
               <th className="px-4 py-2 border">Tên sản phẩm</th>
@@ -114,7 +100,6 @@ const AllProduct = (props) => {
               <th className="px-6 py-2 border">Màu</th>
               <th className="px-4 py-2 border">Số lượng tồn</th>
               <th className="px-4 py-2 border">Khuyến mại</th>
-              <th className="px-4 py-2 border">Trạng thái</th>
               <th className="px-4 py-2 border">Hành động</th>
             </tr>
           </thead>
@@ -154,17 +139,22 @@ const AllProduct = (props) => {
 
 /* Single Product Component */
 const ProductTable = ({ product, deleteProduct, editProduct }) => {
+  const amount = product.inventories?.reduce((total, item) => {
+    return total = total + item.quantity
+   
+  }, 0)
+
   return (
     <Fragment>
       <tr>
-        <td className="p-2 text-left fw-bold">
+        <td className="p-2 text-center fw-bold">
           {product.productLine.name.length > 25
             ? product.productLine.name?.substring(1, 25).replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))
-             + "..."
+            + "..."
             : product.productLine.name.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))}
         </td>
-        <td className="p-2 text-left">
-          {product.productLine.desc}
+        <td className="p-2 text-center">
+          {product.category.name}
         </td>
         <td className="p-2 text-center">
           <img
@@ -174,33 +164,23 @@ const ProductTable = ({ product, deleteProduct, editProduct }) => {
           />
         </td>
         <td className="p-2 text-center">
-          {formatCash(product.price," VND")}
+          {formatCash(product.price, " VND")}
         </td>
-        
-       
+
+
         <td className="p-2 text-center">
           {product.size}
         </td>
         <td className="p-2 text-center">
-          { product.color} 
-          </td>
-        <td className="p-2 text-center">
-          {/* {product.pOffer} */}
-          </td>
-        <td className="p-2 text-center">
-          {moment(product.createdAt).format("lll")}
+          {product.color}
         </td>
-       <td className="p-2 text-center">
-          {product.active == "1" ? (
-            <span className="bg-green-200 rounded-full text-center text-xs px-2 py-1 font-semibold">
-              Còn hàng
-            </span>
-          ) : (
-            <span className="bg-red-200 rounded-full text-center text-xs px-2 font-semibold">
-              hết hàng
-            </span>
-          )}
-        </td> 
+        <td className="p-2 text-center">
+          {amount }
+        </td>
+        <td className="p-2 text-center">
+          {product.discount.discountPercent} %
+        </td>
+
         <td className="p-2 flex items-center justify-center">
           <span
             onClick={(e) => editProduct(product._id, product, true)}

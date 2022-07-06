@@ -11,7 +11,7 @@ const SellTable = () => {
   const { data, dispatch } = useContext(DashboardContext);
 
   useEffect(() => {
-    todayAllOrders(dispatch);
+   
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

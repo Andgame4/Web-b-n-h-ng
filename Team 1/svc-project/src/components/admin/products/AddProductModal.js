@@ -215,7 +215,7 @@ const AddProductDetail = ({ categories }) => {
             {/* Most Important part for uploading multiple image */}
             <div className="flex space-x-1 py-4">
               <div className="w-1/2 flex flex-col space-y-1">
-                <label htmlFor="status">Trạng thái *</label>
+                <label htmlFor="status">Size *</label>
                 <select
                   value={fData.pStatus}
                   onChange={(e) =>
@@ -231,10 +231,13 @@ const AddProductDetail = ({ categories }) => {
                   id="status"
                 >
                   <option name="status" value="Active">
-                    Hoạt động
+                    M
                   </option>
                   <option name="status" value="Disabled">
-                    Không hoạt động
+                    L
+                  </option>
+                  <option name="status" value="Disabled">
+                    X   L
                   </option>
                 </select>
               </div>
@@ -265,6 +268,65 @@ const AddProductDetail = ({ categories }) => {
                           </option>
                         );
                       })
+                    : ""}
+                </select>
+              </div>
+            </div>
+            <div className="flex space-x-1 py-4">
+              <div className="w-1/2 flex flex-col space-y-1">
+                <label htmlFor="status">Color</label>
+                <select
+                  value={fData.pStatus}
+                  onChange={(e) =>
+                    setFdata({
+                      ...fData,
+                      error: false,
+                      success: false,
+                      pStatus: e.target.value,
+                    })
+                  }
+                  name="status"
+                  className="px-4 py-2 border focus:outline-none"
+                  id="status"
+                >
+                  <option name="status" value="Active">
+                   white
+                  </option>
+                  <option name="status" value="Disabled">
+                    black 
+                  </option>
+                  <option name="status" value="Disabled">
+                    pink
+                  </option>
+                </select>
+              </div>
+              <div className="w-1/2 flex flex-col space-y-1">
+                <label htmlFor="status">Danh mục *</label>
+                <select
+                  value={fData.pCategory}
+                  onChange={(e) =>
+                    setFdata({
+                      ...fData,
+                      error: false,
+                      success: false,
+                      pCategory: e.target.value,
+                    })
+                  }
+                  name="status"
+                  className="px-4 py-2 border focus:outline-none"
+                  id="status"
+                >
+                  <option disabled value="">
+                    Chọn một danh mục
+                  </option>
+                  {categories.length > 0
+                    ? categories.map(function (elem) {
+                      return (
+                        <option name="status" value={elem._id} key={elem._id}>
+                          {elem.cName}
+                        </option>
+                      );
+                    })
                     : ""}
                 </select>
               </div>

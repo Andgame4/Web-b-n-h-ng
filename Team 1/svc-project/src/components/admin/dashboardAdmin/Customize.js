@@ -122,7 +122,7 @@ const AllImages = () => {
   const { data, dispatch } = useContext(DashboardContext);
 
   useEffect(() => {
-    sliderImages(dispatch);
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

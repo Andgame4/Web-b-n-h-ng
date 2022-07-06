@@ -57,7 +57,7 @@ const UserManagement = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(baseURL);
-        console.log(response);
+      
         setData(response);
       } catch (error: any) {
         console.error(error.message);

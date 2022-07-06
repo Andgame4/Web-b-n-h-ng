@@ -1,8 +1,8 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect,useState } from "react";
 import { getAllCategory, deleteCategory } from "./FetchApi";
 import { CategoryContext } from "./index";
 import moment from "moment";
-
+import getCategories from "../../../api/categoriesAPI"
 const apiURL = process.env.REACT_APP_API_URL;
 const data = [
   {
@@ -42,27 +42,20 @@ const data = [
   },
 ]
 const AllCategory = (props) => {
-  // const { data, dispatch } = useContext(CategoryContext);
-  const categories = data;
-  const loading=false;
-  // useEffect(() => {
-  //   fetchData();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+ 
 
-  // const fetchData = async () => {
-  //   dispatch({ type: "loading", payload: true });
-  //   let responseData = await getAllCategory();
-  //   setTimeout(() => {
-  //     if (responseData && responseData.Categories) {
-  //       dispatch({
-  //         type: "fetchCategoryAndChangeState",
-  //         payload: responseData.Categories,
-  //       });
-  //       dispatch({ type: "loading", payload: false });
-  //     }
-  //   }, 1000);
-  // };
+  const [categories,setCategories]=useState([])
+
+  console.log(categories)
+  const loading=false;
+  useEffect(() => {
+    const getProduct = async () => {
+     const categoryData = await getCategories();
+      setCategories(categoryData)
+    }
+    getProduct();
+
+  }, []);
 
   const deleteCategoryReq = async (cId) => {
     let deleteC = await deleteCategory(cId);
@@ -160,14 +153,14 @@ const CategoryTable = ({ category, deleteCat, editCat }) => {
     <Fragment>
       <tr>
         <td className="p-2 text-left">
-          {category.cName.length > 20
-            ? category.cName.slice(0, 20) + "..."
-            : category.cName}
+          {category.name.length > 20
+            ? category.name.slice(0, 20) + "..."
+            : category.name}
         </td>
         <td className="p-2 text-left">
-          {category.cDescription.length > 30
-            ? category.cDescription.slice(0, 30) + "..."
-            : category.cDescription}
+          {category.desc?.length > 30
+            ? category.desc.slice(0, 30) + "..."
+            : category.desc}
         </td>
         
         
