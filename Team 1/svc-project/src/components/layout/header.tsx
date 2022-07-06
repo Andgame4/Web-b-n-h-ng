@@ -1,24 +1,64 @@
-import React from 'react';
-import '../../assets/css/header.scss';
-import Navbar from 'react-bootstrap/esm/Navbar';
-import Container from 'react-bootstrap/esm/Container';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../../assets/css/layoutCss/header.scss';
 import logo from '../../assets/images/ivy-moda.png';
 
 const Header = () => {
+  const [isShow, setIsShow] = useState('');
+  const [isClose, setIsClose] = useState('');
+
+  const handleHambergerClick = () => {
+    setIsShow('show');
+  };
+
+  const handleCloseClick = () => {
+    setIsClose('close');
+  };
+
   return (
-    <Navbar className="nav-header">
-      <Container>
-        <Navbar.Brand href="#home">
-          <img src={logo} />
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text className="link-help">
-            <a href="/">You need support?</a>
-          </Navbar.Text>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <header className="header container">
+      <nav className="navbar-box ">
+        {/* List product */}
+        <div className="nav-list d-flex gap-2">
+          <Link to="/women">Women</Link>
+          <Link to="/men">Men</Link>
+          <Link to="/kid">Kid</Link>
+          <Link to="/">About Us</Link>
+          <div className={`close ${isClose}`} onClick={handleCloseClick}>
+            <i className="bx bx-x"></i>
+          </div>
+          <Link to="/login" className="user-link">
+            Login
+          </Link>
+        </div>
+        {/* Logo */}
+        <div className="logo">
+          <Link to="/home">
+            <img src={logo} alt="/" />
+          </Link>
+        </div>
+        {/* Icon support */}
+        <div className="nav-list icons d-flex gap-2 justify-content-end">
+          <div className="icon d-flex">
+            <i className="bx bx-search"></i>
+          </div>
+          <div className="icon user-icon d-flex">
+            <Link to="login">
+              <i className="bx bx-user"></i>
+            </Link>
+          </div>
+          <div className="icon d-flex">
+            <Link to="/cart">
+              <i className="bx bx-cart"></i>
+            </Link>
+            <span></span>
+          </div>
+        </div>
+        {/* <div className={`humburger ${isShow}`} onClick={handleHambergerClick}>
+            <i className="bx bx-menu-alt-right"></i>
+          </div> */}
+      </nav>
+    </header>
   );
 };
 

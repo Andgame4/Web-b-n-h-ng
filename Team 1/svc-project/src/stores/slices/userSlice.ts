@@ -17,14 +17,20 @@ const userSlice = createSlice({
     loginSuccess(state, action) {
       state.jwtToken = action.payload.jwtToken;
       state.userId = action.payload.userId;
-      console.log(state.userId);
-      console.log(state.jwtToken);
+    },
+    registerSuccess(state, action) {
+      state.jwtToken = action.payload.jwtToken;
+      state.userId = action.payload.userId;
+    },
+    changePasswordSuccess(state, action) {
+      state.jwtToken = action.payload.jwtToken;
+      state.userId = action.payload.userId;
     },
   },
 });
 
 // Action
-export const { loginSuccess } = userSlice.actions;
+export const { loginSuccess, registerSuccess, changePasswordSuccess } = userSlice.actions;
 // Select
 export const selectJwtToken = (state: userState) => state.jwtToken;
 export const selectUserId = (state: userState) => state.userId;

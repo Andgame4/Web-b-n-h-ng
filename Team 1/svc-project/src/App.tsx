@@ -1,10 +1,11 @@
-import React, { Component, Profiler } from 'react';
-import { BrowserRouter, BrowserRouter as Router, Route, Routes, useRoutes } from 'react-router-dom';
-import Header from './components/layout/header';
-import Profile from 'pages/profile';
+import { useRoutes } from 'react-router-dom';
+import Login from './pages/user/login';
+import Register from './pages/user/register';
+import ForgotPassword from './pages/user/forgotpassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FormOderList from 'components/profile/formOderList';
-import Layout from 'components/layout/layout';
+import Layout from './components/layout/layout';
+import Profile from 'pages/profile';
+
 const App = () => {
   let element = useRoutes([
     {
@@ -12,18 +13,28 @@ const App = () => {
       element: <Layout />,
       children: [
         {
+          path: '/login',
+          element: <Login />,
+        },
+        {
+          path: '/register',
+          element: <Register />,
+        },
+        {
           path: '/profile',
           element: <Profile />,
         },
         {
-          path: '/formOderList',
-          element: <FormOderList />,
+          path: '/forgotpassword',
+          element: <ForgotPassword />,
         },
       ],
     },
-    { path: 'auth', element: '' },
+    {
+      path: 'auth',
+      element: '',
+    },
   ]);
-
   return element;
 };
 

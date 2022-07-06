@@ -1,5 +1,5 @@
 /* eslint-disable no-cond-assign */
-import axiosLoginAPI from './axiosClient';
+import axiosLoginAPI from '../axiosClient';
 
 function loginAPI(
   email: string,
