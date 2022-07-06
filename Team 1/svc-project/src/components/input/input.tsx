@@ -12,12 +12,10 @@ type inputProps = {
     customClass?: string
 }
 
-const Input = ({errorText, customClass, ...props}: inputProps) => {
+const Input = ({ errorText, customClass, ...props }: inputProps) => {
     const inputClass = useMemo(() => {
         return `${errorText && 'border-red'} form-control form-control-lg`
     }, [errorText])
-
-    // console.log('re-render');
 
     return (
         <div>
@@ -27,7 +25,6 @@ const Input = ({errorText, customClass, ...props}: inputProps) => {
                 className={customClass || inputClass}
             />
         </div>
-
     )
 }
 

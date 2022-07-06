@@ -8,7 +8,73 @@ const Footer = () => {
         <div className="container text-center text-md-start">
           <hr />
           <div className="row mt-3 column">
-            <div className=" col-lg-2 col-xl-2 mx-auto mb-4 info">
+            <div className=" col-lg-2 col-xl-2 mx-auto mb-4 introduce">
+              <div className="title">Introduce</div>
+              <div className="Ivymoda">
+                <ul>
+                  <li>
+                    <a href="https://ivymoda.com/about/gioi-thieu">About IVY moda</a>
+                  </li>
+                  <li>
+                    <a href="https://ivymoda.com/about/gioi-thieu">System store</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="download">
+                <p>Download App</p>
+                <ul>
+                  <li>
+                    <a id="app_ios" href="http://ios.ivy.vn" target="_blank">
+                      <img src="https://pubcdn2.ivymoda.com/images/appstore.png" />
+                    </a>
+                  </li>
+                  <li>
+                    <a id="app_android" href="http://android.ivy.vn" target="_blank">
+                      <img src="https://pubcdn2.ivymoda.com/images/googleplay.png" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 services">
+              <div className="title">Customer services</div>
+              <div className="policy">
+                <ul>
+                  <li>
+                    <a href="https://ivymoda.com/about/chinh-sach-thanh-toan">Payment policy</a>
+                  </li>
+                  <li>
+                    <a href="https://ivymoda.com/about/chinh-sach-thanh-toan">Return policy</a>
+                  </li>
+                  <li>
+                    <a href="https://ivymoda.com/about/chinh-sach-thanh-toan">Warranty policy</a>
+                  </li>
+                  <li>
+                    <a href="https://ivymoda.com/about/chinh-sach-thanh-toan">Payment policy</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact">
+              <div className="title">Contact</div>
+              <div className="contact-me">
+                <ul>
+                  <li>
+                    <a href="#">Hotline</a>
+                  </li>
+                  <li>
+                    <a href="#">Email</a>
+                  </li>
+                  <li>
+                    <a href="http://messenger.com/t/thoitrangivymoda">Messenger</a>
+                  </li>
+                  <li>
+                    <a href="#">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 info">
               <div className="top-left">
                 <div className="logo-footer">
                   <a href="index.tsx">
@@ -69,72 +135,6 @@ const Footer = () => {
               </ul>
               <div className="hotline">
                 <a href="#">Hotline: 0246 662 3434</a>
-              </div>
-            </div>
-            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 introduce">
-              <div className="title">Introduce</div>
-              <div className="Ivymoda">
-                <ul>
-                  <li>
-                    <a href="https://ivymoda.com/about/gioi-thieu">About IVY moda</a>
-                  </li>
-                  <li>
-                    <a href="https://ivymoda.com/about/gioi-thieu">System store</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="download">
-                <p>Download App</p>
-                <ul>
-                  <li>
-                    <a id="app_ios" href="http://ios.ivy.vn" target="_blank">
-                      <img src="https://pubcdn2.ivymoda.com/images/appstore.png" />
-                    </a>
-                  </li>
-                  <li>
-                    <a id="app_android" href="http://android.ivy.vn" target="_blank">
-                      <img src="https://pubcdn2.ivymoda.com/images/googleplay.png" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 services">
-              <div className="title">Customer services</div>
-              <div className="policy">
-                <ul>
-                  <li>
-                    <a href="https://ivymoda.com/about/chinh-sach-thanh-toan">Payment policy</a>
-                  </li>
-                  <li>
-                    <a href="https://ivymoda.com/about/chinh-sach-thanh-toan">Return policy</a>
-                  </li>
-                  <li>
-                    <a href="https://ivymoda.com/about/chinh-sach-thanh-toan">Warranty policy</a>
-                  </li>
-                  <li>
-                    <a href="https://ivymoda.com/about/chinh-sach-thanh-toan">Payment policy</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact">
-              <div className="title">Contact</div>
-              <div className="contact-me">
-                <ul>
-                  <li>
-                    <a href="#">Hotline</a>
-                  </li>
-                  <li>
-                    <a href="#">Email</a>
-                  </li>
-                  <li>
-                    <a href="http://messenger.com/t/thoitrangivymoda">Messenger</a>
-                  </li>
-                  <li>
-                    <a href="#">Contact</a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>

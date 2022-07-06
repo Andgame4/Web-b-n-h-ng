@@ -4,7 +4,6 @@ import Header from './components/layout/header';
 import Login from './pages/login';
 import Register from './pages/register';
 import ForgotPassword from './pages/forgotpassword';
-import Footer from './components/layout/footer';
 import Profile from 'pages/profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FormOderList from 'components/profile/formOderList';

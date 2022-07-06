@@ -1,4 +1,4 @@
-import React, {useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/css/register.scss';
 import Input from '../components/input/input';
@@ -27,27 +27,27 @@ const Register = () => {
   const [borderPasswordInput, setBorderPasswordInput] = useState<string>('');
   const [borderConfirmPasswordInput, setBorderConfirmPasswordInput] = useState<string>('');
 
-  const handleName = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setName(value);
   }, [])
 
-  const handleEmail = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
-}, [])
+  }, [])
 
-  const handlePhone = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhone = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPhonenumber(value);
   }, [])
 
-  const handlePassword = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+  const handlePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
   }, [])
 
-  const handleConfirmPassword = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmPassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setConfirmPassword(value);
   }, [])
@@ -59,10 +59,10 @@ const Register = () => {
   const checkConfirmPassword = validateConfirmPassword(confirmPassword, password);
   const status =
     !!(checkName.status &&
-    checkEmail.status &&
-    checkPhoneNumber.status &&
-    checkPassword.status &&
-    checkConfirmPassword.status);
+      checkEmail.status &&
+      checkPhoneNumber.status &&
+      checkPassword.status &&
+      checkConfirmPassword.status);
 
   const validateForm = () => {
     setErrorName(checkName.message);
@@ -90,7 +90,7 @@ const Register = () => {
 
   return (
     <form className="register-form">
-      <hr/>
+      <hr />
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-12 col-md-8 col-lg-6 col-xl-5">

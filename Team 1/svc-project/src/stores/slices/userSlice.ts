@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-//const credentials = btoa("client:client@2022");
-
 export interface userState {
   jwtToken: string;
   userId: number;
