@@ -38,7 +38,7 @@ const FormOderList = () => {
               </tr>
             </thead>
             <tbody className="scroll_body">
-              <tr>
+              {/* <tr>
                 <td>qưer</td>
                 <td>17/7/2000</td>
                 <td>Đang giao</td>
@@ -135,7 +135,7 @@ const FormOderList = () => {
                 <td>Đang giao</td>
                 <td>QUần áo</td>
                 <td>100.000</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
           <div className="product-rating__list-pagination">

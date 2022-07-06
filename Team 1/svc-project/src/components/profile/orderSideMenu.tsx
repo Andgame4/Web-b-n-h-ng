@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from './avatar';
 import { AiOutlineUser } from 'react-icons/ai';
 import { IoReloadOutline } from 'react-icons/io5';
-import '../../assets/css/orderSideMenu.scss';
+import '../../assets/css/profileCss/orderSideMenu.scss';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from 'stores/hook';
 import { FaUserEdit } from 'react-icons/fa';
