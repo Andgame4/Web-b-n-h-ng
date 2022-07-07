@@ -1,6 +1,6 @@
 import DashboardAdmin from "./dashboardAdmin";
 import Categories from "./categories";
-import Products from "./products";
-import Orders from "./orders";
+import ProductsAdmin from "./products";
+import OrdersAdmin from "./orders";
 
-export { DashboardAdmin, Categories, Products, Orders };
+export { DashboardAdmin, Categories, ProductsAdmin, OrdersAdmin };

@@ -1,28 +1,26 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Routes, Route, useRoutes } from 'react-router-dom';
-import Header from './components/layout/header';
-import Login from './pages/login';
-import Register from './pages/user/register';
-import ForgotPassword from './pages/user/forgotpassword';
-import Footer from './components/layout/footer';
 import Profile from 'pages/profile';
+import { useRoutes } from 'react-router-dom';
+import Login from './pages/login';
+import ForgotPassword from './pages/user/forgotpassword';
+import Register from './pages/user/register';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Layout from './components/layout/layout'
-import { DashboardAdmin, Categories, Products, Orders } from './components/admin/';
-import "./App.css"
+import "./App.css";
+import { Categories, DashboardAdmin, OrdersAdmin, ProductsAdmin } from './components/admin/';
+import Layout from './components/layout/layout';
 const App =()=> {
      let element = useRoutes([
        {
          path: '/',
          element: <Layout />,
          children: [
+           //Admin
            {
              path: '/',
              element: <DashboardAdmin />,
            },
            {
-             path: '/DashboardAdmin',
+             path: '/Dashboard',
              element: <DashboardAdmin />,
            },
            {
@@ -30,26 +28,15 @@ const App =()=> {
              element: <Categories />,
            },
            {
-             path: '/Products',
-             element: <Products />,
+             path: '/Products-admin',
+             element: <ProductsAdmin />,
            },
            {
-             path: '/register',
-             element: <Orders />,
+             path: '/orders-admin',
+             element: <OrdersAdmin />,
            },
 
-           {
-             path: '/categories',
-             element: <Categories />,
-           },
-           {
-             path: '/products',
-             element: <Products />,
-           },
-           {
-             path: '/orders',
-             element: <Orders />,
-           },
+           //Admin
            {
              path: '/register',
              element: <Register />,
@@ -57,6 +44,14 @@ const App =()=> {
            {
              path: '/login',
              element: <Login />,
+           },
+           {
+             path: '/profile',
+             element: <Profile />,
+           },
+           {
+             path: '/forgotpassword',
+             element: <ForgotPassword />,
            },
          ],
        },
