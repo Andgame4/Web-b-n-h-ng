@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useState, useEffect, SyntheticEvent, useCallback } from 'react';
-import '../../assets/css/profile.scss';
+import '../../assets/css/profileCss/profile.scss';
 import Avatar from './avatar';
 import Input from '../input/input';
 import OrderSideMenu from './orderSideMenu';
 import { validateAddress, validatePhoneNumber } from 'utils/validate';
-import profileAPI from 'api/profileAPI';
+import profileAPI from 'api/useAPI/profileAPI';
 import { useAppSelector, useAppDispatch } from 'stores/hook';
 import {
   addProfile,
@@ -37,8 +37,6 @@ const FormProfile = () => {
     dispatch(changeAddress({ address: value }));
   }, []);
 
-  console.log(id);
-
   // call token
   const baseURL = 'http://10.22.4.62:8762/user/' + id;
   const fetchData = async () => {
@@ -66,7 +64,6 @@ const FormProfile = () => {
     }
   };
   useEffect(() => {
-    console.log('Fetch');
     fetchData();
   }, []);
 
@@ -99,7 +96,7 @@ const FormProfile = () => {
       <div className="container_profile">
         <div className="row container-form">
           {/* profile */}
-          <div className="col-md-3 col-xs-12">
+          <div className="col-md-4 col-xs-12">
             <OrderSideMenu />
           </div>
           <div className="col-md-6 col-xs-12">

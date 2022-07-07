@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route, useRoutes } from 'react-router-dom';
 import Header from './components/layout/header';
 import Login from './pages/login';
-import Register from './pages/register';
-import ForgotPassword from './pages/forgotpassword';
+import Register from './pages/user/register';
+import ForgotPassword from './pages/user/forgotpassword';
 import Footer from './components/layout/footer';
 import Profile from 'pages/profile';
 import UserManagement from 'components/admin/userManagement/userManagement';
@@ -21,7 +21,6 @@ const App =()=> {
              path: '/',
              element: <DashboardAdmin />,
            },
-           // ADMIN
            {
              path: '/DashboardAdmin',
              element: <DashboardAdmin />,
@@ -38,7 +37,7 @@ const App =()=> {
              path: '/register',
              element: <Orders />,
            },
-           // END ADMIN
+     
            {
              path: '/categories',
              element: <Categories />,

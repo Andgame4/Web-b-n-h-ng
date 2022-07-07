@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import '../assets/css/login.scss';
-import loginAPI from '../api/loginAPI';
+import loginAPI from '../api/useAPI/loginAPI';
 import Input from '../components/input/input';
 import { validateEmail } from '../utils/validate';
 import { validatePassword } from '../utils/validate';

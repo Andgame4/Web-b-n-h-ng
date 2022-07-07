@@ -1,16 +1,17 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/css/register.scss';
-import Input from '../components/input/input';
-import registerAPI from '../api/registerAPI';
-import { validateName } from '../utils/validate';
-import { validateEmail } from '../utils/validate';
-import { validatePhoneNumber } from '../utils/validate';
-import { validatePassword } from '../utils/validate';
-import { validateConfirmPassword } from '../utils/validate';
+import '../../assets/css/userCss/register.scss';
+import Input from '../../components/input/input';
+import registerAPI from '../../api/useAPI/registerAPI';
+import { validateName } from '../../utils/validate';
+import { validateEmail } from '../../utils/validate';
+import { validatePhoneNumber } from '../../utils/validate';
+import { validatePassword } from '../../utils/validate';
+import { validateConfirmPassword } from '../../utils/validate';
+import { useAppDispatch } from '../../stores/hook';
+import { registerSuccess } from '../../stores/slices/userSlice';
 
 const Register = () => {
-  const [errMsg, setErrMsg] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [errorName, setErrorName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -26,6 +27,9 @@ const Register = () => {
   const [borderPhonenumberInput, setborderPhoneNumberInput] = useState<string>('');
   const [borderPasswordInput, setBorderPasswordInput] = useState<string>('');
   const [borderConfirmPasswordInput, setBorderConfirmPasswordInput] = useState<string>('');
+  const [err, setErr] = useState<string>('');
+
+  const dispatch = useAppDispatch();
 
   const handleName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -83,10 +87,15 @@ const Register = () => {
         phonenumber,
         password,
         confirmPassword,
-        errMsg
+        setErr
       );
+      const data = {
+        userId: response.data.user_id,
+        jwtToken: response.data.access_token
+      }
+      dispatch(registerSuccess(data));
     }
-  };
+  }
 
   return (
     <form className="register-form">
@@ -97,6 +106,7 @@ const Register = () => {
             <div className="card shadow-2-strong">
               <div className="card-body p-5 text-center">
                 <h3 className="mb-5">Register</h3>
+                {err && <div className='server-error'>{err}</div>}
                 <div className="input-form">
                   {/* Input Name */}
                   <div className="name">
@@ -160,8 +170,10 @@ const Register = () => {
                   </div>
                 </div>
                 <div className="register-button">
-                  <button type="submit" className="btn-register" onClick={onSubmit}>
-                    Register
+                  <button className="btn-register"
+                    type="button"  
+                    onClick={onSubmit}
+                  >Register
                   </button>
                 </div>
                 <hr className="my-4" />

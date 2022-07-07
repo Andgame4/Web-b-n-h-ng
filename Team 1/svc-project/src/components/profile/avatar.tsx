@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import '../../assets/css/avatar.scss';
+import '../../assets/css/profileCss/avatar.scss';
 import { FaUserEdit } from 'react-icons/fa';
-import { log } from 'console';
 
 const Avatar = (props: { value: React.SetStateAction<string>; onClick: (arg0: any) => void }) => {
   const [image, setImage] = useState<string>('');
