@@ -1,0 +1,48 @@
+{
+    "users": [
+        {
+            "id":1,
+            "name":"long-name",
+            "email":"email@example.com",
+            "phone":"123-456-1234",
+            "address":"Hà Nội"
+        },
+        {
+            "id":2,
+            "name":"long-name",
+            "email":"email@example.com",
+            "phone":"123-456-1234",
+            "address":"Hà Nội"
+        },
+        {
+            "id":3,
+            "name":"long-name",
+            "email":"email@example.com",
+            "phone":"123-456-1234",
+            "address":"Hà Nội"
+        }
+    ],
+
+    "products": [
+        {
+            "id":1,
+            "name":"long-name",
+            "email":"email@example.com",
+            "phone":"123-456-1234",
+            "address":"Hà Nội"
+        },
+        {
+            "id":1,
+            "name":"long-name",
+            "email":"email@example.com",
+            "phone":"123-456-1234",
+            "address":"Hà Nội"
+        }, {
+            "id":1,
+            "name":"long-name",
+            "email":"email@example.com",
+            "phone":"123-456-1234",
+            "address":"Hà Nội"
+        }
+    ]
+}

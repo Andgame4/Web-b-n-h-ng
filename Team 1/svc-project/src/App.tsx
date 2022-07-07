@@ -5,6 +5,9 @@ import ForgotPassword from './pages/user/forgotpassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout';
 import Profile from 'pages/profile';
+import { Categories, DashboardAdmin, Orders, Products } from 'components/admin';
+import Users from 'components/admin/users';
+import FormOderList from 'components/profile/formOderList';
 
 const App = () => {
   let element = useRoutes([
@@ -13,27 +16,58 @@ const App = () => {
       element: <Layout />,
       children: [
         {
-          path: '/login',
-          element: <Login />,
+          path: '/',
+          element: <DashboardAdmin />,
+        },
+        // ADMIN
+        {
+          path: '/DashboardAdmin',
+          element: <DashboardAdmin />,
+        },
+        {
+          path: '/Categories',
+          element: <Categories />,
+        },
+        {
+          path: '/Products',
+          element: <Products />,
         },
         {
           path: '/register',
-          element: <Register />,
+          element: <Orders />,
+        },
+        {
+          path: '/users',
+          element: <Users />,
+        },
+        // END ADMIN
+        {
+          path: '/categories',
+          element: <Categories />,
+        },
+        {
+          path: '/products',
+          element: <Products />,
+        },
+        {
+          path: '/orders',
+          element: <Orders />,
+        },
+        {
+          path: '/formOderList',
+          element: <FormOderList />,
         },
         {
           path: '/profile',
           element: <Profile />,
         },
         {
-          path: '/forgotpassword',
-          element: <ForgotPassword />,
+          path: '/register',
+          element: <Register />,
         },
       ],
     },
-    {
-      path: 'auth',
-      element: '',
-    },
+    { path: 'auth', element: '' },
   ]);
   return element;
 };
