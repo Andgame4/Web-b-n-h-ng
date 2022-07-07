@@ -40,16 +40,25 @@ const Header = () => {
         {/* Icon support */}
         <div className="nav-list icons d-flex gap-2 justify-content-end">
           <div className="icon d-flex">
-            <i className="bx bx-search"></i>
+            <a>
+              <i className="bx bx-search"></i>
+            </a>
           </div>
           <div className="icon user-icon d-flex">
-            <Link to="login">
-              <i className="bx bx-user"></i>
-            </Link>
+            <div className="dropdown">
+              <Link to="login">
+                <i className="bx bx-user dropbtn"></i>
+                <div className="dropdown-content">
+                  <Link to="/Dashboard">Admin</Link>
+                  <Link to="/profile">Profile</Link>
+                  <Link to="/Login">Login</Link>
+                </div>
+              </Link>
+            </div>
           </div>
-          <div className="icon d-flex">
-            <Link to="/cart">
-              <i className="bx bx-cart"></i>
+          <div className="icon d-flex ">
+            <Link to="/cart" className="dropbtn">
+              <i className="bx bx-cart  "></i>
             </Link>
             <span></span>
           </div>

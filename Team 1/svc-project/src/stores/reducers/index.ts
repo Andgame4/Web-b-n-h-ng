@@ -4,6 +4,7 @@ import authReducer from '../slices/authSlice';
 import profileReducer from 'stores/slices/profileSlice';
 import userManagementReducer from 'stores/slices/userManagemetSlice';
 
+
 const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,

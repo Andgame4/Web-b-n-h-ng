@@ -7,9 +7,10 @@ function profileAPI(
   phoneNumber: string,
   avatar: string
 ) {
+  
   const jwtToken = JSON.parse(localStorage.getItem('accessToken')!);
   const id = Number.parseInt(JSON.parse(localStorage.getItem('id')!));
-  const baseURL = 'http://10.22.4.62:8762/user/' + id;
+  const baseURL = 'http://10.22.4.62:8762/product/';
   const config = {
     headers: {
       Authorization: 'Bearer ' + jwtToken,

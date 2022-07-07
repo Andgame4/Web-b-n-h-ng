@@ -1,0 +1,131 @@
+{
+	"code": "200",
+	"success": true,
+	"message": null,
+	"data": {
+		"content": [{
+			"id": 1,
+			"username": "admin@gmail.com",
+			"name": "admin",
+			"gender": "male",
+			"address": "Ha Noi",
+			"phone": "0983454234",
+			"role": "admin",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": "2022-07-05T11:14:18"
+		}, {
+			"id": 2,
+			"username": "user",
+			"name": "user",
+			"gender": "male",
+			"address": "Ha Noi",
+			"phone": "09877678876",
+			"role": "user",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": null
+		}, {
+			"id": 3,
+			"username": "trduc",
+			"name": "trduc",
+			"gender": "male",
+			"address": "Ha Noi",
+			"phone": "0999393939",
+			"role": "user",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": null
+		}, {
+			"id": 4,
+			"username": "thangshine",
+			"name": "thang",
+			"gender": "male",
+			"address": "Ha Noi",
+			"phone": "0989678345",
+			"role": "user",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": null
+		}, {
+			"id": 5,
+			"username": "wlqdyosxhdgjhob@knowledgemd.com",
+			"name": "dyos",
+			"gender": "male",
+			"address": "Ha Noi",
+			"phone": "0985457834",
+			"role": "user",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": "2022-06-27T13:27:51"
+		}, {
+			"id": 6,
+			"username": "pattric",
+			"name": "Pattric",
+			"gender": "male",
+			"address": "Ha Noi",
+			"phone": "0988567343",
+			"role": "user",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": null
+		}, {
+			"id": 7,
+			"username": "fykyne@ema-sofia.eu",
+			"name": "Annie",
+			"gender": "female",
+			"address": "Ha Noi",
+			"phone": "0938332885",
+			"role": "user",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": null
+		}, {
+			"id": 8,
+			"username": "corner99vn@gmail.com",
+			"name": "Corner",
+			"gender": "male",
+			"address": "Bac Tu Liem, Ha Noi",
+			"phone": "0978737222",
+			"role": "user",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": "2022-07-01T15:55:29"
+		}, {
+			"id": 9,
+			"username": "test",
+			"name": "test",
+			"gender": "female",
+			"address": "Ha Noi",
+			"phone": "0867338333",
+			"role": "user",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": null
+		}, {
+			"id": 10,
+			"username": "abc@gmail.com",
+			"name": "test",
+			"gender": "male",
+			"address": "Ha Noi",
+			"phone": "0123456789",
+			"role": "user",
+			"avatar": "http://image.com/avatar.jpg",
+			"active": 1,
+			"createdAt": "2022-06-27T12:57:07",
+			"modifiedAt": null
+		}],
+		"pageNo": 0,
+		"pageSize": 10,
+		"totalElements": 22
+	}
+}
