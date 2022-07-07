@@ -1,100 +1,89 @@
 form {
-    min-height: 542px;
+  min-height: 542px;
 
-    h3 {
-        margin-bottom: 20px;
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  .server-error {
+    text-align: start;
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #fff9fa;
+    border: 1px solid rgba(255, 66, 79, 0.2);
+    margin-bottom: 20px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: red;
+  }
+
+  .login-form {
+    width: 100%;
+    height: 500px;
+    background-color: #fff;
+  }
+
+  #input-email:focus {
+    color: black;
+  }
+
+  #input-password {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  #input-password:focus {
+    color: black;
+  }
+
+  .login-button {
+    .btn-login {
+      width: 100%;
+      padding: 7px 0px;
+      background: #221f20;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 19px;
     }
-
-    .server-error {
-        text-align: start;
-        padding-left: 10px;
-        height: 30px;
-        line-height: 30px;
-        background-color: #fff9fa;
-        border: 1px solid rgba(255, 66, 79, .2);
-        margin-bottom: 20px;
-        font-size: 9px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: red;
+    .btn-login:hover {
+      opacity: 0.9;
     }
+  }
 
-    .login-form {
-        width: 100%;
-        height: 500px;
-        background-color: #fff;
+  .btn-login:hover {
+    opacity: 0.9;
+  }
+}
+
+.forget-link {
+  a {
+    text-decoration: none;
+    font-size: 13px;
+    color: #05a;
+  }
+}
+
+.register-link {
+  color: #bdbdbd;
+  font-size: 14px;
+
+  a {
+    color: #221f20;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .register-link {
+    color: #bdbdbd;
+    font-size: 14px;
+    a {
+      color: #221f20;
+      text-decoration: none;
+      font-weight: 700;
     }
-
-    .card-body {
-        border-radius: 5px;
-        background-color: #fff;
-        padding: 30px !important;
-    }
-
-    .input-form {
-        #input-email {
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-
-        #input-email:focus {
-            color: black;
-        }
-
-        #input-password {
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-
-        #input-password:focus {
-            color: black;
-        }
-
-        .border-red {
-            border: #c92432 solid 1px;
-            color: #c92432;
-            background-color: #fffafa;
-        }
-    }
-
-    p {
-        font-size: 13px;
-        color: red;
-        float: left !important;
-        margin-bottom: 10px;
-    }
-
-    .login-button {
-        .btn-login {
-            width: 100%;
-            padding: 7px 0px;
-            background: #221F20;
-            border: none;
-            color: #fff;
-            font-size: 16px;
-            margin-bottom: 19px;
-        }
-        .btn-login:hover {
-            opacity: 0.9;
-        }
-    }
-
-    .forget-link {
-        a {
-            text-decoration: none;
-            font-size: 13px;
-            color: #05a;
-        }
-    }
-
-    .register-link {
-        color: #bdbdbd;
-        font-size: 14px;
-        a {
-            color: #221F20;
-            text-decoration: none;
-            font-weight: 700;
-        }
-        margin-top: 8px;
-    }
+    margin-top: 8px;
+  }
 }

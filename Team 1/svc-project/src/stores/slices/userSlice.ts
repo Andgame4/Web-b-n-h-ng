@@ -5,8 +5,8 @@ export interface userState {
 }
 
 const initialState: userState = {
-  jwtToken: '',
-  userId: 0
+  jwtToken: JSON.parse(localStorage.getItem('accessToken')!),
+  userId: Number.parseInt(JSON.parse(localStorage.getItem('id')!)),
 };
 
 //initialize
@@ -25,7 +25,7 @@ const userSlice = createSlice({
     changePasswordSuccess(state, action) {
       state.jwtToken = action.payload.jwtToken;
       state.userId = action.payload.userId;
-    }
+    },
   },
 });
 
@@ -33,6 +33,8 @@ const userSlice = createSlice({
 export const { loginSuccess, registerSuccess, changePasswordSuccess } = userSlice.actions;
 // Select
 export const selectJwtToken = (state: userState) => state.jwtToken;
+export const selectUserId = (state: userState) => state.userId;
+
 // Reducer
 const userReducer = userSlice.reducer;
 export default userReducer;

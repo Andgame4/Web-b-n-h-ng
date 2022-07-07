@@ -4,7 +4,7 @@ import Register from './pages/user/register';
 import ForgotPassword from './pages/user/forgotpassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout';
-
+import Profile from 'pages/profile';
 
 const App = () => {
   let element = useRoutes([
@@ -14,22 +14,26 @@ const App = () => {
       children: [
         {
           path: '/login',
-          element: <Login/>,
+          element: <Login />,
         },
         {
           path: '/register',
-          element: <Register/>,
+          element: <Register />,
+        },
+        {
+          path: '/profile',
+          element: <Profile />,
         },
         {
           path: '/forgotpassword',
-          element: <ForgotPassword/>,
+          element: <ForgotPassword />,
         },
       ],
     },
     {
       path: 'auth',
       element: '',
-    }
+    },
   ]);
   return element;
 };
