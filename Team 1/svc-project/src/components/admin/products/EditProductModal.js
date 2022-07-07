@@ -1,7 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { ProductContext } from "./index";
-import { editProduct, getAllProduct } from "./FetchApi";
-import { getAllCategory } from "../categories/FetchApi";
+
 const apiURL = process.env.REACT_APP_API_URL;
 
 const EditProductModal = (props) => {
@@ -28,16 +27,6 @@ const EditProductModal = (props) => {
     success: false,
   });
 
-  useEffect(() => {
-    fetchCategoryData();
-  }, []);
-
-  const fetchCategoryData = async () => {
-    let responseData = await getAllCategory();
-    if (responseData.Categories) {
-      setCategories(responseData.Categories);
-    }
-  };
 
   useEffect(() => {
     setEditformdata({
@@ -54,45 +43,11 @@ const EditProductModal = (props) => {
   }, [data.editProductModal]);
 
   const fetchData = async () => {
-    let responseData = await getAllProduct();
-    if (responseData && responseData.Products) {
-      dispatch({
-        type: "fetchProductsAndChangeState",
-        payload: responseData.Products,
-      });
-    }
+  
   };
 
   const submitForm = async (e) => {
-    e.preventDefault();
-    if (!editformData.pEditImages) {
-      console.log("Image Not upload=============", editformData);
-    } else {
-      console.log("Image uploading");
-    }
-    try {
-      let responseData = await editProduct(editformData);
-      if (responseData.success) {
-        fetchData();
-        setEditformdata({ ...editformData, success: responseData.success });
-        setTimeout(() => {
-          return setEditformdata({
-            ...editformData,
-            success: responseData.success,
-          });
-        }, 2000);
-      } else if (responseData.error) {
-        setEditformdata({ ...editformData, error: responseData.error });
-        setTimeout(() => {
-          return setEditformdata({
-            ...editformData,
-            error: responseData.error,
-          });
-        }, 2000);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  
   };
 
   return (

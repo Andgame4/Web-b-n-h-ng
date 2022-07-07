@@ -1,7 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { ProductContext } from "./index";
-import { createProduct, getAllProduct } from "./FetchApi";
-import { getAllCategory } from "../categories/FetchApi";
+
 
 const AddProductDetail = ({ categories }) => {
   const { data, dispatch } = useContext(ProductContext);
@@ -23,17 +22,7 @@ const AddProductDetail = ({ categories }) => {
     error: false,
   });
 
-  const fetchData = async () => {
-    let responseData = await getAllProduct();
-    setTimeout(() => {
-      if (responseData && responseData.Products) {
-        dispatch({
-          type: "fetchProductsAndChangeState",
-          payload: responseData.Products,
-        });
-      }
-    }, 1000);
-  };
+
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -47,9 +36,9 @@ const AddProductDetail = ({ categories }) => {
     }
 
     try {
-      let responseData = await createProduct(fData);
+      let responseData = {};
       if (responseData.success) {
-        fetchData();
+  
         setFdata({
           ...fData,
           pName: "",
@@ -384,18 +373,11 @@ const AddProductDetail = ({ categories }) => {
 };
 
 const AddProductModal = (props) => {
-  useEffect(() => {
-    fetchCategoryData();
-  }, []);
+
 
   const [allCat, setAllCat] = useState({});
 
-  const fetchCategoryData = async () => {
-    let responseData = await getAllCategory();
-    if (responseData.Categories) {
-      setAllCat(responseData.Categories);
-    }
-  };
+
 
   return (
     <Fragment>

@@ -1,6 +1,5 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { OrderContext } from "./index";
-import { getAllOrder, editCategory } from "./FetchApi";
 
 const UpdateOrderModal = (props) => {
   const { data, dispatch } = useContext(OrderContext);
@@ -15,27 +14,9 @@ const UpdateOrderModal = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.updateOrderModal.modal]);
 
-  const fetchData = async () => {
-    let responseData = await getAllOrder();
-    if (responseData.Orders) {
-      dispatch({
-        type: "fetchOrderAndChangeState",
-        payload: responseData.Orders,
-      });
-    }
-  };
 
   const submitForm = async () => {
-    dispatch({ type: "loading", payload: true });
-    let responseData = await editCategory(oId, status);
-    if (responseData.error) {
-      dispatch({ type: "loading", payload: false });
-    } else if (responseData.success) {
-      console.log(responseData.success);
-      dispatch({ type: "updateOrderModalClose" });
-      fetchData();
-      dispatch({ type: "loading", payload: false });
-    }
+   
   };
 
   return (

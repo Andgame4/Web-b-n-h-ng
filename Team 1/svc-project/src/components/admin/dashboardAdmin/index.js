@@ -14,8 +14,7 @@ const DashboardComponent = () => {
       <DashboardCard />
      
       <HomeChart />
-      <Customize />
-      <TodaySell />
+
     </Fragment>
   );
 };

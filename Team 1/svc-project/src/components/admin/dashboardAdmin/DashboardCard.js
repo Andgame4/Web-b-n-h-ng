@@ -1,12 +1,16 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import { DashboardContext } from "./";
-import { GetAllData } from "./Action";
-
+import { getOrderTime } from "api/orderAdminApi";
 const DashboardCard = (props) => {
   const { data, dispatch } = useContext(DashboardContext);
 
   useEffect(() => {
-  
+    const fetchData = (async () => {
+      const data = await getOrderTime("day")
+
+    })
+    fetchData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

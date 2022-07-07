@@ -1,69 +1,29 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import { getAllProduct, deleteProduct } from "./FetchApi";
-import moment from "moment";
-import { ProductContext } from "./index";
-import axios from 'axios';
-import { fakeProductData } from "./productdatafake";
+import { Fragment, useContext, useEffect, useState } from "react";
 import getProductAdminAPI from "../../../api/productAdminAPI";
-import { useAppSelector, useAppDispatch } from '../../../stores/hook';
-import { useDispatch } from 'react-redux';
-import {getProductAdmin } from "../../../stores/slices/productSlice";
-const apiURL = process.env.REACT_APP_API_URL;
+import { ProductContext } from "./index";
+import dataProduct from './dataProductfake'
 
 function formatCash(n, currency) {
   return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + currency;
 }
 
 const AllProduct = (props) => {
-  const products = useAppSelector((state) => state.productAdmin.productInfor);
-  const dispatch = useDispatch()
+  const { data, dispatch } = useContext(ProductContext);
 
+  const [products,setProducts]= useState([])
   const [loading, setLoading] = useState(false);
+
+  
   useEffect(() => {
     const getProduct = async() =>{
-      const dataProduct = await getProductAdminAPI()
+      // const dataProduct = await getProductAdminAPI()
+      setProducts(dataProduct.data.data.content)
     
-       dispatch(
-        getProductAdmin({
-          productInfor: dataProduct
-      }))
     }
    getProduct();
   }, []);
 
-  const fetchData = async () => {
-    setLoading(false);
-    let responseData = await getAllProduct();
-    setTimeout(() => {
-      if (responseData && responseData.Products) {
-        dispatch({
-          type: "fetchProductsAndChangeState",
-          payload: responseData.Products,
-        });
-        setLoading(false);
-      }
-    }, 1000);
-  };
 
-  const deleteProductReq = async (pId) => {
-    let deleteC = await deleteProduct(pId);
-    if (deleteC.error) {
-      console.log(deleteC.error);
-    } else if (deleteC.success) {
-      console.log(deleteC.success);
-      fetchData();
-    }
-  };
-
-  /* This method call the editmodal & dispatch product context */
-  const editProduct = (pId, product, type) => {
-    if (type) {
-      dispatch({
-        type: "editProductModalOpen",
-        product: { ...product, pId: pId },
-      });
-    }
-  };
 
   if (loading) {
     return (
@@ -109,10 +69,6 @@ const AllProduct = (props) => {
                 return (
                   <ProductTable
                     product={item}
-                    editProduct={(pId, product, type) =>
-                      editProduct(pId, product, type)
-                    }
-                    deleteProduct={(pId) => deleteProductReq(pId)}
                     key={key}
                   />
                 );
@@ -178,7 +134,7 @@ const ProductTable = ({ product, deleteProduct, editProduct }) => {
           {amount }
         </td>
         <td className="p-2 text-center">
-          {product.discount.discountPercent} %
+          0 %
         </td>
 
         <td className="p-2 flex items-center justify-center">

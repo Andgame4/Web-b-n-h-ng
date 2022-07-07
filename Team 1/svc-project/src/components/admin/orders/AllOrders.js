@@ -1,12 +1,10 @@
-import React, { Fragment, useContext, useEffect,useState } from "react";
 import moment from "moment";
+import { Fragment, useContext, useEffect } from "react";
 
-import { OrderContext } from "./index";
-import { fetchData, editOrderReq, deleteOrderReq } from "./Actions";
 import getOrderAdmin from "api/orderAdminApi";
+
 import dataProduct from "./dataOrderfake";
-import { data } from "../dashboardAdmin/ChartDemo";
-const apiURL = process.env.REACT_APP_API_URL;
+import { OrderContext } from "./index";
 
 const AllCategory = (props) => {
 
@@ -18,7 +16,6 @@ const AllCategory = (props) => {
   useEffect(() => {
     const getProduct = async () => {
       const dataOrder = await getOrderAdmin();
-      
       console.log("data la: ",orders.length)
     }
     getProduct();
@@ -50,9 +47,11 @@ const AllCategory = (props) => {
           <thead>
             <tr>
               <th className="px-4 py-2 border">Sản phẩm</th>
-              <th className="px-4 py-2 border">Tình trạng</th>
+              <th className="px-4 py-2 border">Số lượng</th>
+              <th className="px-4 py-2 border">Color</th>
+              <th className="px-4 py-2 border">Size</th>
               <th className="px-4 py-2 border">Tổng</th>
-              <th className="px-4 py-2 border">Mã giao dịch</th>
+              <th className="px-4 py-2 border">Tình trạng</th>
               <th className="px-4 py-2 border">Khách hàng</th>
          
               <th className="px-4 py-2 border">Số điện thoại</th>
@@ -72,9 +71,7 @@ const AllCategory = (props) => {
                   <CategoryTable
                     key={i}
                     order={item}
-                    editOrder={(oId, type, status) =>
-                      editOrderReq(oId, type, status)
-                    }
+                    
                   />
 
                   </>
@@ -108,9 +105,8 @@ const CategoryTable = ({ order, editOrder }) => {
   return (
     <Fragment>
       <tr className="border-b">
-        <td className="hover:bg-gray-200 p-2 flex flex-col space-y-1">
-          {order.productOrderDetailDTOS[0].name}
-        </td>
+    
+      
        
         {/* <td className="hover:bg-gray-200 p-2 text-center cursor-default">
           {order.status === "Not processed" && (
@@ -139,16 +135,26 @@ const CategoryTable = ({ order, editOrder }) => {
             </span>
           )}
         </td> */}
-      
+        <td className="hover:bg-gray-200 p-2 text-center">
+          {order.productOrderDetailDTOS.map(item => <p>{item.name} </p>)}
+
+        </td>
+        <td className="hover:bg-gray-200 p-2 text-center">
+          {order.productOrderDetailDTOS.map(item => <p> {item.quantity} </p>)}
+        </td>
+        <td className="hover:bg-gray-200 p-2 text-center">
+          {order.productOrderDetailDTOS.map(item => <p>{item.color} </p>)}
+        </td>
+        <td className="hover:bg-gray-200 p-2 text-center">
+          {order.productOrderDetailDTOS.map(item => <p>{item.size} </p>)}
+        </td>
         <td className="hover:bg-gray-200 p-2 text-center">
           {orderState[Number(order.status)]}
         </td>
         <td className="hover:bg-gray-200 p-2 text-center">
           {order.totalAmount}đ
         </td>
-        <td className="hover:bg-gray-200 p-2 text-center">
-          {order.paymentId}
-        </td>
+       
         <td className="hover:bg-gray-200 p-2 text-center">{order.userOrderDetailDTO.name}</td>
         
         <td className="hover:bg-gray-200 p-2 text-center">{order.userOrderDetailDTO.phone}</td>
@@ -156,7 +162,7 @@ const CategoryTable = ({ order, editOrder }) => {
         <td className="hover:bg-gray-200 p-2 text-center">
           {moment(order.createdAt).format("DD-MM-YYYY")}
         </td>
-        <td className="p-2 flex items-center justify-center">
+        <td className="p-2 items-center justify-center d-flex ">
           <span
             onClick={(e) => editOrder(order._id, true, order.status)}
             className="cursor-pointer hover:bg-gray-200 rounded-lg p-2 mx-1"
@@ -176,7 +182,7 @@ const CategoryTable = ({ order, editOrder }) => {
             </svg>
           </span>
           <span
-            onClick={(e) => deleteOrderReq(order._id, dispatch)}
+           
             className="cursor-pointer hover:bg-gray-200 rounded-lg p-2 mx-1"
           >
             <svg
