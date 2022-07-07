@@ -1,4 +1,4 @@
-import React, { Fragment, createContext, useReducer,useState } from "react";
+import React, { Fragment, createContext, useReducer, useState } from "react";
 import AdminLayout from "../layout";
 import CategoryMenu from "./CategoryMenu";
 import AllCategories from "./AllCategories";
@@ -8,10 +8,10 @@ import { categoryState, categoryReducer } from "./CategoryContext";
 export const CategoryContext = createContext();
 
 const CategoryComponent = () => {
-  const [render,setRender]=useState("")
+  const [render, setRender] = useState("")
   return (
     <div className="grid grid-cols-1 space-y-4 p-4">
-      <CategoryMenu setRender={setRender}/>
+      <CategoryMenu setRender={setRender} />
       <AllCategories />
     </div>
   );

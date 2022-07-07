@@ -11,7 +11,7 @@ const SellTable = () => {
   const { data, dispatch } = useContext(DashboardContext);
 
   useEffect(() => {
-   
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -36,7 +36,7 @@ const SellTable = () => {
         </div>
         <table className="table-auto border w-full my-2">
           <thead>
-            <tr> 
+            <tr>
               <th className="px-4 py-2 border">Sản phẩm</th>
               <th className="px-4 py-2 border">Ảnh</th>
               <th className="px-4 py-2 border">Trạng thái</th>

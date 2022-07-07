@@ -9,14 +9,14 @@ import { OrderContext } from "./index";
 const AllCategory = (props) => {
 
   // const { orders, setOrders} = useState([])
-  let orders=[];
-  let loading=false;
+  let orders = [];
+  let loading = false;
   const dataOrder = dataProduct.data;
   orders = dataOrder
   useEffect(() => {
     const getProduct = async () => {
       const dataOrder = await getOrderAdmin();
-      console.log("data la: ",orders.length)
+
     }
     getProduct();
   }, []);
@@ -53,27 +53,24 @@ const AllCategory = (props) => {
               <th className="px-4 py-2 border">Tổng</th>
               <th className="px-4 py-2 border">Tình trạng</th>
               <th className="px-4 py-2 border">Khách hàng</th>
-         
+
               <th className="px-4 py-2 border">Số điện thoại</th>
               <th className="px-4 py-2 border">Địa chỉ</th>
               <th className="px-4 py-2 border">Ngày tạo</th>
-     
+
               <th className="px-4 py-2 border">Hành động</th>
             </tr>
           </thead>
           <tbody>
-          
+
             {orders.length > 0 ? (
-              orders.map((item, i) => {
+              orders.map((item, index) => {
                 return (
                   <>
-                 
-                  <CategoryTable
-                    key={i}
-                    order={item}
-                    
-                  />
-
+                    <CategoryTable
+                      key={`i d ${index}`}
+                      order={item}
+                    />
                   </>
                 );
               })
@@ -100,41 +97,11 @@ const AllCategory = (props) => {
 /* Single Category Component */
 const CategoryTable = ({ order, editOrder }) => {
   const { dispatch } = useContext(OrderContext);
-  const orderState = ["","Chờ xác nhận", "chờ giao hàng ", "Đang giao hàng", "Đã giao hàng", "Hủy đơn"]
+  const orderState = ["", "Chờ xác nhận", "chờ giao hàng ", "Đang giao hàng", "Đã giao hàng", "Hủy đơn"]
 
   return (
     <Fragment>
       <tr className="border-b">
-    
-      
-       
-        {/* <td className="hover:bg-gray-200 p-2 text-center cursor-default">
-          {order.status === "Not processed" && (
-            <span className="block text-red-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order.status}
-            </span>
-          )}
-          {order.status === "Processing" && (
-            <span className="block text-yellow-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order.status}
-            </span>
-          )}
-          {order.status === "Shipped" && (
-            <span className="block text-blue-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order.status}
-            </span>
-          )}
-          {order.status === "Delivered" && (
-            <span className="block text-green-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order.status}
-            </span>
-          )}
-          {order.status === "Cancelled" && (
-            <span className="block text-red-600 rounded-full text-center text-xs px-2 font-semibold">
-              {order.status}
-            </span>
-          )}
-        </td> */}
         <td className="hover:bg-gray-200 p-2 text-center">
           {order.productOrderDetailDTOS.map(item => <p>{item.name} </p>)}
 
@@ -154,9 +121,9 @@ const CategoryTable = ({ order, editOrder }) => {
         <td className="hover:bg-gray-200 p-2 text-center">
           {order.totalAmount}đ
         </td>
-       
+
         <td className="hover:bg-gray-200 p-2 text-center">{order.userOrderDetailDTO.name}</td>
-        
+
         <td className="hover:bg-gray-200 p-2 text-center">{order.userOrderDetailDTO.phone}</td>
         <td className="hover:bg-gray-200 p-2 text-center">{order.userOrderDetailDTO.address}</td>
         <td className="hover:bg-gray-200 p-2 text-center">
@@ -182,7 +149,7 @@ const CategoryTable = ({ order, editOrder }) => {
             </svg>
           </span>
           <span
-           
+
             className="cursor-pointer hover:bg-gray-200 rounded-lg p-2 mx-1"
           >
             <svg

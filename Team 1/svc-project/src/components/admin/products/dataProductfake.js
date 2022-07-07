@@ -1,4 +1,4 @@
- const dataProduct={
+const dataProduct = {
     data: {
         "code": "200",
         "success": true,

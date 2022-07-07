@@ -30,42 +30,41 @@ const OrderMenu = (props) => {
             </div>
             <div
               style={{ background: "#303031" }}
-              className={`${
-                dropdown ? "" : "hidden"
-              } absolute top-0 left-0 mt-12 rounded-lg overflow-hidden w-full md:w-48 flex flex-col z-10`}
+              className={`${dropdown ? "" : "hidden"
+                } absolute top-0 left-0 mt-12 rounded-lg overflow-hidden w-full md:w-48 flex flex-col z-10`}
             >
               <span
-               
+
                 className="px-4 py-2 hover:bg-black text-center cursor-pointer"
               >
                 All
               </span>
               <span
-            
+
                 className="px-4 py-2 hover:bg-black text-center cursor-pointer"
               >
                 Not processed
               </span>
               <span
-                
+
                 className="px-4 py-2 hover:bg-black text-center cursor-pointer"
               >
                 Processing
               </span>
               <span
-               
+
                 className="px-4 py-2 hover:bg-black text-center cursor-pointer"
               >
                 Shipped
               </span>
               <span
-             
+
                 className="px-4 py-2 hover:bg-black text-center cursor-pointer"
               >
                 Delivered
               </span>
               <span
-             
+
                 className="px-4 py-2 hover:bg-black text-center cursor-pointer"
               >
                 Cancelled

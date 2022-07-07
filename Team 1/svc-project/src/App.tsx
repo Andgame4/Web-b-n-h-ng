@@ -6,7 +6,7 @@ import Register from './pages/user/register';
 import ForgotPassword from './pages/user/forgotpassword';
 import Footer from './components/layout/footer';
 import Profile from 'pages/profile';
-import UserManagement from 'components/admin/userManagement/userManagement';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout'
 import { DashboardAdmin, Categories, Products, Orders } from './components/admin/';
@@ -37,7 +37,7 @@ const App =()=> {
              path: '/register',
              element: <Orders />,
            },
-     
+
            {
              path: '/categories',
              element: <Categories />,
@@ -53,6 +53,10 @@ const App =()=> {
            {
              path: '/register',
              element: <Register />,
+           },
+           {
+             path: '/login',
+             element: <Login />,
            },
          ],
        },

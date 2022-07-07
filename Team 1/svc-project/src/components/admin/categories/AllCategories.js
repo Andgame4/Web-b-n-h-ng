@@ -84,7 +84,7 @@ const AllCategory = (props) => {
                       editCategory(id, des, name)
                     }
                     deleteCat={(cId) => deleteCategoryReq(cId)}
-                    key={key}
+                    key={`category ${key}`}
                   />
                 );
               })

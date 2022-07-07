@@ -1,7 +1,7 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import getProductAdminAPI from "../../../api/productAdminAPI";
 import { ProductContext } from "./index";
-import dataProduct from './dataProductfake'
+// import dataProduct from './dataProductfake'
 
 function formatCash(n, currency) {
   return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + currency;
@@ -10,21 +10,18 @@ function formatCash(n, currency) {
 const AllProduct = (props) => {
   const { data, dispatch } = useContext(ProductContext);
 
-  const [products,setProducts]= useState([])
+  const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false);
 
-  
+
   useEffect(() => {
-    const getProduct = async() =>{
-      // const dataProduct = await getProductAdminAPI()
-      setProducts(dataProduct.data.data.content)
-    
+    const getProduct = async () => {
+      const dataProduct = await getProductAdminAPI()
+      setProducts(dataProduct)
+
     }
-   getProduct();
+    getProduct();
   }, []);
-
-
-
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8">
@@ -97,7 +94,7 @@ const AllProduct = (props) => {
 const ProductTable = ({ product, deleteProduct, editProduct }) => {
   const amount = product.inventories?.reduce((total, item) => {
     return total = total + item.quantity
-   
+
   }, 0)
 
   return (
@@ -131,7 +128,7 @@ const ProductTable = ({ product, deleteProduct, editProduct }) => {
           {product.color}
         </td>
         <td className="p-2 text-center">
-          {amount }
+          {amount}
         </td>
         <td className="p-2 text-center">
           0 %

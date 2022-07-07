@@ -1,4 +1,4 @@
-const categories={
+const categories = {
     data: {
         "code": "200",
         "success": true,

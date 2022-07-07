@@ -3,7 +3,7 @@ import '../../assets/css/layoutCss/footer.scss';
 
 const Footer = () => {
   return (
-    <MDBFooter className="text-center text-lg-start text-muted">
+    <MDBFooter className=" footer-ivymoda text-center text-lg-start text-muted">
       <section className="information">
         <div className="container text-center text-md-start">
           <hr />
@@ -144,7 +144,6 @@ const Footer = () => {
       <div className="text-center p-4 copyright">©IVYmoda All rights reserved</div>
     </MDBFooter>
   );
-
 };
 
 export default Footer;

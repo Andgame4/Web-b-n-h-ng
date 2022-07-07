@@ -32,7 +32,7 @@ export const categoryReducer = (state, action) => {
           modal: true,
           id: action.id,
           des: action.des,
-          name:action.name,
+          name: action.name,
           status: action.status,
         },
       };
