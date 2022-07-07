@@ -1,8 +1,8 @@
-import React, { Fragment, createContext, useReducer } from "react";
-import AdminLayout from "../layout";
-import ProductMenu from "./ProductMenu";
-import ProductTable from "./ProductTable";
-import { productState, productReducer } from "./ProductContext";
+import React, { Fragment, createContext, useReducer } from 'react';
+import AdminLayout from '../layout';
+import ProductMenu from './ProductMenu';
+import ProductTable from './ProductTable';
+import { productState, productReducer } from './ProductContext';
 
 /* This context manage all of the products component's data */
 export const ProductContext = createContext();

@@ -1,7 +1,7 @@
-import React, { Fragment, useContext } from "react";
-import { ProductContext } from "./index";
-import AddProductModal from "./AddProductModal";
-import EditProductModal from "./EditProductModal";
+import React, { Fragment, useContext } from 'react';
+import { ProductContext } from './index';
+import AddProductModal from './AddProductModal';
+import EditProductModal from './EditProductModal';
 
 const ProductMenu = (props) => {
   const { dispatch } = useContext(ProductContext);
@@ -11,10 +11,8 @@ const ProductMenu = (props) => {
         <div className="flex items-center">
           {/* It's open the add product modal */}
           <span
-            style={{ background: "#303031" }}
-            onClick={(e) =>
-              dispatch({ type: "addProductModal", payload: true })
-            }
+            style={{ background: '#303031' }}
+            onClick={(e) => dispatch({ type: 'addProductModal', payload: true })}
             className="rounded-full cursor-pointer p-2 bg-gray-800 flex items-center text-gray-100 text-sm font-semibold uppercase"
           >
             <svg

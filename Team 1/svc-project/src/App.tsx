@@ -6,8 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout';
 import Profile from 'pages/profile';
 import { Categories, DashboardAdmin, Orders, Products } from 'components/admin';
-import Users from 'components/admin/users';
 import FormOderList from 'components/profile/formOderList';
+import UserTable from 'components/admin/user/userTable';
+import Users from 'components/admin/user';
 
 const App = () => {
   let element = useRoutes([
