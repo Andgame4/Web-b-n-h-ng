@@ -1,68 +1,23 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { getAllCategory, deleteCategory } from "./FetchApi";
 import { CategoryContext } from "./index";
 import moment from "moment";
-
+import getCategories from "../../../api/categoriesAPI"
 const apiURL = process.env.REACT_APP_API_URL;
-const data = [
-  {
-    id:"1",
-    cName: "áo",
-    cDescription:"áo đẹp",
-    createAt:"10h",
-    updateAt:"11h"
-  },
-  {
-    id: "1",
-    cName: "áo",
-    cDescription: "áo đẹp",
-    createAt: "10h",
-    updateAt: "11h"
-  },
-  {
-    id: "1",
-    cName: "áo",
-    cDescription: "áo đẹp",
-    createAt: "10h",
-    updateAt: "11h"
-  },
-  {
-    id: "1",
-    cName: "áo",
-    cDescription: "áo đẹp",
-    createAt: "10h",
-    updateAt: "11h"
-  },
-  {
-    id: "1",
-    cName: "áo",
-    cDescription: "áo đẹp",
-    createAt: "10h",
-    updateAt: "11h"
-  },
-]
-const AllCategory = (props) => {
-  // const { data, dispatch } = useContext(CategoryContext);
-  const categories = data;
-  const loading=false;
-  // useEffect(() => {
-  //   fetchData();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
-  // const fetchData = async () => {
-  //   dispatch({ type: "loading", payload: true });
-  //   let responseData = await getAllCategory();
-  //   setTimeout(() => {
-  //     if (responseData && responseData.Categories) {
-  //       dispatch({
-  //         type: "fetchCategoryAndChangeState",
-  //         payload: responseData.Categories,
-  //       });
-  //       dispatch({ type: "loading", payload: false });
-  //     }
-  //   }, 1000);
-  // };
+const AllCategory = (props) => {
+  const { data, dispatch } = useContext(CategoryContext);
+  const [categories, setCategories] = useState([])
+  const loading = false;
+  useEffect(() => {
+    const getProduct = async () => {
+      const categoryData = await getCategories();
+      setCategories(categoryData)
+    }
+
+    getProduct();
+
+  }, []);
 
   const deleteCategoryReq = async (cId) => {
     let deleteC = await deleteCategory(cId);
@@ -70,20 +25,19 @@ const AllCategory = (props) => {
       console.log(deleteC.error);
     } else if (deleteC.success) {
       console.log(deleteC.success);
-      // fetchData();
     }
   };
 
   /* This method call the editmodal & dispatch category context */
-  const editCategory = (cId, type, des, status) => {
-    if (type) {
-      // dispatch({
-      //   type: "editCategoryModalOpen",
-      //   cId: cId,
-      //   des: des,
-      //   status: status,
-      // });
-    }
+  const editCategory = (id, name, des) => {
+
+    dispatch({
+      type: "editCategoryModalOpen",
+      id: id,
+      des: des,
+      name: name,
+    });
+
   };
 
   if (loading) {
@@ -110,13 +64,13 @@ const AllCategory = (props) => {
   return (
     <Fragment>
       <div className="col-span-1 overflow-auto bg-white shadow-lg p-4">
-        <table className="table-auto border w-full my-2">
+        <table className="table-auto border w-full my-2 text-center">
           <thead>
             <tr>
               <th className="px-4 py-2 border">Danh mục</th>
+
               <th className="px-4 py-2 border">Chú thích</th>
-              <th className="px-4 py-2 border">Thời gian tạo</th>
-              <th className="px-4 py-2 border">Thời gian cập nhật</th>
+
               <th className="px-4 py-2 border">Hành động</th>
             </tr>
           </thead>
@@ -126,11 +80,11 @@ const AllCategory = (props) => {
                 return (
                   <CategoryTable
                     category={item}
-                    editCat={(cId, type, des, status) =>
-                      editCategory(cId, type, des, status)
+                    editCat={(id, des, name) =>
+                      editCategory(id, des, name)
                     }
                     deleteCat={(cId) => deleteCategoryReq(cId)}
-                    key={key}
+                    key={`category ${key}`}
                   />
                 );
               })
@@ -140,7 +94,7 @@ const AllCategory = (props) => {
                   colSpan="7"
                   className="text-xl text-center font-semibold py-8"
                 >
-                 Không tìm thấy danh mục nào
+                  Không tìm thấy danh mục nào
                 </td>
               </tr>
             )}
@@ -158,33 +112,20 @@ const AllCategory = (props) => {
 const CategoryTable = ({ category, deleteCat, editCat }) => {
   return (
     <Fragment>
-      <tr>
-        <td className="p-2 text-left">
-          {category.cName.length > 20
-            ? category.cName.slice(0, 20) + "..."
-            : category.cName}
+      <tr className="text-center">
+        <td className="p-2 text-center">
+          {category.name}
         </td>
-        <td className="p-2 text-left">
-          {category.cDescription.length > 30
-            ? category.cDescription.slice(0, 30) + "..."
-            : category.cDescription}
+        <td className="p-2 text-center">
+          {category.desc}
         </td>
-        
-        
-        <td className="p-2 text-start">
-          {moment(category.createdAt).format("lll")}
-        </td>
-        <td className="p-2 text-start">
-          {moment(category.updatedAt).format("lll")}
-        </td>
-        <td className="p-2 flex items-center justify-start">
+        <td className="p-2 d-flex justify-center  text-center">
           <span
             onClick={(e) =>
               editCat(
-                category._id,
-                true,
-                category.cDescription,
-                category.cStatus
+                category.id,
+                category.name,
+                category.desc,
               )
             }
             className="cursor-pointer hover:bg-gray-200 rounded-lg p-2 mx-1"

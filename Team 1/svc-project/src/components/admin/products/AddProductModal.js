@@ -1,7 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { ProductContext } from "./index";
-import { createProduct, getAllProduct } from "./FetchApi";
-import { getAllCategory } from "../categories/FetchApi";
+
 
 const AddProductDetail = ({ categories }) => {
   const { data, dispatch } = useContext(ProductContext);
@@ -23,17 +22,7 @@ const AddProductDetail = ({ categories }) => {
     error: false,
   });
 
-  const fetchData = async () => {
-    let responseData = await getAllProduct();
-    setTimeout(() => {
-      if (responseData && responseData.Products) {
-        dispatch({
-          type: "fetchProductsAndChangeState",
-          payload: responseData.Products,
-        });
-      }
-    }, 1000);
-  };
+
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -47,9 +36,9 @@ const AddProductDetail = ({ categories }) => {
     }
 
     try {
-      let responseData = await createProduct(fData);
+      let responseData = {};
       if (responseData.success) {
-        fetchData();
+
         setFdata({
           ...fData,
           pName: "",
@@ -94,17 +83,15 @@ const AddProductDetail = ({ categories }) => {
       {/* Black Overlay */}
       <div
         onClick={(e) => dispatch({ type: "addProductModal", payload: false })}
-        className={`${
-          data.addProductModal ? "" : "hidden"
-        } fixed top-0 left-0 z-30 w-full h-full bg-black opacity-50`}
+        className={`${data.addProductModal ? "" : "hidden"
+          } fixed top-0 left-0 z-30 w-full h-full bg-black opacity-50`}
       />
       {/* End Black Overlay */}
 
       {/* Modal Start */}
       <div
-        className={`${
-          data.addProductModal ? "" : "hidden"
-        } fixed inset-0 flex items-center z-30 justify-center overflow-auto`}
+        className={`${data.addProductModal ? "" : "hidden"
+          } fixed inset-0 flex items-center z-30 justify-center overflow-auto`}
       >
         <div className="mt-32 md:mt-0 relative bg-white w-11/12 md:w-3/6 shadow-lg flex flex-col items-center space-y-4 px-4 py-4 md:px-8">
           <div className="flex items-center justify-between w-full pt-4">
@@ -215,7 +202,7 @@ const AddProductDetail = ({ categories }) => {
             {/* Most Important part for uploading multiple image */}
             <div className="flex space-x-1 py-4">
               <div className="w-1/2 flex flex-col space-y-1">
-                <label htmlFor="status">Trạng thái *</label>
+                <label htmlFor="status">Size *</label>
                 <select
                   value={fData.pStatus}
                   onChange={(e) =>
@@ -231,10 +218,13 @@ const AddProductDetail = ({ categories }) => {
                   id="status"
                 >
                   <option name="status" value="Active">
-                    Hoạt động
+                    M
                   </option>
                   <option name="status" value="Disabled">
-                    Không hoạt động
+                    L
+                  </option>
+                  <option name="status" value="Disabled">
+                    X   L
                   </option>
                 </select>
               </div>
@@ -259,12 +249,71 @@ const AddProductDetail = ({ categories }) => {
                   </option>
                   {categories.length > 0
                     ? categories.map(function (elem) {
-                        return (
-                          <option name="status" value={elem._id} key={elem._id}>
-                            {elem.cName}
-                          </option>
-                        );
-                      })
+                      return (
+                        <option name="status" value={elem._id} key={elem._id}>
+                          {elem.cName}
+                        </option>
+                      );
+                    })
+                    : ""}
+                </select>
+              </div>
+            </div>
+            <div className="flex space-x-1 py-4">
+              <div className="w-1/2 flex flex-col space-y-1">
+                <label htmlFor="status">Color</label>
+                <select
+                  value={fData.pStatus}
+                  onChange={(e) =>
+                    setFdata({
+                      ...fData,
+                      error: false,
+                      success: false,
+                      pStatus: e.target.value,
+                    })
+                  }
+                  name="status"
+                  className="px-4 py-2 border focus:outline-none"
+                  id="status"
+                >
+                  <option name="status" value="Active">
+                    white
+                  </option>
+                  <option name="status" value="Disabled">
+                    black
+                  </option>
+                  <option name="status" value="Disabled">
+                    pink
+                  </option>
+                </select>
+              </div>
+              <div className="w-1/2 flex flex-col space-y-1">
+                <label htmlFor="status">Danh mục *</label>
+                <select
+                  value={fData.pCategory}
+                  onChange={(e) =>
+                    setFdata({
+                      ...fData,
+                      error: false,
+                      success: false,
+                      pCategory: e.target.value,
+                    })
+                  }
+                  name="status"
+                  className="px-4 py-2 border focus:outline-none"
+                  id="status"
+                >
+                  <option disabled value="">
+                    Chọn một danh mục
+                  </option>
+                  {categories.length > 0
+                    ? categories.map(function (elem) {
+                      return (
+                        <option name="status" value={elem._id} key={elem._id}>
+                          {elem.cName}
+                        </option>
+                      );
+                    })
                     : ""}
                 </select>
               </div>
@@ -322,18 +371,11 @@ const AddProductDetail = ({ categories }) => {
 };
 
 const AddProductModal = (props) => {
-  useEffect(() => {
-    fetchCategoryData();
-  }, []);
+
 
   const [allCat, setAllCat] = useState({});
 
-  const fetchCategoryData = async () => {
-    let responseData = await getAllCategory();
-    if (responseData.Categories) {
-      setAllCat(responseData.Categories);
-    }
-  };
+
 
   return (
     <Fragment>

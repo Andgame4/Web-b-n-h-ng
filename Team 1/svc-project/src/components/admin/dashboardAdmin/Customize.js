@@ -122,7 +122,7 @@ const AllImages = () => {
   const { data, dispatch } = useContext(DashboardContext);
 
   useEffect(() => {
-    sliderImages(dispatch);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -187,7 +187,7 @@ const AllImages = () => {
           })
         ) : (
           <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center text-xl font-light w-full bg-orange-200 rounded py-2">
-              Không tìm thấy slide nào
+            Không tìm thấy slide nào
           </div>
         )}
       </div>

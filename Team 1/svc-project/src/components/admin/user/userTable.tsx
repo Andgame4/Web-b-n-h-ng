@@ -33,7 +33,7 @@ const UserTable = () => {
   // call api
   useEffect(() => {
     const jwtToken = JSON.parse(localStorage.getItem('accessToken')!);
-    const baseURL = 'http://10.22.4.62:8762/user?name=' + searchName;
+    const baseURL = 'http://10.22.4.62:8762/user?active=true&name=' + searchName;
     const config = {
       headers: {
         Authorization: 'Bearer ' + jwtToken,

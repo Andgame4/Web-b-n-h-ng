@@ -1,6 +1,5 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { OrderContext } from "./index";
-import { getAllOrder, editCategory } from "./FetchApi";
 
 const UpdateOrderModal = (props) => {
   const { data, dispatch } = useContext(OrderContext);
@@ -15,27 +14,9 @@ const UpdateOrderModal = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.updateOrderModal.modal]);
 
-  const fetchData = async () => {
-    let responseData = await getAllOrder();
-    if (responseData.Orders) {
-      dispatch({
-        type: "fetchOrderAndChangeState",
-        payload: responseData.Orders,
-      });
-    }
-  };
 
   const submitForm = async () => {
-    dispatch({ type: "loading", payload: true });
-    let responseData = await editCategory(oId, status);
-    if (responseData.error) {
-      dispatch({ type: "loading", payload: false });
-    } else if (responseData.success) {
-      console.log(responseData.success);
-      dispatch({ type: "updateOrderModalClose" });
-      fetchData();
-      dispatch({ type: "loading", payload: false });
-    }
+
   };
 
   return (
@@ -43,17 +24,15 @@ const UpdateOrderModal = (props) => {
       {/* Black Overlay */}
       <div
         onClick={(e) => dispatch({ type: "updateOrderModalClose" })}
-        className={`${
-          data.updateOrderModal.modal ? "" : "hidden"
-        } fixed top-0 left-0 z-30 w-full h-full bg-black opacity-50`}
+        className={`${data.updateOrderModal.modal ? "" : "hidden"
+          } fixed top-0 left-0 z-30 w-full h-full bg-black opacity-50`}
       />
       {/* End Black Overlay */}
 
       {/* Modal Start */}
       <div
-        className={`${
-          data.updateOrderModal.modal ? "" : "hidden"
-        } fixed inset-0 m-4  flex items-center z-30 justify-center`}
+        className={`${data.updateOrderModal.modal ? "" : "hidden"
+          } fixed inset-0 m-4  flex items-center z-30 justify-center`}
       >
         <div className="relative bg-white w-11/12 md:w-3/6 shadow-lg flex flex-col items-center space-y-4  overflow-y-auto px-4 py-4 md:px-8">
           <div className="flex items-center justify-between w-full pt-4">

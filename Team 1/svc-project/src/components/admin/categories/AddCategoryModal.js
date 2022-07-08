@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from "react";
 import { CategoryContext } from "./index";
 import { createCategory, getAllCategory } from "./FetchApi";
-
+import { addCategories } from '../../../api/categoriesAPI'
 const AddCategoryModal = (props) => {
   const { data, dispatch } = useContext(CategoryContext);
 
@@ -12,8 +12,6 @@ const AddCategoryModal = (props) => {
   const [fData, setFdata] = useState({
     cName: "",
     cDescription: "",
-    cImage: "",
-    cStatus: "Active",
     success: false,
     error: false,
   });
@@ -39,47 +37,21 @@ const AddCategoryModal = (props) => {
     // Reset and prevent the form
     e.preventDefault();
     e.target.reset();
-
-    if (!fData.cImage) {
+    if (!fData.cName) {
       dispatch({ type: "loading", payload: false });
-      return setFdata({ ...fData, error: "Please upload a category image" });
+      return setFdata({ ...fData, error: "Xin vui lòng nhập tên danh mục" });
+    }
+    if (!fData.cDescription) {
+      dispatch({ type: "loading", payload: false });
+      return setFdata({ ...fData, error: "Xin vui lòng mô tả" });
     }
 
-    try {
-      let responseData = await createCategory(fData);
-      if (responseData.success) {
-        fetchData();
-        setFdata({
-          ...fData,
-          cName: "",
-          cDescription: "",
-          cImage: "",
-          cStatus: "Active",
-          success: responseData.success,
-          error: false,
-        });
-        dispatch({ type: "loading", payload: false });
-        setTimeout(() => {
-          setFdata({
-            ...fData,
-            cName: "",
-            cDescription: "",
-            cImage: "",
-            cStatus: "Active",
-            success: false,
-            error: false,
-          });
-        }, 2000);
-      } else if (responseData.error) {
-        setFdata({ ...fData, success: false, error: responseData.error });
-        dispatch({ type: "loading", payload: false });
-        setTimeout(() => {
-          return setFdata({ ...fData, error: false, success: false });
-        }, 2000);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    addCategories(fData.cName, fData.cDescription)
+
+
+
+    dispatch({ type: "addCategoryModal", payload: false })
+
   };
 
   return (
@@ -87,17 +59,15 @@ const AddCategoryModal = (props) => {
       {/* Black Overlay */}
       <div
         onClick={(e) => dispatch({ type: "addCategoryModal", payload: false })}
-        className={`${
-          data.addCategoryModal ? "" : "hidden"
-        } fixed top-0 left-0 z-30 w-full h-full bg-black opacity-50`}
+        className={`${data.addCategoryModal ? "" : "hidden"
+          } fixed top-0 left-0 z-30 w-full h-full bg-black opacity-50`}
       />
       {/* End Black Overlay */}
 
       {/* Modal Start */}
       <div
-        className={`${
-          data.addCategoryModal ? "" : "hidden"
-        } fixed inset-0 m-4  flex items-center z-30 justify-center`}
+        className={`${data.addCategoryModal ? "" : "hidden"
+          } fixed inset-0 m-4  flex items-center z-30 justify-center`}
       >
         <div className="relative bg-white w-12/12 md:w-3/6 shadow-lg flex flex-col items-center space-y-4  overflow-y-auto px-4 py-4 md:px-8">
           <div className="flex items-center justify-between w-full pt-4">
@@ -167,45 +137,7 @@ const AddCategoryModal = (props) => {
               />
             </div>
             {/* Image Field & function */}
-            <div className="flex flex-col space-y-1 w-full">
-              <label htmlFor="name">Category Image</label>
-              <input
-                accept=".jpg, .jpeg, .png"
-                onChange={(e) => {
-                  setFdata({
-                    ...fData,
-                    success: false,
-                    error: false,
-                    cImage: e.target.files[0],
-                  });
-                }}
-                className="px-4 py-2 border focus:outline-none"
-                type="file"
-              />
-            </div>
-            <div className="flex flex-col space-y-1 w-full">
-              <label htmlFor="status">Trạng thái danh mục</label>
-              <select
-                name="status"
-                onChange={(e) =>
-                  setFdata({
-                    ...fData,
-                    success: false,
-                    error: false,
-                    cStatus: e.target.value,
-                  })
-                }
-                className="px-4 py-2 border focus:outline-none"
-                id="status"
-              >
-                <option name="status" value="Active">
-                  Hoạt động
-                </option>
-                <option name="status" value="Disabled">
-                  Không hoạt động
-                </option>
-              </select>
-            </div>
+
             <div className="flex flex-col space-y-1 w-full pb-4 md:pb-6 mt-4">
               <button
                 style={{ background: "#303031" }}

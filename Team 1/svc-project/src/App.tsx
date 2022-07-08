@@ -5,10 +5,12 @@ import ForgotPassword from './pages/user/forgotpassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/layout/layout';
 import Profile from 'pages/profile';
-import { Categories, DashboardAdmin, Orders, Products } from 'components/admin';
+import { Categories, DashboardAdmin } from 'components/admin';
 import FormOderList from 'components/profile/formOderList';
 import UserTable from 'components/admin/user/userTable';
 import Users from 'components/admin/user';
+import Products from 'components/admin/products';
+import Orders from 'components/admin/orders';
 
 const App = () => {
   let element = useRoutes([

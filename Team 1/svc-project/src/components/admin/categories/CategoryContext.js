@@ -30,8 +30,9 @@ export const categoryReducer = (state, action) => {
         ...state,
         editCategoryModal: {
           modal: true,
-          cId: action.cId,
+          id: action.id,
           des: action.des,
+          name: action.name,
           status: action.status,
         },
       };

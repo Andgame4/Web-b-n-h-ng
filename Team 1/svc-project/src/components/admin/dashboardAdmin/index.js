@@ -12,10 +12,7 @@ const DashboardComponent = () => {
   return (
     <Fragment  >
       <DashboardCard />
-     
       <HomeChart />
-      <Customize />
-      <TodaySell />
     </Fragment>
   );
 };

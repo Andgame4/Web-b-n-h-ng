@@ -1,21 +1,27 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { CategoryContext } from "./index";
 import { editCategory, getAllCategory } from "./FetchApi";
-
+import { editCategories } from '../../../api/categoriesAPI'
 const EditCategoryModal = (props) => {
   const { data, dispatch } = useContext(CategoryContext);
 
   const [des, setDes] = useState("");
   const [status, setStatus] = useState("");
-  const [cId, setCid] = useState("");
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  
 
   useEffect(() => {
+    setName(data.editCategoryModal.name);
     setDes(data.editCategoryModal.des);
     setStatus(data.editCategoryModal.status);
-    setCid(data.editCategoryModal.cId);
+    setId(data.editCategoryModal.id);
+
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.editCategoryModal.modal]);
+
+  
 
   const fetchData = async () => {
     let responseData = await getAllCategory();
@@ -29,19 +35,16 @@ const EditCategoryModal = (props) => {
 
   const submitForm = async () => {
     dispatch({ type: "loading", payload: true });
-    let edit = await editCategory(cId, des, status);
-    if (edit.error) {
-      console.log(edit.error);
-      dispatch({ type: "loading", payload: false });
-    } else if (edit.success) {
-      console.log(edit.success);
-      dispatch({ type: "editCategoryModalClose" });
-      setTimeout(() => {
-        fetchData();
-        dispatch({ type: "loading", payload: false });
-      }, 1000);
+    
+    if (name.length >0) {
+      if(name!=data.editCategoryModal.name||des!=data.editCategoryModal.des)
+          editCategories(id,name,des);
+      else alert("không có dữ liệu thay đổi")
     }
-  };
+    else alert("Tên danh mục không được để trống")
+
+    }
+
 
   return (
     <Fragment>
@@ -63,7 +66,7 @@ const EditCategoryModal = (props) => {
         <div className="relative bg-white w-11/12 md:w-3/6 shadow-lg flex flex-col items-center space-y-4  overflow-y-auto px-4 py-4 md:px-8">
           <div className="flex items-center justify-between w-full pt-4">
             <span className="text-left font-semibold text-2xl tracking-wider">
-              Thêm danh mục
+             Sửa danh mục
             </span>
             {/* Close Modal */}
             <span
@@ -87,6 +90,15 @@ const EditCategoryModal = (props) => {
               </svg>
             </span>
           </div>
+          <div className="flex flex-col space-y-1 w-full py-4">
+            <label htmlFor="name">Tên danh mục</label>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="px-4 py-2 border focus:outline-none"
+              type="text"
+            />
+          </div>
           <div className="flex flex-col space-y-1 w-full">
             <label htmlFor="description">Mô tả danh mục</label>
             <textarea
@@ -99,30 +111,15 @@ const EditCategoryModal = (props) => {
               rows={5}
             />
           </div>
-          <div className="flex flex-col space-y-1 w-full">
-            <label htmlFor="status">Trạng thái danh mục</label>
-            <select
-              value={status}
-              name="status"
-              onChange={(e) => setStatus(e.target.value)}
-              className="px-4 py-2 border focus:outline-none"
-              id="status"
-            >
-              <option name="status" value="Active">
-                Hoạt động
-              </option>
-              <option name="status" value="Disabled">
-                Không hoạt động
-              </option>
-            </select>
-          </div>
+          
+      
           <div className="flex flex-col space-y-1 w-full pb-4 md:pb-6">
             <button
               style={{ background: "#303031" }}
               onClick={(e) => submitForm()}
               className="rounded-full bg-gray-800 text-gray-100 text-lg font-medium py-2"
             >
-              Tạo danh mục
+              Sửa danh mục
             </button>
           </div>
         </div>
