@@ -1,0 +1,83 @@
+{
+  "users": [
+    {
+      "name": "long",
+      "email": "Long@gmail.com",
+      "address": "0123456789",
+      "phone": "Ha Noi",
+      "id": 16
+    },
+    {
+      "name": "Long Phạm1",
+      "email": "phamthanhlong1772000@gmail.com",
+      "address": "0123456789",
+      "phone": "0838760930",
+      "id": 17
+    },
+    {
+      "name": "Long Phạm",
+      "email": "phamthanhlong1772000@gmail.com",
+      "address": "01234567890",
+      "phone": "0838760930",
+      "id": 18
+    },
+    {
+      "name": "Long Phạm",
+      "email": "phamthanhlong1772000@gmail.com",
+      "address": "0838760930",
+      "phone": "ngõ 1194 đường Láng,Hà Nội,Việt Nam",
+      "id": 19
+    },
+    {
+      "name": "long",
+      "email": "long@gmail.com",
+      "address": "0123456789",
+      "phone": "Ha Noi",
+      "id": 20
+    },
+    {
+      "name": "Long Phạm",
+      "email": "phamthanhlong1772000@gmail.com",
+      "address": "ngõ 1194 đường Láng,Hà Nội,Việt Nam",
+      "phone": "0838760930",
+      "id": 21
+    },
+    {
+      "name": "admin1",
+      "email": "admin@gmail.com",
+      "address": "0123456789",
+      "phone": "Hà Nội",
+      "id": 22
+    },
+    {
+      "name": "long",
+      "email": "long@gmail.com",
+      "address": "Ha Noi",
+      "phone": "0123456789",
+      "id": 23
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "long-name",
+      "email": "email@example.com",
+      "phone": "123-456-1234",
+      "address": "Hà Nội"
+    },
+    {
+      "id": 1,
+      "name": "long-name",
+      "email": "email@example.com",
+      "phone": "123-456-1234",
+      "address": "Hà Nội"
+    },
+    {
+      "id": 1,
+      "name": "long-name",
+      "email": "email@example.com",
+      "phone": "123-456-1234",
+      "address": "Hà Nội"
+    }
+  ]
+}

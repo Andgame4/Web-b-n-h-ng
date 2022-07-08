@@ -1,8 +1,35 @@
-import React from 'react';
-import '../../assets/css/formOderList.scss';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import '../../assets/css/profileCss/formOderList.scss';
 import OrderSideMenu from './orderSideMenu';
 
+interface Products {}
 const FormOderList = () => {
+  const [dataProduct, setDataProduct] = useState([]);
+  const baseURL = 'http://localhost:8000/products';
+  const fetchData = async () => {
+    try {
+      const { data: response } = await axios.get(baseURL);
+      console.log('hello', response);
+      setDataProduct(response);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // const listItems = dataProduct.map((number: Products) => (
+  //   <tr key={number.id}>
+  //     <td>{number.name}</td>
+  //     <td>{number.email}</td>
+  //     <td>{number.phone}</td>
+  //     <td>{number.address}</td>
+  //     <td></td>
+  //   </tr>
+  // ));
   return (
     <div className="row oderlist_management">
       <div className="col-lg-4 col-xl-auto">
@@ -37,106 +64,7 @@ const FormOderList = () => {
                 <th>TỔNG TIỀN</th>
               </tr>
             </thead>
-            <tbody className="scroll_body">
-              {/* <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr>
-              <tr>
-                <td>qưer</td>
-                <td>17/7/2000</td>
-                <td>Đang giao</td>
-                <td>QUần áo</td>
-                <td>100.000</td>
-              </tr> */}
-            </tbody>
+            <tbody className="scroll_body"></tbody>
           </table>
           <div className="product-rating__list-pagination">
             <ul className="list-inline-pagination"></ul>

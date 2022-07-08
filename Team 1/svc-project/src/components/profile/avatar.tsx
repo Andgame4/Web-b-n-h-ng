@@ -51,7 +51,7 @@ const Avatar = (props: { value: React.SetStateAction<string>; onClick: (arg0: an
         <img className="profile-pic" src={image} alt="" />
         <div className="upload-button" onClick={onFileUpload}>
           <i className="fa fa-arrow-circle-up" aria-hidden="true">
-            <FaUserEdit />
+            <FaUserEdit className="edit-avatar" />
           </i>
         </div>
         <input className="file-upload" type="file" accept="image/*" onChange={(e) => readURL(e)} />

@@ -1,7 +1,7 @@
 import React, { Fragment, createContext, useReducer } from 'react';
 import AdminLayout from '../layout';
 import ProductMenu from './ProductMenu';
-import ProductTable from './ProductTable';
+import UserTable from './userTable';
 import { productState, productReducer } from './ProductContext';
 
 /* This context manage all of the products component's data */
@@ -11,12 +11,12 @@ const ProductComponent = () => {
   return (
     <div className="grid grid-cols-1 space-y-4 p-4">
       <ProductMenu />
-      <ProductTable />
+      <UserTable />
     </div>
   );
 };
 
-const Products = (props) => {
+const Users = (props) => {
   /* To use useReducer make sure that reducer is the first arg */
   const [data, dispatch] = useReducer(productReducer, productState);
 
@@ -29,4 +29,4 @@ const Products = (props) => {
   );
 };
 
-export default Products;
+export default Users;
