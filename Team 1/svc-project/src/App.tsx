@@ -18,7 +18,7 @@ const App = () => {
       children: [
         {
           path: '/',
-          element: <DashboardAdmin />,
+          element: <Login />,
         },
         // ADMIN
         {
@@ -65,6 +65,10 @@ const App = () => {
         {
           path: '/register',
           element: <Register />,
+        },
+        {
+          path: '/login',
+          element: <Login />,
         },
       ],
     },

@@ -3,17 +3,16 @@ import '../../../assets/css/adminCss/userTable.scss';
 import { AiFillEdit } from 'react-icons/ai';
 import { AiFillDelete } from 'react-icons/ai';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 import Input from 'components/input/input';
-import { set } from 'immer/dist/internal';
 import { validateAddress, validateEmail, validateName, validatePhoneNumber } from 'utils/validate';
 import EditUserAPI from 'api/adminAPI/editUserAPI';
 import DeleteUserAPI from 'api/adminAPI/deleteUserAPI';
+import { AiOutlineSearch } from 'react-icons/ai';
 interface User {
   id: number;
   name: string;
-  email: string;
+  username: string; //email
   phone: string;
   address: string;
 }
@@ -27,36 +26,44 @@ const UserTable = () => {
   const [errorPhoneNumber, setErrorPhoneNumber] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [errorAddress, setErrorAddress] = useState<string>('');
+  const [searchName, setSearchName] = useState<string>('');
   const [dataUser, setDataUser] = useState([]);
   const [show, setShow] = useState(false);
-  const [showAdd, setShowAdd] = useState(false);
-  const handleClose = () => setShow(false);
   const [refresh, setRefresh] = useState<string>('');
-  const handleShowAdd = () => {
-    setShowAdd(true);
+  // call api
+  useEffect(() => {
+    const jwtToken = JSON.parse(localStorage.getItem('accessToken')!);
+    const baseURL = 'http://10.22.4.62:8762/user?name=' + searchName;
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + jwtToken,
+      },
+    };
+    const fetchData = async () => {
+      try {
+        const { data: response } = await axios.get(baseURL, config);
+        setDataUser(response.data.content);
+        console.log(response.data.content);
+      } catch (error: any) {
+        console.error(error.message);
+      }
+    };
+    fetchData();
+  }, [searchName, refresh]);
+
+  // modalshow
+  const handleClose = () => {
+    setShow(false);
   };
+
   const handleShow = (data: User) => {
     setId(data.id);
     setName(data.name);
-    setEmail(data.email);
+    setEmail(data.username);
     setPhoneNumber(data.phone);
     setAddress(data.address);
     setShow(true);
   };
-  // call api
-  const baseURL = 'http://localhost:8000/users';
-  const fetchData = async () => {
-    try {
-      const { data: response } = await axios.get(baseURL);
-      setDataUser(response);
-    } catch (error: any) {
-      console.error(error.message);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, [refresh]);
-
   // handle
   const handleName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -75,6 +82,11 @@ const UserTable = () => {
     const value = e.target.value;
     setAddress(value);
   }, []);
+  const handleSearchName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchName(value);
+  }, []);
+
   // validare
   const checkName = validateName(name);
   const checkEmail = validateEmail(email);
@@ -99,18 +111,17 @@ const UserTable = () => {
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (validateForm() && status === true) {
-      const response = await EditUserAPI(id, name, email, phoneNumber, address);
-      console.log(response);
-      setRefresh('+1');
+      const responseEdit = await EditUserAPI(id, name, email, address, phoneNumber);
       handleClose();
     }
+    setRefresh('' + 1);
   };
 
   // delete
   const handleDelete = async (id: number) => {
-    const response = await DeleteUserAPI(id);
-    console.log(response);
-    setRefresh('+2');
+    const responseDelete = await DeleteUserAPI(id);
+    alert('Xác nhận xóa !!');
+    setRefresh('+1');
   };
 
   // fetchData
@@ -118,7 +129,7 @@ const UserTable = () => {
     <tr key={number.id}>
       <td>{number.id}</td>
       <td>{number.name}</td>
-      <td>{number.email}</td>
+      <td>{number.username}</td>
       <td>{number.phone}</td>
       <td>{number.address}</td>
       <td className="list-item-user">
@@ -154,22 +165,31 @@ const UserTable = () => {
         <div className="table-wrapper">
           <div className="table-title">
             <div className="row">
-              <div className="col-sm-8">
+              <div className="col-sm-9">
                 <h2>
                   Quản lí <b>User</b>
                 </h2>
               </div>
-              <div className="col-sm-4">
-                <button type="button" className="btn btn-info add-new" onClick={handleShowAdd}>
-                  <i className="fa fa-plus"></i> Add New
-                </button>
+              <div className="col-sm-3">
+                <div className="input-group">
+                  <div className="form-outline">
+                    <Input
+                      type="text"
+                      id="name"
+                      className={`form-control form-control-lg-name`}
+                      placeholder="Seacrch"
+                      value={searchName}
+                      onChange={handleSearchName}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <table className="table table-bordered">
             <thead>
-              <tr>
-                <th>STT</th>
+              <tr className="row-user">
+                <th className="colum-index">STT</th>
                 <th>Tên đăng nhập</th>
                 <th>Email</th>
                 <th>Số điện thoại</th>
@@ -195,12 +215,12 @@ const UserTable = () => {
               <Input
                 type="text"
                 id="name"
-                className={`form-control form-control-lg`}
+                className={`form-control form-control-lg-name`}
                 placeholder=""
                 value={name}
                 onChange={handleName}
-                errorText={errorName}
               />
+              <p className="validate_input">{errorName}</p>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleInputPassword1" className="form-label">
@@ -209,12 +229,12 @@ const UserTable = () => {
               <Input
                 type="text"
                 id="email"
-                className={`form-control form-control-lg`}
+                className={`form-control form-control-lg-email`}
                 placeholder=""
                 value={email}
                 onChange={handleEmail}
-                errorText={errorEmail}
               />
+              <p className="validate_input">{errorEmail}</p>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleInputPassword1" className="form-label">
@@ -223,12 +243,12 @@ const UserTable = () => {
               <Input
                 type="text"
                 id="phoneNumber"
-                className={`form-control form-control-lg`}
+                className={`form-control form-control-lg-phone`}
                 placeholder=""
                 value={phoneNumber}
                 onChange={handlePhone}
-                errorText={errorPhoneNumber}
               />
+              <p className="validate_input">{errorPhoneNumber}</p>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleInputPassword1" className="form-label">
@@ -237,86 +257,12 @@ const UserTable = () => {
               <Input
                 type="text"
                 id="address"
-                className={`form-control form-control-lg`}
+                className={`form-control form-control-lg-address`}
                 placeholder=""
                 value={address}
                 onChange={handleAddress}
-                errorText={errorAddress}
               />
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Đóng
-          </Button>
-          <Button variant="primary" onClick={onSubmit}>
-            Lưu
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      {/* Add modal */}
-      <Modal show={showAdd} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Sửa thông tin</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form>
-            <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                Tên đăng nhập
-              </label>
-              <Input
-                type="text"
-                id="name"
-                className={`form-control form-control-lg`}
-                placeholder=""
-                value={name}
-                onChange={handleName}
-                errorText={errorName}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                Email
-              </label>
-              <Input
-                type="text"
-                id="email"
-                className={`form-control form-control-lg`}
-                placeholder=""
-                value={email}
-                onChange={handleEmail}
-                errorText={errorEmail}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                Số điện thoại
-              </label>
-              <Input
-                type="text"
-                id="phoneNumber"
-                className={`form-control form-control-lg`}
-                placeholder=""
-                value={phoneNumber}
-                onChange={handlePhone}
-                errorText={errorPhoneNumber}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                Địa chỉ
-              </label>
-              <Input
-                type="text"
-                id="address"
-                className={`form-control form-control-lg`}
-                placeholder=""
-                value={address}
-                onChange={handleAddress}
-                errorText={errorAddress}
-              />
+              <p className="validate_input">{errorAddress}</p>
             </div>
           </form>
         </Modal.Body>

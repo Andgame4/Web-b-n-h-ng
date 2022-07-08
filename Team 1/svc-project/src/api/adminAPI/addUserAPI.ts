@@ -1,15 +1,24 @@
 import axios from 'axios';
 
-function DeleteUserAPI(id: number) {
+function AddUserAPI(name: string, email: string, address: string, phoneNumber: string) {
   const jwtToken = JSON.parse(localStorage.getItem('accessToken')!);
-  const baseURL = 'http://10.22.4.62:8762/user/' + id;
+  const baseURL = 'http://10.22.4.62:8762/user/';
   const config = {
     headers: {
       Authorization: 'Bearer ' + jwtToken,
     },
   };
   axios
-    .delete(baseURL, config)
+    .post(
+      baseURL,
+      {
+        name: name,
+        username: email,
+        address: address,
+        phone: phoneNumber,
+      },
+      config
+    )
     .then(function (response) {
       console.log(response);
     })
@@ -18,4 +27,4 @@ function DeleteUserAPI(id: number) {
     });
 }
 
-export default DeleteUserAPI;
+export default AddUserAPI;

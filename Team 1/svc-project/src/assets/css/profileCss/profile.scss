@@ -13,40 +13,25 @@ body {
   background: rgb(236, 232, 232);
 }
 
-// span {
-//   color: red;
-// }
-
-h1 {
-  margin: 0;
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-  text-transform: capitalize;
-  color: #333;
-}
-
-.container_profile {
+.container-form {
   background: white;
-  max-width: 100%;
-  max-height: 100%;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 13%);
-  border-radius: 0.125rem;
+  padding-top: 50px;
+  align-items: flex-start;
+  .oderSideMenu {
+    padding-left: 20px;
+    border-right: 2px solid #f7f8f9;
+  }
   .container-avatar {
     border-bottom: 0.5px solid black;
   }
   .order-block__title {
     border-bottom: 2px solid #f7f8f9;
   }
-  .container-form {
-    padding-top: 1rem;
-    align-items: flex-start;
-    max-height: 100%;
-    .validate-avatar {
-      color: #999;
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-    }
+  .validate-avatar {
+    color: #999;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-top: -10px;
   }
   .form-control:focus {
     box-shadow: none;
@@ -71,42 +56,101 @@ h1 {
       box-shadow: none;
     }
   }
+  .input-profile-username {
+    .profile-name {
+      display: flex;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      .labels-username {
+        width: 20%;
+        text-align: left;
+        color: rgba(85, 85, 85, 0.8);
+        font-size: 20px;
+      }
+      .username_info {
+        font-size: 25px;
+        margin-left: -22px;
+      }
+    }
+  }
   .input-profile-email {
-    margin-top: 2px;
+    .profile-email {
+      display: flex;
+      margin-bottom: 20px;
+      .labels-email {
+        margin-left: 48px;
+        width: 40%;
+        color: rgba(85, 85, 85, 0.8);
+        font-size: 20px;
+      }
+      .email_info {
+        padding-left: 20px;
+        font-size: 25px;
+      }
+    }
   }
   .input-profile-phone {
-    margin-top: 2px;
+    .profile-phone {
+      display: flex;
+      margin-bottom: 20px;
+      .labels-phone {
+        margin-left: 43px;
+        width: 20%;
+        color: rgba(85, 85, 85, 0.8);
+        font-size: 20px;
+        padding-top: 20px;
+      }
+      .form-control-lg {
+        min-height: 20px;
+        font-size: 1.25rem;
+        border-radius: 0.3rem;
+        margin-right: 590px;
+      }
+    }
+    .alert-file-validation-phone {
+      color: red;
+      margin-top: -15px;
+      margin-left: 129px;
+    }
   }
   .input-profile-gender {
-    margin-top: 15px;
+    .profile-gender {
+      display: flex;
+      margin-bottom: 20px;
+      .labels-gender {
+        margin-left: 38px;
+        width: 20%;
+        color: rgba(85, 85, 85, 0.8);
+        font-size: 20px;
+        padding-top: 20px;
+      }
+      .from-gender {
+        margin-left: -59px;
+        margin-top: 26px;
+      }
+    }
   }
   .input-profile-address {
-    margin-top: 15px;
+    .profile-address {
+      display: flex;
+      margin-bottom: 20px;
+      .labels-address {
+        margin-left: 38px;
+        width: 20%;
+        color: rgba(85, 85, 85, 0.8);
+        font-size: 20px;
+        padding-top: 20px;
+      }
+      .form-control-address {
+        margin-left: 123px;
+        margin-top: -35px;
+        width: 619px;
+        height: 48px;
+      }
+    }
   }
   .border-red {
     border: red solid 1px;
-  }
-  .alert-file-validation {
-    height: 100%;
-    margin-bottom: 0px;
-    margin-top: 2px;
-  }
-  .labels {
-    width: 20%;
-    text-align: left;
-    color: rgba(85, 85, 85, 0.8);
-    text-transform: capitalize;
-    overflow: hidden;
-  }
-  .profile-name {
-    .username_info {
-      font-size: 20px;
-    }
-  }
-  .profile-email {
-    .email_info {
-      font-size: 20px;
-    }
   }
   .border-right {
     max-height: 300px;
@@ -116,15 +160,11 @@ h1 {
     margin-top: 1.75rem;
     margin-bottom: 10px;
     .profile-button {
-      color: #fff;
-      position: relative;
-      overflow: visible;
-      outline: 0;
       background: #ee4d2d;
       height: 40px;
       padding: 0 20px;
-      min-width: 70px;
-      max-width: 220px;
+      margin-left: 120px;
+      margin-top: 20px;
     }
   }
 }

@@ -19,7 +19,7 @@ const initialState: ProfileState = {
     userName: '',
     email: '',
     phoneNumber: '',
-    gender: '',
+    gender: 'male',
     address: '',
     avatar:
       'https://static2.yan.vn/YanNews/2167221/202003/dan-mang-du-trend-thiet-ke-avatar-du-kieu-day-mau-sac-tu-anh-mac-dinh-b0de2bad.jpg',

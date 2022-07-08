@@ -7,14 +7,24 @@ function EditUserAPI(
   address: string,
   phoneNumber: string
 ) {
-  const baseURL = 'http://localhost:8000/users/' + id;
+  const jwtToken = JSON.parse(localStorage.getItem('accessToken')!);
+  const baseURL = 'http://10.22.4.62:8762/user/' + id;
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + jwtToken,
+    },
+  };
   axios
-    .put(baseURL, {
-      name: name,
-      email: email,
-      address: address,
-      phone: phoneNumber,
-    })
+    .post(
+      baseURL,
+      {
+        name: name,
+        email: email,
+        address: address,
+        phone: phoneNumber,
+      },
+      config
+    )
     .then(function (response) {
       console.log(response);
     })
